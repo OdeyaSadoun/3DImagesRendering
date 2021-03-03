@@ -22,14 +22,17 @@ public class Vector {
 	}
 	public Vector(double a, double b, double c)
 	{
-		Coordinate aa=new Coordinate(a);
-		head.x=aa;
-		Coordinate bb=new Coordinate(b);
-		head.y=bb;
-		Coordinate cc=new Coordinate(c);
-		head.z=cc;
+		head.x=new Coordinate(a);		
+		head.y=new Coordinate(b);
+		head.z=new Coordinate(c);
 			
 	}
+	
+	public Point3D getHead() {
+		return head;
+	}
+	
+	
 	public Vector add(Vector v)
 	{
 		return new Vector(head.add(v));		
@@ -43,15 +46,16 @@ public class Vector {
 	{			
 		return new Vector(head.scale(scalar));
 	}
-	public double crossProduct(Vector v)
+	public Vector crossProduct(Vector v)
 	{
-		
+		Vector newVec=new Vector(head.y.coord*v.head.z.coord-head.z.coord*v.head.y.coord, head.z.coord*v.head.x.coord-head.x.coord*v.head.z.coord, head.x.coord*v.head.y.coord-head.y.coord*v.head.x.coord);
+		return newVec;
 	}
 	
 	public double dotProduct(Vector v)
 	{
-		double sum=head.x.coord*v.head.x.coord+head.y.coord*v.head.y.coord+head.z.coord*v.head.z.coord;
-		return sum;
+		double count=head.x.coord*v.head.x.coord+head.y.coord*v.head.y.coord+head.z.coord*v.head.z.coord;
+		return count;
 	}
 	public double lengthSquared()
 	{
@@ -65,19 +69,27 @@ public class Vector {
 	public Vector normalize()
 	{
 		double sum=length();
-		head.x.coord = head.x.coord/sum;
-		head.y.coord = head.y.coord/sum;
-		head.z.coord = head.z.coord/sum;	
-		return new Vector(head.x.coord/sum, head.y.coord/sum, head.z.coord/sum );
+		head.x = new Coordinate (head.x.coord/sum);
+		head.y = new Coordinate (head.y.coord/sum);
+		head.z = new Coordinate (head.z.coord/sum);	
+		return this;
 	}
 	public Vector normalized()
 	{
-		
+		Vector temp=this;
+		Vector newVec=normalize();
+		this.head=temp.head;
+		return newVec;		
 	}
-	public bool equals(Object obj)
-	{
-		
-	}
+	   @Override
+	   public boolean equals(Object obj) {
+	      if (this == obj) return true;
+	      if (obj == null) return false;
+	      if (!(obj instanceof Vector)) return false;
+	      Vector other = (Vector)obj;
+	      return this.head.equals(other.head);
+	   }
+
 	
 
 }
