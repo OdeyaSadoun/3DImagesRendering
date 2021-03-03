@@ -2,7 +2,7 @@
  * 
  */
 package primitives;
-import static primitives.Coordinate.*;
+
 
 /**
  * @author Home
@@ -26,9 +26,9 @@ public class Point3D
 	}
 	public Point3D(double a, double b, double c)
 	{
-		x.coord = a;
-		y.coord = b;
-		z.coord = c;	
+		x = new Coordinate(a);
+		y = new Coordinate(b);
+		z = new Coordinate(c);
 	}
 	
 	public Point3D add(Vector v)
@@ -40,11 +40,32 @@ public class Point3D
 		return p;
 	}
 	
-	public Vector substract(Point3D p)
+	public Vector subtract(Point3D p)
 	{
-		Vector v;
+		Vector newVec=new Vector(x.coord-p.x.coord, y.coord-p.y.coord, z.coord-p.z.coord);
+		return newVec;
+		/*
+		try
+		{
+		newVec= new Vector(x.coord-p.x.coord, y.coord-p.y.coord, z.coord-p.z.coord);	
+		return newVec;
+		}
+		catch(IllegalArgumentException ex)
+		{
+			ex.printStackTrace();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		*/
+		
 	}
 	
+	@Override
+	public String toString() {
+		return "x=" + x + ", y=" + y + ", z=" + z;
+	}
 	/**
 	 * A function that return the distanceSquared between two vectors
 	 * */
@@ -60,18 +81,21 @@ public class Point3D
 	 * */
 	public double distance(Point3D p)
 	{
-		Math.sqrt(distanceSquared(p));
+		return Math.sqrt(distanceSquared(p));
 	}
 	
-	public bool equals(Object obj)
-	{
-		
-	}
+	   @Override
+	   public boolean equals(Object obj) 
+	   {
+	      if (this == obj) return true;
+	      if (obj == null) return false;
+	      if (!(obj instanceof Point3D)) return false;
+	      Point3D other = (Point3D)obj;
+	      return this.x.equals(other.x) && this.y.equals(other.y)&& this.z.equals(other.z);
+	   }
+
 	
-	public Point3D scale(double scalar)
-	{
-		return new Point3D(x.coord*scalar, y.coord*scalar, z.coord*scalar);
-	}
+	
 
 
 }

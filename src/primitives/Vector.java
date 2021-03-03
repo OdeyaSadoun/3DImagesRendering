@@ -2,7 +2,8 @@
  * 
  */
 package primitives;
-import static primitives.Coordinate.*;
+
+
 /**
  * @author Home
  *
@@ -12,20 +13,25 @@ public class Vector {
 	Point3D head;
 	public Vector(Point3D head)
 	{
-		this.head=head;
+		this.head=head;		
 	}
-	public Vector(Coordinate x, Coordinate y, Coordinate z)
+	public Vector(Coordinate x, Coordinate y, Coordinate z) 
 	{
+		
 		head.x = x;
 		head.y = y;
 		head.z = z;	
+		if (this.equals(Point3D.ZERO))
+			throw new IllegalArgumentException("This vector is equals to zero vector");
 	}
 	public Vector(double a, double b, double c)
 	{
+		
 		head.x=new Coordinate(a);		
 		head.y=new Coordinate(b);
 		head.z=new Coordinate(c);
-			
+		if (this.equals(Point3D.ZERO))
+			throw new IllegalArgumentException("This vector is equals to zero vector");
 	}
 	
 	public Point3D getHead() {
@@ -40,12 +46,14 @@ public class Vector {
 	
 	public Vector subtract(Vector v)
 	{
-		return new Vector(head.subtract(v));		
+		Vector newVec= new Vector(head.subtract(v.head).head);
+		return newVec;		
 	}
 	public Vector scale(double scalar)
 	{			
-		return new Vector(head.scale(scalar));
+		return new Vector(head.x.coord*scalar, head.y.coord*scalar, head.z.coord*scalar);
 	}
+	
 	public Vector crossProduct(Vector v)
 	{
 		Vector newVec=new Vector(head.y.coord*v.head.z.coord-head.z.coord*v.head.y.coord, head.z.coord*v.head.x.coord-head.x.coord*v.head.z.coord, head.x.coord*v.head.y.coord-head.y.coord*v.head.x.coord);
@@ -82,13 +90,19 @@ public class Vector {
 		return newVec;		
 	}
 	   @Override
-	   public boolean equals(Object obj) {
+	   public boolean equals(Object obj) 
+	   {
 	      if (this == obj) return true;
 	      if (obj == null) return false;
 	      if (!(obj instanceof Vector)) return false;
 	      Vector other = (Vector)obj;
 	      return this.head.equals(other.head);
 	   }
+	@Override
+	public String toString() {
+		return "head=" + head + "";
+	}
+	   
 
 	
 

@@ -66,9 +66,12 @@ public abstract class Util {
 	 * @param max
 	 * @return the random value
 	 */
-	public static double random(double min, double max) {
+	public static double random(double min, double max) 
+	{
 		return Math.random() * (max - min) + min;
 
-
-}
+	}
+	
+	
+	
 }
