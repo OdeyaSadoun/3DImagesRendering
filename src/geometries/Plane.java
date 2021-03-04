@@ -5,35 +5,50 @@ import primitives.Vector;
 
 public class Plane implements Geometry 
 {
-	private Point3D p;
+	//The filed of this class are point and normal
+	private Point3D point;
 	private Vector normal;
+	
+	/**
+	 * Constructor that receives 3 points
+	 * */
 	public Plane(Point3D p1, Point3D p2, Point3D p3)
 	{
 		normal = null;
-		p = p1;
+		point = p1;
 	}
 	
+	/**
+	 * Constructor that receives point and normal
+	 * */
 	public Plane(Point3D p, Vector normal)
 	{
-		this.p = p;
+		this.point = p;
 		this.normal = normal;
 	}
 
+	/**
+	 * A getter function for the field point
+	 * */
 	public Point3D getP() 
 	{
-		return p;
+		return point;
 	}
 
-
+	/**
+	 * A getter function for the field normal
+	 * */
 	public Vector getNormal() 
 	{
 		return normal;
 	}
 
+	/*************************************************************/
+	
 	@Override
 	public String toString() 
 	{
-		return "p=" + p + ", normal=" + normal;
+		return "p=" + point + ", normal=" + normal;
 	}
 	
 	@Override
@@ -41,7 +56,5 @@ public class Plane implements Geometry
 	{
 		return null;
 	}
-	
-
 
 }
