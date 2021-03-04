@@ -21,16 +21,16 @@ public class Vector {
 		head.x = x;
 		head.y = y;
 		head.z = z;	
-		if (this.equals(Point3D.ZERO))
+		if (head.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("This vector is equals to zero vector");
 	}
 	public Vector(double a, double b, double c)
 	{
-		
-		head.x=new Coordinate(a);		
-		head.y=new Coordinate(b);
-		head.z=new Coordinate(c);
-		if (this.equals(Point3D.ZERO))
+		head = new Point3D(a,b,c);
+		//head.x=new Coordinate(a);		
+		//head.y=new Coordinate(b);
+		//head.z=new Coordinate(c);
+		if (head.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("This vector is equals to zero vector");
 	}
 	
@@ -85,7 +85,7 @@ public class Vector {
 	public Vector normalized()
 	{
 		Vector temp=this;
-		Vector newVec=normalize();
+		Vector newVec= new Vector(normalize().head);
 		this.head=temp.head;
 		return newVec;		
 	}

@@ -3,17 +3,26 @@
  */
 package geometries;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static primitives.Util.*;
+
+import primitives.Point3D;
+import primitives.Vector;
+
 /**
  * @author Home
  *
  */
-public class Polygon {
+public class Polygon implements Geometry
+{
 	
 
 	/**
 	 * List of polygon's vertices
 	 */
-	protected List<Point3D> vertices;
+	protected List<Point3D> vertices = new ArrayList<Point3D>();
 	/**
 	 * Associated plane in which the polygon lays
 	 */
@@ -40,7 +49,8 @@ public class Polygon {
 	 *                                  <li>The polygon is concave (not convex)</li>
 	 *                                  </ul>
 	 */
-	public Polygon(Point3D... vertices) {
+	public Polygon(Point3D... vertices) 
+	{
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
 		this.vertices = List.of(vertices);
@@ -81,8 +91,10 @@ public class Polygon {
 	}
 
 	@Override
-	public Vector getNormal(Point3D point) {
+	public Vector getNormal(Point3D point) 
+	{
 		return plane.getNormal();
+	}
 
 
 }
