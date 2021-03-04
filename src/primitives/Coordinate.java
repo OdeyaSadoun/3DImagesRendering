@@ -16,7 +16,6 @@ public final class Coordinate
     final double coord;
     /**
      * Coordinate constructor receiving a coordinate value
-     * 
      * @param coord coordinate value
      */
     public Coordinate(double coord)
@@ -26,6 +25,7 @@ public final class Coordinate
     }
 
     /*************** Admin *****************/
+    
     @Override
     public boolean equals(Object obj) 
     {

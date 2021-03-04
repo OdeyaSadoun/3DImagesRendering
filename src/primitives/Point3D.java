@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package primitives;
 
 
@@ -12,18 +10,29 @@ package primitives;
 
 public class Point3D
 {
+	//The fields of this class are 3 coordinates
 	Coordinate x;
 	Coordinate y;
 	Coordinate z;
+	
+	/**
+	 * A constant that represents the zero point
+	 * */
 	public static final Point3D ZERO= new Point3D(0,0,0);
 
-	
+	/**
+	 * Constructor that receives 3 coordinates
+	 * */
 	public Point3D(Coordinate x, Coordinate y, Coordinate z)
 	{
 		this.x = x;
 		this.y = y;
 		this.z = z;	
 	}
+	
+	/**
+	 * Constructor that receives 3 double numbers and make from them 3 coordinates
+	 * */
 	public Point3D(double a, double b, double c)
 	{
 		x = new Coordinate(a);
@@ -31,6 +40,10 @@ public class Point3D
 		z = new Coordinate(c);
 	}
 	
+	/**
+	 * A function that receives a vector and adds it to the point of the class
+	 * @param v Vector value
+	 * */
 	public Point3D add(Vector v)
 	{
 		double myX=x.coord+v.head.x.coord;
@@ -40,6 +53,10 @@ public class Point3D
 		return p;
 	}
 	
+	/**
+	 * A function that subtracts point from the existing point, the result is basically a new vector
+	 * @param p Point3D value
+	 * */
 	public Vector subtract(Point3D p)
 	{
 		Vector newVec=new Vector(x.coord-p.x.coord, y.coord-p.y.coord, z.coord-p.z.coord);
@@ -61,11 +78,7 @@ public class Point3D
 		*/
 		
 	}
-	
-	@Override
-	public String toString() {
-		return "x=" + x + ", y=" + y + ", z=" + z;
-	}
+
 	/**
 	 * A function that return the distanceSquared between two vectors
 	 * */
@@ -84,17 +97,23 @@ public class Point3D
 		return Math.sqrt(distanceSquared(p));
 	}
 	
-	   @Override
-	   public boolean equals(Object obj) 
-	   {
-	      if (this == obj) return true;
-	      if (obj == null) return false;
-	      if (!(obj instanceof Point3D)) return false;
-	      Point3D other = (Point3D)obj;
-	      return this.x.equals(other.x) && this.y.equals(other.y)&& this.z.equals(other.z);
-	   }
-
+	/*********************************************************************/
 	
+	@Override
+	public boolean equals(Object obj) 
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (!(obj instanceof Point3D)) return false;
+		Point3D other = (Point3D)obj;
+		return this.x.equals(other.x) && this.y.equals(other.y)&& this.z.equals(other.z);
+	}
+	
+	@Override
+	public String toString() 
+	{
+		return "Point: ("+ x + ","+ y+"," + z+")";
+	}
 	
 
 
