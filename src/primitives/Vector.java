@@ -66,8 +66,7 @@ public class Vector
 	 * */
 	public Vector subtract(Vector v)
 	{
-		Vector newVec= new Vector(head.subtract(v.head).head);
-		return newVec;		
+		return new Vector(head.subtract(v.head).head);	
 	}
 	
 	/**
@@ -85,8 +84,7 @@ public class Vector
 	 * */
 	public Vector crossProduct(Vector v)
 	{
-		Vector newVec=new Vector(head.y.coord*v.head.z.coord-head.z.coord*v.head.y.coord, head.z.coord*v.head.x.coord-head.x.coord*v.head.z.coord, head.x.coord*v.head.y.coord-head.y.coord*v.head.x.coord);
-		return newVec;
+		return new Vector(head.y.coord*v.head.z.coord-head.z.coord*v.head.y.coord, head.z.coord*v.head.x.coord-head.x.coord*v.head.z.coord, head.x.coord*v.head.y.coord-head.y.coord*v.head.x.coord);
 	}
 	
 	/**
@@ -95,8 +93,8 @@ public class Vector
 	 * */
 	public double dotProduct(Vector v)
 	{
-		double count=head.x.coord*v.head.x.coord+head.y.coord*v.head.y.coord+head.z.coord*v.head.z.coord;
-		return count;
+		double sum =head.x.coord*v.head.x.coord+head.y.coord*v.head.y.coord+head.z.coord*v.head.z.coord;
+		return sum;
 	}
 	
 	/**
