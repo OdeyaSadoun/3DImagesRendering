@@ -17,6 +17,8 @@ public class Vector
 	public Vector(Point3D head)
 	{
 		this.head=head;		
+		if (head.equals(Point3D.ZERO))
+			throw new IllegalArgumentException("This vector is equals to zero vector");
 	}
 	
 	/**
