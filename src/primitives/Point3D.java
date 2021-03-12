@@ -59,8 +59,7 @@ public class Point3D
 	 * */
 	public Vector subtract(Point3D p)
 	{
-		Vector newVec=new Vector(x.coord-p.x.coord, y.coord-p.y.coord, z.coord-p.z.coord);
-		return newVec;
+		return new Vector(x.coord-p.x.coord, y.coord-p.y.coord, z.coord-p.z.coord);
 		/*
 		try
 		{
@@ -84,8 +83,7 @@ public class Point3D
 	 * */
 	public double distanceSquared(Point3D p)
 	{
-		double sum;
-		sum=(x.coord-p.x.coord)*(x.coord-p.x.coord)+(y.coord-p.y.coord)*(y.coord-p.y.coord)+(z.coord-p.z.coord)*(z.coord-p.z.coord);
+		double sum=(x.coord-p.x.coord)*(x.coord-p.x.coord)+(y.coord-p.y.coord)*(y.coord-p.y.coord)+(z.coord-p.z.coord)*(z.coord-p.z.coord);
 		return sum;
 	}
 	
