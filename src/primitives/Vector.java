@@ -14,7 +14,7 @@ public class Vector
 	/**
 	 * Constructor that receives point
 	 * */
-	public Vector(Point3D head)
+	public Vector(Point3D head) throws Exception
 	{
 		this.head=head;		
 		if (head.equals(Point3D.ZERO))
@@ -24,7 +24,7 @@ public class Vector
 	/**
 	 * Constructor that receives 3 coordinates and check if this is the ZERO point throws exception
 	 * */
-	public Vector(Coordinate x, Coordinate y, Coordinate z) 
+	public Vector(Coordinate x, Coordinate y, Coordinate z)  throws Exception
 	{
 		head.x = x;
 		head.y = y;
@@ -36,7 +36,7 @@ public class Vector
 	/**
 	 * Constructor that receives 3 double numbers and check if this is the ZERO point throws exception
 	 * */
-	public Vector(double a, double b, double c)
+	public Vector(double a, double b, double c) throws Exception
 	{
 		head = new Point3D(a,b,c);
 		if (head.equals(Point3D.ZERO))
@@ -55,7 +55,7 @@ public class Vector
 	 * A function that performs a vector connection
 	 * @param v Vector value
 	 * */
-	public Vector add(Vector v)
+	public Vector add(Vector v)  throws Exception
 	{
 		return new Vector(head.add(v));		
 	}
@@ -64,7 +64,7 @@ public class Vector
 	 * A function that performs vector subtraction
 	 * @param v Vector value
 	 * */
-	public Vector subtract(Vector v)
+	public Vector subtract(Vector v) throws Exception
 	{
 		return new Vector(head.subtract(v.head).head);	
 	}
@@ -73,7 +73,7 @@ public class Vector
 	 * A function that performs vector multiplication in a scalar
 	 * @param scalar double value
 	 * */
-	public Vector scale(double scalar)
+	public Vector scale(double scalar) throws Exception
 	{			
 		return new Vector(head.x.coord*scalar, head.y.coord*scalar, head.z.coord*scalar);
 	}
@@ -82,7 +82,7 @@ public class Vector
 	 * A function that performs a cross product
 	 * @param v Vector value
 	 * */
-	public Vector crossProduct(Vector v)
+	public Vector crossProduct(Vector v) throws Exception
 	{
 		return new Vector(head.y.coord*v.head.z.coord-head.z.coord*v.head.y.coord, head.z.coord*v.head.x.coord-head.x.coord*v.head.z.coord, head.x.coord*v.head.y.coord-head.y.coord*v.head.x.coord);
 	}
@@ -130,7 +130,7 @@ public class Vector
 	/**
 	 * A normalization operation that returns a new normalized vector in the same direction as the original vector
 	 * */
-	public Vector normalized()
+	public Vector normalized() throws Exception
 	{
 		Vector temp=this;
 		Vector newVec= new Vector(normalize().head);
