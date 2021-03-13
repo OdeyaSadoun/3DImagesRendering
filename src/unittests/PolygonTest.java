@@ -33,7 +33,8 @@ public class PolygonTest
         } 
         catch (IllegalArgumentException e) {
             fail("Failed constructing a correct polygon");
-        }
+        } 
+        catch (Exception e) {}
 
         // TC02: Wrong vertices order
         try 
@@ -43,6 +44,7 @@ public class PolygonTest
             fail("Constructed a polygon with wrong order of vertices");
         } 
         catch (IllegalArgumentException e) {}
+        catch (Exception e) {}
 
         // TC03: Not in the same plane
         try 
@@ -52,6 +54,7 @@ public class PolygonTest
             fail("Constructed a polygon with vertices that are not in the same plane");
         } 
         catch (IllegalArgumentException e) {}
+        catch (Exception e) {}
 
         // TC04: Concave quadrangular
         try 
@@ -61,6 +64,7 @@ public class PolygonTest
             fail("Constructed a concave polygon");
         } 
         catch (IllegalArgumentException e) {}
+        catch (Exception e) {}
 
         // =============== Boundary Values Tests ==================
 
@@ -72,6 +76,7 @@ public class PolygonTest
             fail("Constructed a polygon with vertix on a side");
         } 
         catch (IllegalArgumentException e) {}
+        catch (Exception e) {}
 
         // TC11: Last point = first point
         try {
@@ -80,6 +85,7 @@ public class PolygonTest
             fail("Constructed a polygon with vertice on a side");
         } 
         catch (IllegalArgumentException e) {}
+        catch (Exception e) {}
 
         // TC12: Colocated points
         try 
@@ -89,6 +95,7 @@ public class PolygonTest
             fail("Constructed a polygon with vertice on a side");
         } 
         catch (IllegalArgumentException e) {}
+        catch (Exception e) {}
 
     }
 
