@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import geometries.Polygon;
 import geometries.Triangle;
 import primitives.Point3D;
 import primitives.Vector;
@@ -28,14 +27,13 @@ public class TriangleTest {
         // TC01: There is a simple single test here
 		try
 		{
-		Triangle myTriangle = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
-		Vector v=new Vector(1, 1, 1);
-		assertFalse("ERROR: getNormal() function creates an Incorrect normal", myTriangle.getNormal(new Point3D(0, 0, 1)) !=v);
+			Triangle myTriangle = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
+			Vector v=new Vector(1, 1, 1);
+			assertFalse("ERROR: getNormal() function creates an Incorrect normal", myTriangle.getNormal(new Point3D(0, 0, 1)) !=v);
 		}
 		catch(Exception ex) 
 		{
-			
-					
+			fail("for vectors that not zero vector does not need throw an exception");
 		}
 	}
 
