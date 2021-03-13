@@ -56,8 +56,9 @@ public class Point3D
 	/**
 	 * A function that subtracts point from the existing point, the result is basically a new vector
 	 * @param p Point3D value
+	 * @throws Exception 
 	 * */
-	public Vector subtract(Point3D p)
+	public Vector subtract(Point3D p) throws Exception
 	{
 		return new Vector(x.coord-p.x.coord, y.coord-p.y.coord, z.coord-p.z.coord);
 		/*
