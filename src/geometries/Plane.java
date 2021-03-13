@@ -12,9 +12,11 @@ public class Plane implements Geometry
 	/**
 	 * Constructor that receives 3 points
 	 * */
-	public Plane(Point3D p1, Point3D p2, Point3D p3)
+	public Plane(Point3D p1, Point3D p2, Point3D p3)throws Exception
 	{
-		normal = null;
+		Vector myVec1=(p2.subtract(p1));
+		Vector myVec2=(p3.subtract(p1));		
+		normal = myVec1.crossProduct(myVec2);
 		point = p1;
 	}
 	
@@ -54,7 +56,7 @@ public class Plane implements Geometry
 	@Override
 	public Vector getNormal(Point3D p)
 	{
-		return null;
+		return normal;
 	}
 
 }
