@@ -96,7 +96,8 @@ public class PolygonTest
      * Test method for {@link geometries.Polygon#getNormal(primitives.Point3D)}.
      */
     @Test
-    public void testGetNormal() {
+    public void testGetNormal() throws Exception
+    {
         // ============ Equivalence Partitions Tests ==============
         // TC01: There is a simple single test here
         Polygon pl = new Polygon(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0),
