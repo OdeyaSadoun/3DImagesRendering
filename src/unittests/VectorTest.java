@@ -25,13 +25,24 @@ public class VectorTest {
 	@Test
 	public void testAdd() 
 	{
-		Vector v1= new Vector(2,4,6);
-		Vector v2=new Vector(7,8,9);		
-		Vector vZero=new Vector(Point3D.ZERO);
-		Vector vTry=new Vector(9,12,15);
 		// ============ Equivalence Partitions Tests ==============
-		assertTrue("add() Did not add the vector", !(vTry.equals(v1.add(v2))));
+		Vector v1= new Vector(2,4,6);
+		Vector v2=new Vector(7,8,9);	
+		Vector vTry=new Vector(9,12,15);
+		assertTrue("add() Did not add the vector correct", !(vTry.equals(v1.add(v2))));
+		
+		v1= new Vector(-1,-6,-4.2);
+		v2= new Vector(-2,-5.1,-9);
+		vTry=new Vector(-3,-11.1,-13.2);
+		assertTrue("add() Did not add the vector correct", !(vTry.equals(v1.add(v2))));
+		
+		v1= new Vector(-1,8,23);
+		v2= new Vector(6,-5.1,3);
+		vTry=new Vector(5,2.9,26);
+		assertTrue("add() Did not add the vector correct", !(vTry.equals(v1.add(v2))));
+		
 		// =============== Boundary Values Tests ==================
+		Vector vZero=new Vector(Point3D.ZERO);
 		assertTrue("add() Did not add the vector", !(v1.equals(v1.add(vZero))));
 	}
 
@@ -41,14 +52,30 @@ public class VectorTest {
 	@Test
 	public void testSubtract() 
 	{
+		// ============ Equivalence Partitions Tests ==============
 		Vector v1= new Vector(2,4,6);
 		Vector v2=new Vector(7,8,9);		
-		Vector vZero=new Vector(Point3D.ZERO);
-		Vector vTry=new Vector(5,4,3);
-		// ============ Equivalence Partitions Tests ==============
-		assertTrue("Subtract() Did not sub the vector", !(vTry.equals(v1.subtract(v2))));
+		Vector vTry=new Vector(-5,-4,-3);
+		assertTrue("Subtract() Did not sub the vector correct", !(vTry.equals(v1.subtract(v2))));
+		
+		v1= new Vector(9,5,4);
+		v2=new Vector(5,2,3);		
+		vTry=new Vector(4,3,1);
+		assertTrue("Subtract() Did not sub the vector correct", !(vTry.equals(v1.subtract(v2))));
+		
+		v1= new Vector(-5,-5,-4);
+		v2=new Vector(-9,-1,-12);		
+		vTry=new Vector(-14,-6,-16);
+		assertTrue("Subtract() Did not sub the vector correct", !(vTry.equals(v1.subtract(v2))));
+		
+		v1= new Vector(-5,-5,-4);
+		v2=new Vector(3,9,4);		
+		vTry=new Vector(-2,4,0);
+		assertTrue("Subtract() Did not sub the vector correct", !(vTry.equals(v1.subtract(v2))));
+		
 		// =============== Boundary Values Tests ==================
-		assertTrue("Subtract() Did not sub the vector", !(v1.equals(v1.subtract(vZero))));
+		Vector vZero=new Vector(Point3D.ZERO);
+		assertTrue("Subtract() Did not sub the vector correct", !(v1.equals(v1.subtract(vZero))));
 	}
 
 	/**
@@ -134,9 +161,30 @@ public class VectorTest {
 	 */
 	@Test
 	public void testNormalize() //מנרמל את הווקטור
-	{   Vector v = new Vector(1, 2, 3);    
-        Vector u = v.normalized();
-        assertTrue("ERROR: normalizated() function does not create a new vector",u == v );
+	{   
+		Vector v = new Vector(1, 2, 3);
+        Vector vCopy = new Vector(v.getHead());
+        Vector vCopyNormalize = vCopy.normalize();
+        assertTrue("ERROR: normalize() function creates a new vector", vCopy != vCopyNormalize);
+        assertTrue("ERROR: normalize() result is not a unit vector", !isZero(vCopyNormalize.length() - 1));    
+        
+
+        
+        v = new Vector(3.5,-5,10);
+		v.normalize();
+		assertEquals("", 1, v.length(),1e-10);
+		
+		v = new Vector(0,0,0);
+		try 
+		{
+			v.normalize();
+			fail("Didn't throw divide by zero exception!");
+		} 
+		catch (ArithmeticException e) 
+		{
+			assertTrue(true);
+		}
+		
 	}
 
 	/**
@@ -145,25 +193,10 @@ public class VectorTest {
 	@Test
 	public void testNormalized() //מביא וקטור מנורמל ב
 	{
-		Vector v = new Vector(1, 2, 3);
-        Vector vCopy = new Vector(v.getHead());
-        Vector vCopyNormalize = vCopy.normalize();
-        assertTrue("ERROR: normalize() function creates a new vector", vCopy != vCopyNormalize);
-        assertTrue("ERROR: normalize() result is not a unit vector", !isZero(vCopyNormalize.length() - 1));        
-        
+		Vector v = new Vector(1, 2, 3);    
+        Vector u = v.normalized();
+        assertTrue("ERROR: normalizated() function does not create a new vector", u == v );
 	}
 	
-	public void testNormalize(){
-		Vector v = new Vector(3.5,-5,10);
-		v.normalize();
-		assertEquals("", 1, v.length(),1e-10);
-		v = new Vector(0,0,0);
-		try {
-		v.normalize();
-		fail("Didn't throw divide by zero exception!");
-		} catch (ArithmeticException e) {
-		assertTrue(true);
-		}
-		}
 
 }

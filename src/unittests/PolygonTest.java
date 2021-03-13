@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import geometries.Polygon;
 import primitives.Point3D;
+import primitives.Vector;
 
 /**
  * @author Home
