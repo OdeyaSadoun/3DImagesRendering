@@ -49,8 +49,7 @@ public class Point3D
 		double myX=x.coord+v.head.x.coord;
 		double myY=y.coord+v.head.y.coord;
 		double myZ=z.coord+v.head.z.coord;
-		Point3D p=new Point3D(myX, myY, myZ);		
-		return p;
+		return new Point3D(myX, myY, myZ);		
 	}
 	
 	/**
@@ -84,8 +83,7 @@ public class Point3D
 	 * */
 	public double distanceSquared(Point3D p)
 	{
-		double sum=(x.coord-p.x.coord)*(x.coord-p.x.coord)+(y.coord-p.y.coord)*(y.coord-p.y.coord)+(z.coord-p.z.coord)*(z.coord-p.z.coord);
-		return sum;
+		return (x.coord-p.x.coord)*(x.coord-p.x.coord)+(y.coord-p.y.coord)*(y.coord-p.y.coord)+(z.coord-p.z.coord)*(z.coord-p.z.coord);
 	}
 	
 	/**
