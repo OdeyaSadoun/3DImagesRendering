@@ -30,7 +30,8 @@ public class SphereTest {
 			Point3D center=new Point3D(1, 2, 3);		
 			Sphere mySphere=new Sphere(center, radius);
 			Vector normal=new Vector(4d/5, 0, 3d/5);
-			assertFalse("ERROR: getNormal() function creates an Incorrect normal", mySphere.getNormal(new Point3D(5,2,6)) !=normal);
+			//assertFalse("ERROR: getNormal() function creates an Incorrect normal", mySphere.getNormal(new Point3D(5,2,6)) !=normal);
+			assertEquals("ERROR: getNormal() function creates an Incorrect normal", mySphere.getNormal(new Point3D(5,2,6)), normal);
 		}
 		catch(Exception ex)
 		{
