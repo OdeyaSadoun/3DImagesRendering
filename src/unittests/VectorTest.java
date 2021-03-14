@@ -35,7 +35,7 @@ public class VectorTest
 			v1= new Vector(2,4,6);
 			v2= new Vector(7,8,9);	
 			vTry= new Vector(9,12,15);
-			assertTrue("Add() Did not add the vector correct", !(vTry.equals(v1.add(v2))));
+			assertTrue("Add() Did not add the vector correct", vTry.equals(v1.add(v2)));
 			
 		} 
 		catch (Exception e) 
@@ -48,7 +48,7 @@ public class VectorTest
 			v1= new Vector(-1,-6,-4.2);
 			v2= new Vector(-2,-5.1,-9);
 			vTry=new Vector(-3,-11.1,-13.2);
-			assertTrue("Add() Did not add the vector correct", !(vTry.equals(v1.add(v2))));
+			assertTrue("Add() Did not add the vector correct", vTry.equals(v1.add(v2)));
 		} 
 		catch (Exception e) 
 		{
@@ -60,7 +60,7 @@ public class VectorTest
 			v1= new Vector(-1,8,23);
 			v2= new Vector(6,-5.1,3);
 			vTry=new Vector(5,2.9,26);
-			assertTrue("Add() Did not add the vector correct", !(vTry.equals(v1.add(v2))));
+			assertTrue("Add() Did not add the vector correct", vTry.equals(v1.add(v2)));
 		} 
 		catch (Exception e) 
 		{
@@ -74,7 +74,7 @@ public class VectorTest
 		{
 			v1= new Vector(-1,8,23);
 			//add (0,0,0):
-			assertTrue("Add() Did not add the vector correct", !(v1.getHead().equals(Point3D.ZERO.add(v1))));
+			assertTrue("Add() Did not add the vector correct", v1.getHead().equals(Point3D.ZERO.add(v1)));
 			
 			@SuppressWarnings("unused")
 			Vector vZero = new Vector(Point3D.ZERO);
@@ -101,7 +101,7 @@ public class VectorTest
 			v1 = new Vector(2,4,6);
 			v2=new Vector(7,8,9);		
 			vTry=new Vector(-5,-4,-3);
-			assertTrue("Subtract() Did not sub the vector correct", !(vTry.equals(v1.subtract(v2))));
+			assertTrue("Subtract() Did not sub the vector correct", vTry.equals(v1.subtract(v2)));
 		} 
 		catch (Exception e) 
 		{
@@ -113,7 +113,7 @@ public class VectorTest
 			v1 = new Vector(9,5,4);
 			v2=new Vector(5,2,3);		
 			vTry=new Vector(4,3,1);
-			assertTrue("Subtract() Did not sub the vector correct", !(vTry.equals(v1.subtract(v2))));
+			assertTrue("Subtract() Did not sub the vector correct", vTry.equals(v1.subtract(v2)));
 		} 
 		catch (Exception e) 
 		{
@@ -124,8 +124,8 @@ public class VectorTest
 		{
 			v1 = new Vector(-5,-5,-4);
 			v2=new Vector(-9,-1,-12);		
-			vTry=new Vector(-14,-6,-16);
-			assertTrue("Subtract() Did not sub the vector correct", !(vTry.equals(v1.subtract(v2))));
+			vTry=new Vector(4,-4,8);
+			assertTrue("Subtract() Did not sub the vector correct", vTry.equals(v1.subtract(v2)));
 		} 
 		catch (Exception e) 
 		{
@@ -136,8 +136,8 @@ public class VectorTest
 		{
 			v1 = new Vector(-5,-5,-4);
 			v2=new Vector(3,9,4);		
-			vTry=new Vector(-2,4,0);
-			assertTrue("Subtract() Did not sub the vector correct", !(vTry.equals(v1.subtract(v2))));
+			vTry=new Vector(-8,-14,-8);
+			assertTrue("Subtract() Did not sub the vector correct", vTry.equals(v1.subtract(v2)));
 		} 
 		catch (Exception e) 
 		{
@@ -150,7 +150,7 @@ public class VectorTest
 		try 
 		{
 			v1 = new Vector(-5,-5,-4);
-			assertTrue("Subtract() Did not sub the vector correct", !(v1.equals(v1.getHead().subtract(Point3D.ZERO))));
+			assertTrue("Subtract() Did not sub the vector correct when the other vector is the zero vector", v1.equals(v1.getHead().subtract(Point3D.ZERO)));
 			
 			@SuppressWarnings("unused")
 			Vector vZero = new Vector(Point3D.ZERO);
@@ -176,7 +176,7 @@ public class VectorTest
 			v1 = new Vector(2,4,6);
 			//scalar: 3.5
 			vTry=new Vector(7,14,21);
-			assertTrue("Scale() Did not double the vector correct", !(vTry.equals(v1.scale(3.5))));
+			assertTrue("Scale() Did not double the vector correct", vTry.equals(v1.scale(3.5)));
 		} 
 		catch (Exception e) 
 		{
@@ -188,7 +188,7 @@ public class VectorTest
 			v1 = new Vector(2,4,6);
 			//scalar: -5
 			vTry=new Vector(-10,-20,-30);
-			assertTrue("Scale() Did not double the vector correct", !(vTry.equals(v1.scale(-5))));	
+			assertTrue("Scale() Did not double the vector correct", vTry.equals(v1.scale(-5)));	
 		} 
 		catch (Exception e) 
 		{
@@ -202,7 +202,7 @@ public class VectorTest
 		try 
 		{
 			v1 = new Vector(-5,-5,-4);
-			assertTrue("Scale() Did not double the vector correct", !(v1.equals(v1.scale(0))));
+			assertTrue("Scale() Did not double the vector correct when the scalar is 0", v1.equals(v1.scale(0)));
 			
 			@SuppressWarnings("unused")
 			Vector vZero = new Vector(Point3D.ZERO);
@@ -254,9 +254,7 @@ public class VectorTest
             fail("crossProduct() for parallel vectors does not throw an exception");
         }
         catch (Exception e)
-        {
-        	fail("CrossProduct() for vectors that not zero vector does not need throw an exception");
-        }
+        {}
      
     }
 
@@ -275,8 +273,8 @@ public class VectorTest
 			v1 = new Vector(1, 2, 3);
 			v2 = new Vector(-2, -4, -6);
 		    v3 = new Vector(0, 3, -2);
-		    assertTrue("ERROR: dotProduct() for orthogonal vectors is not zero", !isZero(v1.dotProduct(v3)));
-		    assertTrue("ERROR: dotProduct() wrong value",!isZero(v1.dotProduct(v2) + 28));
+		    assertTrue("ERROR: dotProduct() for orthogonal vectors is not zero", isZero(v1.dotProduct(v3)));
+		    assertTrue("ERROR: dotProduct() wrong value",isZero(v1.dotProduct(v2) + 28));
 		} 
 		catch (Exception e) 
 		{
@@ -296,7 +294,7 @@ public class VectorTest
 		try 
 		{
 			v1 = new Vector(1, 2, 3);
-			assertTrue("lengthSquared() return wrong value", !isZero(v1.lengthSquared() - 14));
+			assertTrue("lengthSquared() return wrong value", isZero(v1.lengthSquared() - 14));
 		} 
 		catch (Exception e) 
 		{
@@ -312,7 +310,7 @@ public class VectorTest
 	{
 		try
 		{
-			assertTrue("Length() return wrong value", !isZero(new Vector(0, 3, 4).length() - 5));
+			assertTrue("Length() return wrong value", isZero(new Vector(0, 3, 4).length() - 5));
 		}
 		catch (Exception e) 
 		{
@@ -335,8 +333,8 @@ public class VectorTest
 			v = new Vector(1, 2, 3);
 			vCopy = new Vector(v.getHead());//vcopy==v
 			vCopyNormalize = vCopy.normalize();
-			assertTrue("ERROR: normalize() function creates a new vector", vCopy != vCopyNormalize);
-			assertTrue("ERROR: normalize() result is not a unit vector", !isZero(vCopyNormalize.length() - 1));    
+			assertFalse("ERROR: normalize() function creates a new vector", vCopy != vCopyNormalize);
+			assertTrue("ERROR: normalize() result is not a unit vector", isZero(vCopyNormalize.length() - 1));    
 		} 
 		catch (Exception e) 
 		{
@@ -376,8 +374,8 @@ public class VectorTest
 		{
 			v = new Vector(1, 2, 3);
 			Vector u = v.normalized();
-			assertTrue("ERROR: normalizated() result is not a unit vector", !isZero(u.length() - 1));    
-			assertTrue("ERROR: normalizated() function does not create a new vector", u == v );
+			assertTrue("ERROR: normalizated() result is not a unit vector", isZero(u.length() - 1));    
+			assertFalse("ERROR: normalizated() function does not create a new vector", u == v );//?
 		} 
 		catch (Exception e) 
 		{
