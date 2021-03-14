@@ -6,6 +6,6 @@ import primitives.Point3D;
 
 public interface Geometry 
 {
-	Vector getNormal(Point3D point);
+	Vector getNormal(Point3D point) throws Exception;
 
 }
