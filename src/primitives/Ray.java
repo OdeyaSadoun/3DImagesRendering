@@ -22,6 +22,25 @@ public class Ray
 		dir.normalize();
 	}
 	
+	/**
+	 * A getter function for the field p0
+	 * */
+	public Point3D getP0() 
+	{
+		return p0;
+	}
+	
+	/**
+	 * A getter function for the field dir
+	 * */
+	public Vector getDir() 
+	{
+		return dir;
+	}
+
+
+
+
 	/***********************************************************/
 	
 	@Override
