@@ -16,7 +16,8 @@ import primitives.Vector;
  * @author Home
  *
  */
-public class CylinderTest {
+public class CylinderTest 
+{
 
 	/**
 	 * Test method for {@link geometries.Cylinder#getNormal(primitives.Point3D)}.
@@ -26,13 +27,10 @@ public class CylinderTest {
 	{		
 		try
 		{
-		double radius =3;
-		Point3D p=new Point3D(1, 7, 4);
-		Vector v=new Vector(p);
-		Ray myRay=new Ray(p, v);
-		double height=4;
-		Cylinder myCylinder=new Cylinder(radius,myRay,height);
-		assertFalse("ERROR: getNormal() function creates an Incorrect vector", myCylinder.getNormal(p) !=v);
+			Ray myRay=new Ray(new Point3D(1, 1, 2), new Vector(6, -2, 9));
+			Cylinder myCylinder=new Cylinder(3,myRay,4);
+			Vector normal=new Vector(385d/660.322, -115d/660.322, 524d/660.322);
+			assertTrue("ERROR: getNormal() function creates an Incorrect normal", myCylinder.getNormal(new Point3D(5,2,6))==normal );
 		}
 		catch(Exception ex)
 		{

@@ -4,7 +4,7 @@
 package unittests;
 
 import static org.junit.Assert.*;
-
+import static primitives.Util.*;
 import org.junit.Test;
 
 import geometries.Triangle;
@@ -29,8 +29,11 @@ public class TriangleTest
 		try
 		{
 			Triangle myTriangle = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
+			
+			Vector v = new Vector(new Point3D(0, 0, 1).subtract(new Point3D(1, 0, 0)).getHead());
+			
 			Vector normal=new Vector(1, 1, 1);
-			assertEquals("ERROR: getNormal() function creates an Incorrect normal", myTriangle.getNormal(new Point3D(0, 0, 1)), normal);
+			assertEquals("bad normal to triangle", isZero(myTriangle.getNormal(new Point3D(0, 0, 1)).dotProduct(v)));
 
 			//assertFalse("ERROR: getNormal() function creates an Incorrect normal", myTriangle.getNormal(new Point3D(0, 0, 1)) !=v);
 		}

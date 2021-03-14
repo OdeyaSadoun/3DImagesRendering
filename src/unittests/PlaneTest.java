@@ -31,8 +31,9 @@ public class PlaneTest
 			Point3D p2=new Point3D(4,5,6);
 			Point3D p3=new Point3D(1,7,5);
 			Plane myPlane =new Plane(p1, p2 , p3);
-			Vector normal=new Vector(-9, -6, 15);
-			assertEquals("ERROR: getNormal() function creates an Incorrect normal", myPlane.getNormal(), normal);
+			double normalLength=Math.sqrt(38)*3;
+			Vector normal=new Vector(-9/normalLength, -6/normalLength, 15/normalLength);
+			assertEquals("bad normal to tube", myPlane.getNormal(), normal);
 
 		//	assertFalse("ERROR: getNormal() function creates an Incorrect normal", myPlane.getNormal() !=v);
 		}
