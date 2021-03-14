@@ -15,7 +15,8 @@ import primitives.Vector;
  * @author Home
  *
  */
-public class TriangleTest {
+public class TriangleTest
+{
 
 	/**
 	 * Test method for {@link geometries.Polygon#getNormal(primitives.Point3D)}.
