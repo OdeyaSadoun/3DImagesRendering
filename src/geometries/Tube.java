@@ -50,11 +50,6 @@ public class Tube implements Geometry
 		Point3D pointO =axis.getP0().add(axis.getDir().scale(t));
 		Vector myVec=point.subtract(pointO);
 		return myVec.normalize();
-		//Point3D p0=axis.getP0();
-		//Vector v=axis.getDir();
-		//double t=point.subtract(p0).dotProduct(v);
-		//Point3D  o=p0.add(v.scale(t));
-		//return point.subtract(o).normalize();
 		
 	}
 
