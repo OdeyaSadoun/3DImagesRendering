@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package unittests;
 
 import static org.junit.Assert.*;
@@ -12,10 +10,11 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
- * @author Home
- *
+ *   Unit tests for geometries.Sphere class
+ *   @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
-public class SphereTest {
+public class SphereTest 
+{
 
 	/**
 	 * Test method for {@link geometries.Sphere#getNormal(primitives.Point3D)}.

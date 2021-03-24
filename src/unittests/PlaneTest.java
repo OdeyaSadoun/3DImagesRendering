@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package unittests;
 
 import static org.junit.Assert.*;
@@ -12,8 +10,8 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
- * @author Home
- *
+ *   Unit tests for geometries.Plane class
+ *   @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
 public class PlaneTest
 {

@@ -1,10 +1,8 @@
-/**
- * 
- */
+
 package unittests;
 
 import static org.junit.Assert.*;
-import static primitives.Util.*;
+
 import org.junit.Test;
 
 import geometries.Triangle;
@@ -12,8 +10,8 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
- * @author Home
- *
+ *   Unit tests for geometries.Triangle class
+ *   @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
 public class TriangleTest
 {

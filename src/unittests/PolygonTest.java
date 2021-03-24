@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package unittests;
 
 import static org.junit.Assert.*;
@@ -12,8 +10,8 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
- * @author Home
- *
+ *   Unit tests for geometries.Polygon class
+ *   @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
 public class PolygonTest 
 {
@@ -22,7 +20,8 @@ public class PolygonTest
      * {@link geometries.Polygon#Polygon(primitives.Point3D, primitives.Point3D, primitives.Point3D, primitives.Point3D)}.
      */
     @Test
-    public void testConstructor() {
+    public void testConstructor()
+    {
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Correct concave quadrangular with vertices in correct order

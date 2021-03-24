@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package unittests;
 
 import static org.junit.Assert.*;
@@ -14,8 +12,8 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- * @author Home
- *
+ *   Unit tests for geometries.Tube class
+ *   @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
 public class TubeTest 
 {
