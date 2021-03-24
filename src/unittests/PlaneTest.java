@@ -31,7 +31,7 @@ public class PlaneTest
 			Plane myPlane =new Plane(p1, p2 , p3);
 			double normalLength=Math.sqrt(38)*3;
 			Vector normal=new Vector(-9/normalLength, -6/normalLength, 15/normalLength);
-			assertEquals("bad normal to plane", myPlane.getNormal(), normal);
+			assertEquals("Bad normal to plane", normal, myPlane.getNormal());
 
 		
 		}
