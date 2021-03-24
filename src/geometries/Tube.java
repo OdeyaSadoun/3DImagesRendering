@@ -48,7 +48,7 @@ public class Tube implements Geometry
 	{
 		double t=axis.getDir().dotProduct(point.subtract(axis.getP0()));
 		Point3D pointO =axis.getP0().add(axis.getDir().scale(t));
-		Vector myVec=new Vector(point.subtract(pointO).getHead());
+		Vector myVec=point.subtract(pointO);
 		return myVec.normalize();
 		//Point3D p0=axis.getP0();
 		//Vector v=axis.getDir();
