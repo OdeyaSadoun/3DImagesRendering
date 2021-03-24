@@ -24,29 +24,19 @@ public class TubeTest
 	@Test
 	public void testGetNormal() 
 	{	
-     try 
-     {
- 		// ============ Equivalence Partitions Tests ==============
-		Ray myRay=new Ray(new Point3D(1, 1, 2), new Vector(6, -2, 9));//
-		Tube myTube=new Tube(5, myRay);
-		//double normalLength= Math.sqrt(385*385+(-115)*(-115)+524*524);
-		//Vector normal=new Vector(385d/normalLength, -115d/normalLength, 524d/normalLength);
-		//assertTrue("ERROR: getNormal() function creates an Incorrect normal", myTube.getNormal(new Point3D(5,2,6))==normal);
-		//assertEquals("ERROR: getNormal() function creates an Incorrect normal", myTube.getNormal(new Point3D(5,2,6)), normal);
+		try 
+		{
+			// ============ Equivalence Partitions Tests ==============
+			Ray myRay=new Ray(new Point3D(1, 0, 0), new Vector(0, 1, 0));
+			Tube myTube=new Tube(5, myRay);
+			Vector normal = new Vector(1,0,0);
+			assertEquals("Bad normal to tube", normal , myTube.getNormal(new Point3D(3,1,0)));
 		
-		//Ray r;
-		//r = new Ray(new Point3D(0,0,0),new Vector(0,0,1));
-		//Tube t=new Tube(1,r);
-		Point3D p=new Point3D(5,2,6);
-		Vector normal=myTube.getNormal(p);
-		assertTrue("bad normal to tube",isZero(myRay.getDir().dotProduct(normal)));
-		
-
-	 } 
-     catch (Exception e) 
-     {		
-		fail("for vectors that not zero vector does not need throw an exception");
-     }
+		} 
+		catch (Exception e) 
+		{		
+			fail("for vectors that not zero vector does not need throw an exception");
+		}
 	
      
 	}
