@@ -268,10 +268,12 @@ public class VectorTest
 		  Vector v3;
 		try 
 		{
+			// ============ Equivalence Partitions Tests ==============
 			v1 = new Vector(1, 2, 3);
 			v2 = new Vector(-2, -4, -6);
 		    v3 = new Vector(0, 3, -2);
 		    assertTrue("ERROR: dotProduct() for orthogonal vectors is not zero", isZero(v1.dotProduct(v3)));
+		    // =============== Boundary Values Tests ==================
 		    assertTrue("ERROR: dotProduct() wrong value",isZero(v1.dotProduct(v2) + 28));
 		} 
 		catch (Exception e) 
@@ -291,6 +293,7 @@ public class VectorTest
 		Vector v1;
 		try 
 		{
+			// ============ Equivalence Partitions Tests ==============
 			v1 = new Vector(1, 2, 3);
 			assertTrue("lengthSquared() return wrong value", isZero(v1.lengthSquared() - 14));
 		} 
@@ -308,6 +311,7 @@ public class VectorTest
 	{
 		try
 		{
+			// ============ Equivalence Partitions Tests ==============
 			assertTrue("Length() return wrong value", isZero(new Vector(0, 3, 4).length() - 5));
 		}
 		catch (Exception e) 
@@ -326,6 +330,7 @@ public class VectorTest
 		Vector v;
 		Vector vCopy;
 		Vector vCopyNormalize;
+		// ============ Equivalence Partitions Tests ==============
 		try 
 		{
 			v = new Vector(1, 2, 3);
@@ -346,7 +351,7 @@ public class VectorTest
 			assertEquals("ERROR: normalize() result is not a unit vector", 1, v.length(),1e-10);
 		}
 		catch (Exception e) {}
-		
+		 // =============== Boundary Values Tests ==================
 		try
 		{
 			v = new Vector(0,0,0);
@@ -370,6 +375,7 @@ public class VectorTest
 		Vector v;
 		try
 		{
+			// ============ Equivalence Partitions Tests ==============
 			v = new Vector(1, 2, 3);
 			Vector u = v.normalized();
 			assertTrue("ERROR: normalizated() result is not a unit vector", isZero(u.length() - 1));    

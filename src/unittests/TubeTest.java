@@ -26,6 +26,7 @@ public class TubeTest
 	{	
      try 
      {
+ 		// ============ Equivalence Partitions Tests ==============
 		Ray myRay=new Ray(new Point3D(1, 1, 2), new Vector(6, -2, 9));//
 		Tube myTube=new Tube(5, myRay);
 		//double normalLength= Math.sqrt(385*385+(-115)*(-115)+524*524);

@@ -25,6 +25,7 @@ public class CylinderTest
 	{		
 		try
 		{
+			// ============ Equivalence Partitions Tests ==============
 			
 			Ray myRay=new Ray(new Point3D(1, 1, 2), new Vector(6, -2, 9));
 			
