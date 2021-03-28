@@ -1,8 +1,10 @@
 package geometries;
-
 import primitives.Point3D;
 import primitives.Vector;
-
+/**
+ * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+ * Class for Sphere
+ */
 public class Sphere implements Geometry
 {
 	//The filed of this class are point of center and radius
@@ -11,6 +13,9 @@ public class Sphere implements Geometry
 	
 	/**
 	 * Constructor that receives point to the center and double to the radius
+	 * 
+	 * @param p Point3D
+	 * @param r double
 	 * */
 	public Sphere(Point3D p, double r)
 	{
@@ -20,6 +25,8 @@ public class Sphere implements Geometry
 
 	/**
 	 * A getter function for the field center
+	 * 
+	 * @return Point3D value for center
 	 * */
 	public Point3D getCenter() 
 	{
@@ -28,6 +35,8 @@ public class Sphere implements Geometry
 
 	/**
 	 * A getter function for the field radius
+	 * 
+	 *  @return double value for radius
 	 * */
 	public double getRadius() 
 	{
