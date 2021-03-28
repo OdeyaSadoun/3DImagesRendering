@@ -1,24 +1,15 @@
-/**
- * 
- */
 package geometries;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static primitives.Util.*;
-
 import primitives.Point3D;
 import primitives.Vector;
-
 /**
- * @author Home
- *
+ * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+ * Class for Polygon
  */
 public class Polygon implements Geometry
 {
-	
-
 	/**
 	 * List of polygon's vertices
 	 */
