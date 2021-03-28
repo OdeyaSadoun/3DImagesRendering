@@ -2,7 +2,10 @@ package geometries;
 
 import primitives.Point3D;
 import primitives.Vector;
-
+/**
+ *   Class for Plane
+ *   @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+ */
 public class Plane implements Geometry 
 {
 	//The filed of this class are point and normal
@@ -11,6 +14,11 @@ public class Plane implements Geometry
 	
 	/**
 	 * Constructor that receives 3 points
+	 * 
+	 * @param p1 Point3D
+	 * @param p2 Point3D
+	 * @param p3 Point3D
+	 * @throws Exception
 	 * */
 	public Plane(Point3D p1, Point3D p2, Point3D p3)throws Exception
 	{
@@ -22,6 +30,9 @@ public class Plane implements Geometry
 	
 	/**
 	 * Constructor that receives point and normal
+	 * 
+	 * @param p Point3D
+	 * @param normal Vector
 	 * */
 	public Plane(Point3D p, Vector normal)
 	{
@@ -31,6 +42,8 @@ public class Plane implements Geometry
 
 	/**
 	 * A getter function for the field point
+	 * 
+	 * @return Point3D value for point
 	 * */
 	public Point3D getP() 
 	{
@@ -38,7 +51,9 @@ public class Plane implements Geometry
 	}
 
 	/**
-	 * A getter function for the field normal
+	 * A getter function for the field normal that return normal
+	 * 
+	 * @return Vector value for normal
 	 * */
 	public Vector getNormal() 
 	{
