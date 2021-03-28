@@ -3,7 +3,10 @@ package geometries;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-
+/**
+ *   Class for  Cylinder
+ *   @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+ */
 public class Cylinder extends Tube 
 {
 	//The field of this class is height
@@ -11,6 +14,10 @@ public class Cylinder extends Tube
 	
 	/**
 	 * Constructor that receives radius, ray and height, and use in the constructor of the base class
+	 * 
+	 * @param radius double value
+	 * @param axis Ray value
+	 * @param height double value
 	 * */
 	public Cylinder(double radius, Ray axis, double height)
 	{
@@ -19,7 +26,9 @@ public class Cylinder extends Tube
 	}
 	
 	/**
-	 * A getter function for the field height
+	 * A getter function for the field height that return double value for height
+	 * 
+	 * @return double value for height
 	 * */
 	public double getHeight() 
 	{
