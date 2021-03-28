@@ -1,10 +1,10 @@
 package primitives;
 import static primitives.Util.*;
-/*
- * 
- */
+
 /**
- * @author Home
+ * class Coordinate
+ * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+
  *
  */
 public final class Coordinate 
@@ -14,8 +14,10 @@ public final class Coordinate
      * constraints
      */
     final double coord;
+    
     /**
      * Coordinate constructor receiving a coordinate value
+     * 
      * @param coord coordinate value
      */
     public Coordinate(double coord)
