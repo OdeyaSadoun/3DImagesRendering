@@ -3,8 +3,8 @@ package primitives;
 
 
 /**
- * @author Home
- *
+ * class for point3d
+ * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
 
 
@@ -22,6 +22,10 @@ public class Point3D
 
 	/**
 	 * Constructor that receives 3 coordinates
+	 * 
+	 * @param x Coordinate
+	 * @param y Coordinate
+	 * @param z Coordinate
 	 * */
 	public Point3D(Coordinate x, Coordinate y, Coordinate z)
 	{
@@ -32,6 +36,10 @@ public class Point3D
 	
 	/**
 	 * Constructor that receives 3 double numbers and make from them 3 coordinates
+	 * 
+	 * @param a double
+	 * @param b double
+	 * @param c double
 	 * */
 	public Point3D(double a, double b, double c)
 	{
@@ -42,7 +50,9 @@ public class Point3D
 	
 	/**
 	 * A function that receives a vector and adds it to the point of the class
+	 * 
 	 * @param v Vector value
+	 * @return new Point3D that is the result
 	 * */
 	public Point3D add(Vector v)
 	{
@@ -54,32 +64,21 @@ public class Point3D
 	
 	/**
 	 * A function that subtracts point from the existing point, the result is basically a new vector
+	 * 
 	 * @param p Point3D value
 	 * @throws Exception 
 	 * */
 	public Vector subtract(Point3D p) throws Exception
 	{
 		return new Vector(x.coord-p.x.coord, y.coord-p.y.coord, z.coord-p.z.coord);
-		/*
-		try
-		{
-		newVec= new Vector(x.coord-p.x.coord, y.coord-p.y.coord, z.coord-p.z.coord);	
-		return newVec;
-		}
-		catch(IllegalArgumentException ex)
-		{
-			ex.printStackTrace();
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		*/
 		
 	}
 
 	/**
 	 * A function that return the distanceSquared between two vectors
+	 * 
+	 * @param p Point3D value
+	 * @return double value rot distance squared
 	 * */
 	public double distanceSquared(Point3D p)
 	{
@@ -88,6 +87,9 @@ public class Point3D
 	
 	/**
 	 * A function that return the distance between two vectors
+	 * 
+	 * @param p Point3D value
+	 * @return double value rot distance 
 	 * */
 	public double distance(Point3D p)
 	{
