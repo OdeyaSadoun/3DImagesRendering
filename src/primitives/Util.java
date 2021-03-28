@@ -2,8 +2,9 @@
 package primitives;
 
 /**
- * @author Home
- *
+ * class for 2 functions that help us in other classes
+ * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+
  */
 public abstract class Util 
 {
@@ -35,7 +36,8 @@ public abstract class Util
      * @param number
      * @return true if the number is zero or almost zero, false otherwise
      */
-    public static boolean isZero(double number) {
+    public static boolean isZero(double number) 
+    {
         return getExp(number) < ACCURACY;
     }
 
@@ -45,7 +47,8 @@ public abstract class Util
      * @param number
      * @return 0.0 if the number is very close to zero, the number itself otherwise
      */
-    public static double alignZero(double number) {
+    public static double alignZero(double number) 
+    {
         return getExp(number) < ACCURACY ? 0.0 : number;
     }
     
@@ -56,7 +59,8 @@ public abstract class Util
 	 * @param n2 2nd number
 	 * @return true if the numbers have the same sign
 	 */
-	public static boolean checkSign(double n1, double n2) {
+	public static boolean checkSign(double n1, double n2) 
+	{
 		return (n1 < 0 && n2 < 0) || (n1 > 0 && n2 > 0);
 	}
 	
