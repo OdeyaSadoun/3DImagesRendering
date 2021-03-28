@@ -18,6 +18,8 @@ public class PlaneTest
 
 	/**
 	 * Test method for {@link geometries.Plane#getNormal(primitives.Point3D)}.
+	 * 
+	 * @throws Exception
 	 */
 	@Test
 	public void testGetNormalPoint3D() 
