@@ -11,9 +11,9 @@ package primitives;
 public class Point3D
 {
 	//The fields of this class are 3 coordinates
-	Coordinate x;
-	Coordinate y;
-	Coordinate z;
+	final Coordinate x;
+	final Coordinate y;
+	final Coordinate z;
 	
 	/**
 	 * A constant that represents the zero point

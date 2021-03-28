@@ -34,9 +34,7 @@ public class Vector
 	 * */
 	public Vector(Coordinate x, Coordinate y, Coordinate z)  throws Exception
 	{
-		head.x = x;
-		head.y = y;
-		head.z = z;	
+		head=new Point3D(x, y, z);	
 		if (head.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("This vector is equals to zero vector");
 	}
@@ -154,9 +152,7 @@ public class Vector
 	public Vector normalize()
 	{
 		double sum=length();
-		head.x = new Coordinate (head.x.coord/sum);
-		head.y = new Coordinate (head.y.coord/sum);
-		head.z = new Coordinate (head.z.coord/sum);	
+		head=new Point3D(head.x.coord/sum, head.y.coord/sum, head.z.coord/sum);
 		return this;
 	}
 	
