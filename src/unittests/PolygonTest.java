@@ -18,6 +18,8 @@ public class PolygonTest
     /**
      * Test method for
      * {@link geometries.Polygon#Polygon(primitives.Point3D, primitives.Point3D, primitives.Point3D, primitives.Point3D)}.
+     * 
+     * @throws Exception
      */
     @Test
     public void testConstructor()
@@ -100,6 +102,8 @@ public class PolygonTest
 
     /**
      * Test method for {@link geometries.Polygon#getNormal(primitives.Point3D)}.
+     * 
+     * @throws Exception
      */
     @Test
     public void testGetNormal() throws Exception
