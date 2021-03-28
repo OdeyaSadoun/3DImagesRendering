@@ -24,20 +24,7 @@ public class Vector
 			throw new IllegalArgumentException("This vector is equals to zero vector");
 	}
 	
-	/**
-	 * Constructor that receives 3 coordinates and check if this is the ZERO point throws exception
-	 * 
-	 * @param x Coordinate value
-	 * @param y Coordinate value
-	 * @param z Coordinate value
-	 * @throws Exception
-	 * */
-	public Vector(Coordinate x, Coordinate y, Coordinate z)  throws Exception
-	{
-		head=new Point3D(x, y, z);	
-		if (head.equals(Point3D.ZERO))
-			throw new IllegalArgumentException("This vector is equals to zero vector");
-	}
+
 	
 	/**
 	 * Constructor that receives 3 double numbers and check if this is the ZERO point throws exception

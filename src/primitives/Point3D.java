@@ -20,19 +20,6 @@ public class Point3D
 	 * */
 	public static final Point3D ZERO= new Point3D(0,0,0);
 
-	/**
-	 * Constructor that receives 3 coordinates
-	 * 
-	 * @param x Coordinate
-	 * @param y Coordinate
-	 * @param z Coordinate
-	 * */
-	public Point3D(Coordinate x, Coordinate y, Coordinate z)
-	{
-		this.x = x;
-		this.y = y;
-		this.z = z;	
-	}
 	
 	/**
 	 * Constructor that receives 3 double numbers and make from them 3 coordinates
