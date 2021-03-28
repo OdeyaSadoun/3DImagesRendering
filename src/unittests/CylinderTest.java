@@ -27,11 +27,12 @@ public class CylinderTest
 		{
 			// ============ Equivalence Partitions Tests ==============
 			
-			Ray myRay=new Ray(new Point3D(1, 1, 2), new Vector(6, -2, 9));
+			Ray myRay=new Ray(new Point3D(4, 0, 0), new Vector(0, 3, 0));
 			
 			Cylinder myCylinder=new Cylinder(3,myRay,4);
-			Vector normal=new Vector(385d/660.322, -115d/660.322, 524d/660.322);
-			assertTrue("ERROR: getNormal() function creates an Incorrect normal", myCylinder.getNormal(new Point3D(5,2,6))==normal );
+			Vector normal=new Vector(-4d/5, 3d/5, 0);
+			assertEquals("bad normal to cylinder", myCylinder.getNormal(new Point3D(5,2,6)), normal);
+			//assertTrue("ERROR: getNormal() function creates an Incorrect normal", myCylinder.getNormal(new Point3D(5,2,6))==normal );
 		}
 		catch(Exception ex)
 		{
