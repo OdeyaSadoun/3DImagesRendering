@@ -2,7 +2,6 @@
 package unittests;
 
 import static org.junit.Assert.*;
-import static primitives.Util.*;
 import org.junit.Test;
 
 
