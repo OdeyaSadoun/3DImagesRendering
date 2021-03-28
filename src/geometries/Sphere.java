@@ -1,5 +1,8 @@
 package geometries;
+import java.util.List;
+
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
 /**
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
@@ -58,6 +61,12 @@ public class Sphere implements Geometry
 		Point3D myCenter=getCenter();
 		Vector myVec=new Vector(point.subtract( myCenter).getHead());
 		return myVec.normalize();
+	}
+
+	@Override
+	public List<Point3D> findIntsersections(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

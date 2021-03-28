@@ -1,4 +1,6 @@
 package geometries;
+import java.util.List;
+
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -60,6 +62,12 @@ public class Tube implements Geometry
 		Vector myVec=point.subtract(pointO);
 		return myVec.normalize();
 		
+	}
+
+	@Override
+	public List<Point3D> findIntsersections(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
