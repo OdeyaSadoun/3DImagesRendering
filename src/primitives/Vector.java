@@ -3,8 +3,8 @@ package primitives;
 
 
 /**
- * @author Home
- *
+ * class for the functions in vector class
+ * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
 public class Vector
 {
@@ -13,6 +13,9 @@ public class Vector
 	
 	/**
 	 * Constructor that receives point
+	 * 
+	 * @param head Point3D value
+	 * @throws Exception
 	 * */
 	public Vector(Point3D head) throws Exception
 	{
@@ -23,6 +26,11 @@ public class Vector
 	
 	/**
 	 * Constructor that receives 3 coordinates and check if this is the ZERO point throws exception
+	 * 
+	 * @param x Coordinate value
+	 * @param y Coordinate value
+	 * @param z Coordinate value
+	 * @throws Exception
 	 * */
 	public Vector(Coordinate x, Coordinate y, Coordinate z)  throws Exception
 	{
@@ -35,6 +43,11 @@ public class Vector
 	
 	/**
 	 * Constructor that receives 3 double numbers and check if this is the ZERO point throws exception
+	 * 
+	 * @param a double value
+	 * @param b double value
+	 * @param c double value
+	 * @throws Exception
 	 * */
 	public Vector(double a, double b, double c) throws Exception
 	{
@@ -45,6 +58,8 @@ public class Vector
 	
 	/**
 	 * A getter function for the field head
+	 * 
+	 * @return Point3D value for head
 	 * */
 	public Point3D getHead()
 	{
@@ -53,7 +68,10 @@ public class Vector
 	
 	/**
 	 * A function that performs a vector connection
+	 * 
 	 * @param v Vector value
+	 * @return new Vector for the result of add between two vectors
+	 * @throws Exception
 	 * */
 	public Vector add(Vector v)  throws Exception
 	{
@@ -62,7 +80,10 @@ public class Vector
 	
 	/**
 	 * A function that performs vector subtraction
+	 * 
 	 * @param v Vector value
+	 * @return new Vector for the result of subtract between two vectors
+	 * @throws Exception
 	 * */
 	public Vector subtract(Vector v) throws Exception
 	{
@@ -71,7 +92,10 @@ public class Vector
 	
 	/**
 	 * A function that performs vector multiplication in a scalar
+	 * 
 	 * @param scalar double value
+	 * @return new Vector for the result of scale between vector and scalar
+	 * @throws Exception
 	 * */
 	public Vector scale(double scalar) throws Exception
 	{			
@@ -80,7 +104,10 @@ public class Vector
 	
 	/**
 	 * A function that performs a cross product
+	 * 
 	 * @param v Vector value
+	 * @return new Vector for the result of crossProduct between two vectors
+	 * @throws Exception
 	 * */
 	public Vector crossProduct(Vector v) throws Exception
 	{
@@ -89,25 +116,29 @@ public class Vector
 	
 	/**
 	 * A function that performs a dot product
+	 * 
 	 * @param v Vector value
+	 * @return double value for the result of dotProduct between two vectors
 	 * */
 	public double dotProduct(Vector v)
 	{
-		double sum =head.x.coord*v.head.x.coord+head.y.coord*v.head.y.coord+head.z.coord*v.head.z.coord;
-		return sum;
+		 return head.x.coord*v.head.x.coord+head.y.coord*v.head.y.coord+head.z.coord*v.head.z.coord;
 	}
 	
 	/**
 	 * A function that calculates the vector length squared
+	 * 
+	 * @return double value for the result of lengthSquared for the vector
 	 * */
 	public double lengthSquared()
 	{
-		double sum=head.x.coord*head.x.coord+head.y.coord*head.y.coord+head.z.coord*head.z.coord;
-		return sum;
+		return head.x.coord*head.x.coord+head.y.coord*head.y.coord+head.z.coord*head.z.coord;
 	}
 	
 	/**
 	 * A function that calculates vector length
+	 * 
+	 * @return double value for the result of length for the vector
 	 * */
 	public double length()
 	{
@@ -117,6 +148,8 @@ public class Vector
 	/**
 	 * The vector normalization operation that will change the vector itself,
 	 * the function will also return the vector for the purpose of chaining the operations if necessary
+	 * 
+	 * @return the vector this after normalize 
 	 * */
 	public Vector normalize()
 	{
@@ -129,6 +162,8 @@ public class Vector
 	
 	/**
 	 * A normalization operation that returns a new normalized vector in the same direction as the original vector
+	 * 
+	 * @return new Vector that same to this vector but done normalize
 	 * */
 	public Vector normalized() throws Exception
 	{
