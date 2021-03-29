@@ -100,6 +100,20 @@ public class Point3D
 	{
 		return "Point: ("+ x + ","+ y+"," + z+")";
 	}
+
+	public double getX() {
+		return x.coord;
+	}
+
+	public double getY() {
+		return y.coord;
+	}
+
+	public double getZ() {
+		return z.coord;
+	}
+	
+	
 	
 
 
