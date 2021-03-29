@@ -27,12 +27,13 @@ public class Plane implements Geometry
 	{
 		if (p1.equals(p2)|| p2.equals(p3)|| p3.equals(p1))//Check if two points coalesce
 			throw new IllegalArgumentException("Two points converge");
-	
 		
 		Vector myVec1=(p2.subtract(p1));// vector p2p1
 		Vector myVec2=(p3.subtract(p1));//vector p3p1	
 		
-			
+		if(myVec1.getHead().getX()/myVec2.getHead().getX() == myVec1.getHead().getY()/myVec2.getHead().getY() & myVec1.getHead().getZ()/myVec2.getHead().getZ() == myVec1.getHead().getY()/myVec2.getHead().getY())
+			throw new IllegalArgumentException("Two points or more exist in one line");
+		
 		normal = myVec1.crossProduct(myVec2).normalize();
 		point = p1;
 	}
