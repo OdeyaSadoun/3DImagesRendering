@@ -17,7 +17,7 @@ public class Plane implements Geometry
 	
 	/**
 	 * Constructor that receives 3 points
-	 * 
+	 *
 	 * @param p1 Point3D
 	 * @param p2 Point3D
 	 * @param p3 Point3D
@@ -25,8 +25,14 @@ public class Plane implements Geometry
 	 * */
 	public Plane(Point3D p1, Point3D p2, Point3D p3)throws Exception
 	{
-		Vector myVec1=(p2.subtract(p1));
-		Vector myVec2=(p3.subtract(p1));		
+		if (p1.equals(p2)|| p2.equals(p3)|| p3.equals(p1))//Check if two points coalesce
+			throw new IllegalArgumentException("Two points converge");
+	
+		
+		Vector myVec1=(p2.subtract(p1));// vector p2p1
+		Vector myVec2=(p3.subtract(p1));//vector p3p1	
+		
+			
 		normal = myVec1.crossProduct(myVec2).normalize();
 		point = p1;
 	}
@@ -78,7 +84,8 @@ public class Plane implements Geometry
 	}
 
 	@Override
-	public List<Point3D> findIntsersections(Ray ray) {
+	public List<Point3D> findIntersections(Ray ray) 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
