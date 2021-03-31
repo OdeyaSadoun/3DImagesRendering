@@ -90,4 +90,12 @@ public class Geometries implements Intersectable
 		return true;
 	}
 
+	public List<Intersectable> getIntsersectionPoints() 
+	{
+		return intsersectionPoints;
+	}
+
+	
+	
+
 }
