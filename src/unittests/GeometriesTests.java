@@ -35,7 +35,33 @@ public class GeometriesTests
 	@Test
 	public void testAdd() 
 	{
-		fail("Not yet implemented");
+		try 
+		{
+			Triangle triangle = new Triangle(new Point3D(1,0,0),new Point3D(1,1,0),new Point3D(1,0,1));
+			Sphere sphere = new Sphere(new Point3D(1, 0, 0), 1);
+			Tube tube = new Tube(1.5, new Ray(new Point3D(1, 2, 3),new Vector(new Point3D(5, -3, 0))));
+			Cylinder cylinder = new Cylinder(2, new Ray(new Point3D(1, 4, -2),new Vector(new Point3D(1, 0, 2))), 15);
+			
+			Geometries collection= new Geometries(triangle,sphere,tube,cylinder);
+			
+			collection.add(new Triangle(new Point3D(1,8,-6),new Point3D(1,0,0),new Point3D(1,0,2)));
+			
+			assertEquals("the length of the list is worng", 5, collection.getIntsersectionPoints().toArray().length);
+			
+			collection.add(null); // add 0 things
+			
+			assertEquals("the length of the list is worng", 5, collection.getIntsersectionPoints().toArray().length);
+			
+			
+			
+		} 
+		catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			fail("dont need throws exceptions!!!");
+		}
+		
 	}
 
 	/**
