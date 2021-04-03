@@ -48,7 +48,7 @@ public class SphereTest
 	        	Sphere sphere = new Sphere( new Point3D(1, 0, 0), 1d);
 	        
 
-	        // ============ Equivalence Partitions Tests ==============
+	        // ============ Equivalence Partitions Tests ====================
 
 	        // TC01: Ray's line is outside the sphere (0 points)
 	        assertNull("Ray's line out of sphere",
