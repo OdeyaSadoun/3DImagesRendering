@@ -53,8 +53,49 @@ public class Geometries implements Intersectable
 	@Override
 	public List<Point3D> findIntersections(Ray ray) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		List<Point3D> temp = new ArrayList<Point3D>();
+		for (Intersectable intersectable : intsersectionPoints) 
+		{
+			temp.addAll(intersectable.findIntersections(ray)); 
+		}
+		if (temp.isEmpty())
+			return null;
+		return temp;
 	}
+	
+	@Override
+	public int hashCode() 
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((intsersectionPoints == null) ? 0 : intsersectionPoints.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) 
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Geometries other = (Geometries) obj;
+		if (intsersectionPoints == null) {
+			if (other.intsersectionPoints != null)
+				return false;
+		} else if (!intsersectionPoints.equals(other.intsersectionPoints))
+			return false;
+		return true;
+	}
+
+	public List<Intersectable> getIntsersectionPoints() 
+	{
+		return intsersectionPoints;
+	}
+
+	
+	
 
 }

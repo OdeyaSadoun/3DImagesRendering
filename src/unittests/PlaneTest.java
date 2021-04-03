@@ -33,10 +33,10 @@ public class PlaneTest
 		{
 			Point3D p1=new Point3D(1,2,3);
 			Point3D p2=new Point3D(2,4,6);
-			Point3D p3=new Point3D(1,7,5);
+			Point3D p3=new Point3D(3,6,9);
 			Plane myPlane =new Plane(p1, p2 , p3);
 			//assertThrows("failure text", IllegalArgumentException.class, () -> function call);
-			fail ("The dots are on the same line");
+			fail ("The dots are on the same line need trows exeption");
 		}
 		catch(Exception ex) {}
 		
@@ -60,6 +60,7 @@ public class PlaneTest
 			double normalLength=Math.sqrt(38)*3;
 			Vector normal=new Vector(-9/normalLength, -6/normalLength, 15/normalLength);
 			assertEquals("Bad normal to plane", normal, myPlane.getNormal());
+			assertTrue("Bad normal to plane",normal.equals(myPlane.getNormal(p1)) ||  normal.equals(myPlane.getNormal(p1)) );
 			// =============== Boundary Values Tests ==================
 		
 		}
