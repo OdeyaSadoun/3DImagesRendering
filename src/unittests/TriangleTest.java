@@ -88,7 +88,7 @@ public class TriangleTest
         }
         catch(Exception ex)
         {
-        	
+        	fail("not need throws exception!");
         }
 
 }
