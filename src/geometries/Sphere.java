@@ -84,9 +84,6 @@ public class Sphere implements Geometry
 			return null; // there are no instructions
 
 		
-		if(isZero(d-radius))
-			return null;
-		
 		if (t1 <=0 && t2<=0)
 			return null;
 		
