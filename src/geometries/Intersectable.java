@@ -12,6 +12,6 @@ import primitives.Point3D;
  */
 public interface Intersectable 
 {
-	List<Point3D> findIntersections(Ray ray);
+	List<Point3D> findIntersections(Ray ray) throws Exception;
 
 }
