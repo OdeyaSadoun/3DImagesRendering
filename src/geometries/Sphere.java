@@ -1,5 +1,7 @@
 package geometries;
+import java.util.ArrayList;
 import java.util.List;
+import static primitives.Util.*;
 
 import primitives.Point3D;
 import primitives.Ray;
@@ -64,10 +66,33 @@ public class Sphere implements Geometry
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray ray) 
+	public List<Point3D> findIntersections(Ray ray) throws Exception 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		//List<Point3D> rayPoints = new ArrayList<Point3D>();
+		Vector u = center.subtract(ray.getP0());
+		double tM = alignZero(ray.getDir().dotProduct(u));
+		double d = alignZero(Math.sqrt(u.dotProduct(u)- tM * tM));
+		double tH = alignZero(Math.sqrt(radius*radius - d*d));
+		double t1 = alignZero(tM+tH);
+		double t2 = alignZero(tM-tH);
+		
+		
+		if (d >= radius)
+			return null; // there are no instructions
+		
+		if (t1 <=0 && t2<=0)
+			return null;
+		
+		if (t1 > 0 && t2 >0)
+			return List.of(ray.getPoint(t1),ray.getPoint(t2));
+		if (t1 > 0)
+		{
+			return List.of(ray.getPoint(t1));
+		}
+
+		else
+			return List.of(ray.getPoint(t2));
+
 	}
 
 
