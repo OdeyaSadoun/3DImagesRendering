@@ -103,7 +103,7 @@ public class Plane implements Geometry
 			throw new IllegalArgumentException("The subtraction creates the zero vector, which will cause the calculation to be reset.");
 		}
 		
-		double t = alignZero(normal.dotProduct(pSubtractP0)/nv);
+		double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
 
 		if(t <= 0)
 		{
