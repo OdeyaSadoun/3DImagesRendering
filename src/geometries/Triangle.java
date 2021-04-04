@@ -39,6 +39,8 @@ public class Triangle extends Polygon implements Geometry
 	public List<Point3D> findIntersections(Ray ray) throws Exception 
 	{
 		List<Point3D> rayPoints = plane.findIntersections(ray);
+		if (rayPoints == null)
+			return null;
 		//check if the point in out or on the triangle:
 		Vector v1 = vertices.get(0).subtract(ray.getP0());
 		Vector v2 = vertices.get(1).subtract(ray.getP0());
@@ -46,7 +48,7 @@ public class Triangle extends Polygon implements Geometry
 		
 		Vector n1 = v1.crossProduct(v2).normalize();
 		Vector n2 = v2.crossProduct(v3).normalize();
-		Vector n3 = v1.crossProduct(v1).normalize();
+		Vector n3 = v3.crossProduct(v1).normalize();
 
 		
 		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
