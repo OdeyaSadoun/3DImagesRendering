@@ -34,9 +34,10 @@ public class PlaneTest
 		{
 			Point3D p1=new Point3D(1,2,3);
 			Point3D p2=new Point3D(2,4,6);
-			Point3D p3=new Point3D(1,7,5);
+			Point3D p3=new Point3D(1,2,3);
 			Plane myPlane =new Plane(p1, p2 , p3);
 			//assertThrows("failure text", IllegalArgumentException.class, () -> function call);
+			
 			fail ("The dots are on the same line");
 		}
 		catch(Exception ex) {}
@@ -90,13 +91,13 @@ public class PlaneTest
 			assertEquals("An un included ray has zero intersection points", null, myPlane.findIntersections(myRay));
 			
 			//Ray is orthogonal to the plane
-			// TC03:𝑃0 before the plane
+			// TC03:נ�‘ƒ0 before the plane
 			myRay= new Ray(new Point3D(2,4,0), new Vector(-3,3,5));//the ray is orthogonal to the plane
 			assertEquals("Ray is orthogonal to the plane and starts before the plane",1, myPlane.findIntersections(myRay));
-			// TC04:𝑃0 at the plane
+			// TC04:נ�‘ƒ0 at the plane
 			myRay= new Ray(new Point3D(-5,0,0), new Vector(-3,3,5));//the ray is orthogonal to the plane
 			assertEquals("Ray is orthogonal to the plane and starts at the plane",null, myPlane.findIntersections(myRay));
-			// TC05:𝑃0 after the plane
+			// TC05:נ�‘ƒ0 after the plane
 			myRay= new Ray(new Point3D(-7,2,4), new Vector(-3,3,5));//the ray is orthogonal to the plane
 			assertEquals("Ray is orthogonal to the plane and starts after the plane",null, myPlane.findIntersections(myRay));
 			
