@@ -1,5 +1,12 @@
 package geometries;
+import static primitives.Util.alignZero;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import primitives.Point3D;
+import primitives.Ray;
+import primitives.Vector;
 /**
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  * Class for Triangle
@@ -28,4 +35,30 @@ public class Triangle extends Polygon implements Geometry
 		return "Triangle: "+super.toString();
 	}
 
+	@Override
+	public List<Point3D> findIntersections(Ray ray) throws Exception 
+	{
+		List<Point3D> rayPoints = plane.findIntersections(ray);
+		//check if the point in out or on the triangle:
+		Vector v1 = vertices.get(0).subtract(ray.getP0());
+		Vector v2 = vertices.get(1).subtract(ray.getP0());
+		Vector v3 = vertices.get(2).subtract(ray.getP0());
+		
+		Vector n1 = v1.crossProduct(v2).normalize();
+		Vector n2 = v2.crossProduct(v3).normalize();
+		Vector n3 = v1.crossProduct(v1).normalize();
+
+		
+		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
+		
+		if (alignZero(n1.dotProduct(plane.getNormal())) > 0 && alignZero(n2.dotProduct(plane.getNormal())) > 0 && alignZero(n3.dotProduct(plane.getNormal())) > 0)
+		{
+			return rayPoints;
+		}
+		else if (alignZero(n1.dotProduct(plane.getNormal())) < 0 && alignZero(n2.dotProduct(plane.getNormal())) < 0 && alignZero(n3.dotProduct(plane.getNormal())) < 0)
+		{
+			return rayPoints;
+		}
+		return null; //there is no instruction point
+	}
 }
