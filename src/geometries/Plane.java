@@ -1,5 +1,9 @@
 package geometries;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import primitives.Point3D;
@@ -85,10 +89,32 @@ public class Plane implements Geometry
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray ray) 
+	public List<Point3D> findIntersections(Ray ray) throws Exception 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		double nv = normal.dotProduct(ray.getDir());
+		if (isZero(nv))
+		{
+			throw new IllegalArgumentException("cannot divide in 0");
+		}
+		
+		Vector pSubtractP0 = point.subtract(ray.getP0());
+		if (pSubtractP0.getHead().equals(Point3D.ZERO))
+		{
+			throw new IllegalArgumentException("The subtraction creates the zero vector, which will cause the calculation to be reset.");
+		}
+		
+		double t = alignZero(normal.dotProduct(pSubtractP0)/nv);
+
+		if(t <= 0)
+		{
+			return null;
+		}
+			
+		
+//		List<Point3D> rayPoints = new ArrayList<Point3D>();
+//		rayPoints.add(ray.getPoint(t));
+//		return rayPoints;
+		return List.of(ray.getPoint(t));
 	}
 
 }
