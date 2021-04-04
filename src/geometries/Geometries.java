@@ -43,9 +43,13 @@ public class Geometries implements Intersectable
 	public void add(Intersectable... geometries)
 	{
 		//intsersectionPoints.addAll(List.of(geometries));
-		for (Intersectable intersectable : geometries) 
+		if (geometries != null)
 		{
-			intsersectionPoints.add(intersectable);
+			intsersectionPoints.addAll(Arrays.asList(geometries));
+//		for (Intersectable intersectable : geometries) 
+//		{
+//			intsersectionPoints.add(intersectable);
+//		}
 		}
 //		for(int i = 0; i< geometries.length; i++) 
 //		{
@@ -62,6 +66,7 @@ public class Geometries implements Intersectable
 		List<Point3D> temp = new ArrayList<Point3D>();
 		for (Intersectable intersectable : intsersectionPoints) 
 		{
+			if (intersectable.findIntersections(ray) != null)
 			temp.addAll(intersectable.findIntersections(ray)); 
 		}
 		if (temp.isEmpty())
