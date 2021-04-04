@@ -85,7 +85,7 @@ public class GeometriesTests
 			
 			collection.add(sphere, triangle, tube ,cylinder);
 		
-			assertEquals("No cut shape must return 0", 0,collection.findIntersections(new Ray(new Point3D(10.45, 1.89, 0), new Vector(-20.24,-0.2,0))).toArray().length);
+			assertEquals("No cut shape must return 0", null,collection.findIntersections(new Ray(new Point3D(10.45, 1.89, 0), new Vector(-20.24,-0.2,0))));
 			
 			//=====Only one shape is cut (BVA)=====//
 			sphere = new Sphere(new Point3D(1, 0, 0), 1); //cut - 2 intersections
@@ -93,7 +93,7 @@ public class GeometriesTests
 			tube = new Tube(1, new Ray(new Point3D(0,-3, 0), new Vector(5.01,-7.74,6.21)));
 			cylinder = new Cylinder(0.9, new Ray(new Point3D(0, 3, 0), new Vector(-4.11,-7.28,0)), 8.360053828);
 			collection= new Geometries(sphere, triangle, tube ,cylinder);
-			assertEquals("wrong number of intersactions", 2, collection.findIntersections(new Ray(new Point3D(-8.26, 7.66, 1), new Vector(10.85,-8.79,-1))).toArray().length);
+			assertEquals("wrong number of intersactions", 2, collection.findIntersections(new Ray(new Point3D(-8.26, 7.66, 1), new Vector(10.85,-8.79,-1))).size());
 
 			
 			//=====All shapes are cut (BVA)=====//
@@ -103,7 +103,7 @@ public class GeometriesTests
 			cylinder = new Cylinder(0.9, new Ray(new Point3D(-2.13, 4.34, 0), new Vector(1,1,1)), 7);//2
 			
 			collection= new Geometries(sphere, triangle, tube ,cylinder);
-			assertEquals("wrong number of intersactions", 7, collection.findIntersections(new Ray(new Point3D(-4, 6, 0), new Vector(2.13,-7.34,0))).toArray().length);
+			assertEquals("wrong number of intersactions", 7, collection.findIntersections(new Ray(new Point3D(-4, 6, 0), new Vector(2.13,-7.34,0))).size());
 
 			
 			//=====Some (but not all) shapes are cut (EP)=====//
@@ -113,7 +113,7 @@ public class GeometriesTests
 			cylinder = new Cylinder(1, new Ray(new Point3D(1, 0, 0), new Vector(1,1,1)), 7);
 			
 			collection= new Geometries(sphere, triangle, tube ,cylinder);
-			assertEquals("wrong number of intersactions", 4, collection.findIntersections(new Ray(new Point3D(1.87, 8.49, 0), new Vector(-1.54,-16.82,0))).toArray().length);
+			assertEquals("wrong number of intersactions", 4, collection.findIntersections(new Ray(new Point3D(1.87, 8.49, 0), new Vector(-1.54,-16.82,0))).size());
 		
 			
 			
