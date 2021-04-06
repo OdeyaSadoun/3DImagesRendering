@@ -16,7 +16,7 @@ import primitives.Ray;
  */
 public class Geometries implements Intersectable 
 {
-	private List<Intersectable> intsersectionPoints;
+	private List<Intersectable> geometriesInScene;
 
 	/**
 	 * 
@@ -24,12 +24,12 @@ public class Geometries implements Intersectable
 	public Geometries()
 	{
 		//we chosen in ArrayList because this class works better when the application demands storing the data and accessing it.
-		intsersectionPoints = new ArrayList<Intersectable>();
+		geometriesInScene = new ArrayList<Intersectable>();
 	}
 	
 	public Geometries(Intersectable... geometries)
 	{
-		intsersectionPoints = Arrays.asList(geometries);
+		geometriesInScene =  new ArrayList<Intersectable>(Arrays.asList(geometries));
 //		intsersectionPoints = new ArrayList<Intersectable>();
 //		for (int i = 0; i < geometries.length; i++) {
 //			intsersectionPoints.add(geometries[i]);
@@ -37,24 +37,17 @@ public class Geometries implements Intersectable
 	}
 	public  Iterator<Intersectable> iterator()
 	{
-		return intsersectionPoints.iterator();
+		return geometriesInScene.iterator();
 	}
 	
 	public void add(Intersectable... geometries)
 	{
-		//intsersectionPoints.addAll(List.of(geometries));
 		if (geometries != null)
 		{
-			intsersectionPoints.addAll(Arrays.asList(geometries));
-//		for (Intersectable intersectable : geometries) 
-//		{
-//			intsersectionPoints.add(intersectable);
-//		}
+			geometriesInScene.addAll(Arrays.asList(geometries));
+
 		}
-//		for(int i = 0; i< geometries.length; i++) 
-//		{
-//			intsersectionPoints.add(geometries[i]);
-//		}	
+	
 	}
 	
 	/**
@@ -64,11 +57,13 @@ public class Geometries implements Intersectable
 	public List<Point3D> findIntersections(Ray ray) throws Exception 
 	{
 		List<Point3D> temp = new ArrayList<Point3D>();
-		for (Intersectable intersectable : intsersectionPoints) 
+		for (Intersectable intersectable : geometriesInScene) 
 		{
-			if (intersectable.findIntersections(ray) != null)
-			temp.addAll(intersectable.findIntersections(ray)); 
+			List<Point3D> intersection = intersectable.findIntersections(ray);
+			if (intersection != null)
+				temp.addAll(intersection); 
 		}
+		
 		if (temp.isEmpty())
 			return null;
 		return temp;
@@ -82,7 +77,7 @@ public class Geometries implements Intersectable
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((intsersectionPoints == null) ? 0 : intsersectionPoints.hashCode());
+		result = prime * result + ((geometriesInScene == null) ? 0 : geometriesInScene.hashCode());
 		return result;
 	}
 
@@ -96,17 +91,17 @@ public class Geometries implements Intersectable
 		if (getClass() != obj.getClass())
 			return false;
 		Geometries other = (Geometries) obj;
-		if (intsersectionPoints == null) {
-			if (other.intsersectionPoints != null)
+		if (geometriesInScene == null) {
+			if (other.geometriesInScene != null)
 				return false;
-		} else if (!intsersectionPoints.equals(other.intsersectionPoints))
+		} else if (!geometriesInScene.equals(other.geometriesInScene))
 			return false;
 		return true;
 	}
 
 	public List<Intersectable> getIntsersectionPoints() 
 	{
-		return intsersectionPoints;
+		return geometriesInScene;
 	}
 
 	
