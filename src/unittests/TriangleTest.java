@@ -85,9 +85,17 @@ public class TriangleTest
         assertNull("the intersection point is out of the triangle - need 0 intersections", triangle.findIntersections(ray));
         
 
+        
+        
+        
+		triangle = new Triangle(new Point3D(-4,0,0), new Point3D(0, 0, 5), new Point3D(0, -5, 0));//1
+		ray = new Ray(new Point3D(-2, -3, 0), new Vector(2.13,2.2,0));
+        assertEquals("the intersection point is in the triangle - need 1 intersections", 1, triangle.findIntersections(ray).size());
+
         }
         catch(Exception ex)
         {
+        	ex.printStackTrace();
         	fail("not need throws exception!");
         }
 
