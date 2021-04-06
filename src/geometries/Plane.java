@@ -92,29 +92,38 @@ public class Plane implements Geometry
 	public List<Point3D> findIntersections(Ray ray) throws Exception 
 	{
 		double nv = normal.dotProduct(ray.getDir());
-		if (isZero(nv))
-		{
-			throw new IllegalArgumentException("cannot divide in 0");
-		}
-		
-		Vector pSubtractP0 = point.subtract(ray.getP0());
-		if (pSubtractP0.getHead().equals(Point3D.ZERO))
-		{
-			throw new IllegalArgumentException("The subtraction creates the zero vector, which will cause the calculation to be reset.");
-		}
-		
-		double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
-
-		if(t <= 0)
+		if (isZero(nv))//הישר מוכל ולכן אין נקודת חיתוך
 		{
 			return null;
 		}
+		
+		try 
+		{
+			Vector pSubtractP0 = point.subtract(ray.getP0());
+			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
+
+			if(t <= 0)
+			{
+				return null;
+			}
+			return List.of(ray.getPoint(t));
+		}
+		catch(Exception ex) //הקרן מתחילה בנקודת היחוס של המישור ולא כוללים את ראשית הקרן
+		{
+			return null;
+		}
+//		if (pSubtractP0.getHead().equals(Point3D.ZERO))
+//		{
+//			throw new IllegalArgumentException("The subtraction creates the zero vector, which will cause the calculation to be reset.");
+//		}
+		
+
 			
 		
 //		List<Point3D> rayPoints = new ArrayList<Point3D>();
 //		rayPoints.add(ray.getPoint(t));
 //		return rayPoints;
-		return List.of(ray.getPoint(t));
+	
 	}
 
 }
