@@ -115,11 +115,11 @@ public class Polygon implements Geometry
 		int countNegative = normalsList.size();
 		for (Vector vector : normalsList) 
 		{
-			if (alignZero((plane.getNormal()).dotProduct(vector)) > 0)
+			if (alignZero((ray.getDir()).dotProduct(vector)) > 0)
 			{
 				countPositive++;
 			}
-			else if (alignZero((plane.getNormal()).dotProduct(vector)) <= 0)
+			else if (alignZero((ray.getDir()).dotProduct(vector)) <= 0)
 			{
 				countNegative--;
 			}
