@@ -30,7 +30,7 @@ public class Camera
 	 * @return Camera
 	 * @throws Exception 
 	 */
-	public Camera(Vector vTo, Vector vUp, Point3D p0) throws Exception 
+	public Camera(Point3D p0, Vector vTo, Vector vUp) throws Exception 
 	{
 		if(!isZero(vTo.dotProduct(vUp)))
 			throw new IllegalArgumentException("vUp doesnt ortogonal to vTo");
