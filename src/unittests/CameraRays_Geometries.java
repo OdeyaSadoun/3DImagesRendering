@@ -40,7 +40,15 @@ public class CameraRays_Geometries
 		{
 			for (int j = i; j < 3; j++)
 			{
-				raysFromCamera.add(camera.constructRayThroughPixel(3, 3, j, i));
+				try 
+				{
+					raysFromCamera.add(camera.constructRayThroughPixel(3, 3, j, i));
+				} 
+				catch (Exception e) 
+				{
+					// TODO Auto-generated catch block
+					fail("There can be no zero rays");
+				}
 			}
 		}
 		return raysFromCamera;
