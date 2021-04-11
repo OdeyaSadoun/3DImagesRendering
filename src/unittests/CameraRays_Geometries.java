@@ -134,8 +134,8 @@ public class CameraRays_Geometries
 		try 
 		{
 			//TC01:9 intersection points
-			Plane plane =new Plane(new Point3D(2,0,0), new Vector(0,1,0));
-			Camera camera =new Camera(Point3D.ZERO, new Vector(0,1,0) , new Vector(0,0,-1));
+			Plane plane =new Plane(new Point3D(0,2,0), new Vector(0,1,0));
+			Camera camera =new Camera(Point3D.ZERO, new Vector(0,1,0) , new Vector(0,0,-1)).setDistance(1).setViewPlaneSize(3, 3);
 			assertEquals("The count of intersections are not correct", 9, findIntersectionPoints(camera, plane).size());	
 
 			//TC02:9 intersection points	
@@ -150,7 +150,7 @@ public class CameraRays_Geometries
 		} 
 		catch (Exception e) 
 		{
-			//e.printStackTrace();
+			e.printStackTrace();
 			fail("dont need throws exception");
 		}
 
