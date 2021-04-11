@@ -22,6 +22,7 @@ public class Plane implements Geometry
 	/**
 	 * Constructor that receives 3 points
 	 *
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param p1 Point3D
 	 * @param p2 Point3D
 	 * @param p3 Point3D
@@ -45,6 +46,7 @@ public class Plane implements Geometry
 	/**
 	 * Constructor that receives point and normal
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param p Point3D
 	 * @param normal Vector
 	 * */
@@ -57,6 +59,7 @@ public class Plane implements Geometry
 	/**
 	 * A getter function for the field point
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @return Point3D value for point
 	 * */
 	public Point3D getP() 
@@ -67,6 +70,7 @@ public class Plane implements Geometry
 	/**
 	 * A getter function for the field normal that return normal
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @return Vector value for normal
 	 * */
 	public Vector getNormal() 
@@ -88,6 +92,11 @@ public class Plane implements Geometry
 		return normal;
 	}
 
+	/**
+	 * A function that find all the intersection points in the plane
+	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * */
 	@Override
 	public List<Point3D> findIntersections(Ray ray) throws Exception 
 	{
@@ -112,17 +121,7 @@ public class Plane implements Geometry
 		{
 			return null;
 		}
-//		if (pSubtractP0.getHead().equals(Point3D.ZERO))
-//		{
-//			throw new IllegalArgumentException("The subtraction creates the zero vector, which will cause the calculation to be reset.");
-//		}
-		
 
-			
-		
-//		List<Point3D> rayPoints = new ArrayList<Point3D>();
-//		rayPoints.add(ray.getPoint(t));
-//		return rayPoints;
 	
 	}
 
