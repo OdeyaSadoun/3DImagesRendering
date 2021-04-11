@@ -15,6 +15,7 @@ public class Cylinder extends Tube
 	/**
 	 * Constructor that receives radius, ray and height, and use in the constructor of the base class
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param radius double value
 	 * @param axis Ray value
 	 * @param height double value
@@ -28,6 +29,7 @@ public class Cylinder extends Tube
 	/**
 	 * A getter function for the field height that return double value for height
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @return double value for height
 	 * */
 	public double getHeight() 
