@@ -55,6 +55,8 @@ public class Camera
 	 */
 	public Camera setViewPlaneSize(double width, double height)
 	{
+		this.width = width;
+		this.height = height;
 		return this;
 	}
 	
@@ -68,6 +70,7 @@ public class Camera
 	 */
 	public Camera setDistance(double distance)
 	{
+		this.distance = distance;
 		return this;
 	}
 
@@ -84,13 +87,24 @@ public class Camera
 	 */
 	public Ray constructRayThroughPixel(int nX, int nY, int j, int i ) throws Exception
 	{
-		Point3D Pc=p0.add(vTo.scale(distance));
+		Point3D Pc;
+		if (isZero(distance))
+			Pc=p0;
+		else
+			Pc=p0.add(vTo.scale(distance));
+		
 		double Ry= height/nY;
 		double Rx=width/nX;
-		double Yi=-(i-(nY-1)/2)*Ry;
-		double Xj=-(j-(nX-1)/2)*Rx;	
-		Point3D Pij= Pc.add(vRight.scale(Xj).add(vUp).scale(Yi));
-		return new Ray(p0,  Pij.subtract(p0));
+		double Yi=(i-(nY-1)/2d)*Ry;
+		double Xj=(j-(nX-1)/2d)*Rx;
+		Point3D Pij = Pc;
+		if(!isZero(Xj))
+			Pij = Pij.add(vRight.scale(Xj));
+		if(!isZero(Yi))
+			Pij = Pij.add(vUp.scale(-Yi));
+		if(Pij.equals(p0))
+			return new Ray(p0, new Vector(Pij));
+		return new Ray(p0, Pij.subtract(p0));
 
 	}
 
