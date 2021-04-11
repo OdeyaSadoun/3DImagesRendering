@@ -81,7 +81,7 @@ public class Camera
 	 * @param i int value - index of row
 	 * @return Ray that created	 
 	 */
-	public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
+	public Ray constructRayThroughPixel(int nX, int nY, int j, int i )
 	{
 		return null;
 	}
