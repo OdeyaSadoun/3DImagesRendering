@@ -56,7 +56,7 @@ public class CameraTests
 		catch (Exception e) 
 		{
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 			fail("Should not receive vector zero");
 		}
 
