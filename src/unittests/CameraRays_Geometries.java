@@ -38,7 +38,7 @@ public class CameraRays_Geometries
 		List<Ray> raysFromCamera = new ArrayList<Ray>();
 		for (int i = 0; i < 3; i++)
 		{
-			for (int j = i; j < 3; j++)
+			for (int j = 0; j < 3; j++)
 			{
 				try 
 				{
