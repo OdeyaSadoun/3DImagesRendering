@@ -83,6 +83,8 @@ public class CameraRays_Geometries
 				fail("dont need exception here");
 			}
 		}
+		if(intersectionPoints.size() == 0)
+			return null;
 		return intersectionPoints;
 	}
 
@@ -116,7 +118,7 @@ public class CameraRays_Geometries
 			//TC05:0 intersection points
 			sphere=new Sphere(new Point3D(0,0,1), 0.5);
 			camera = new Camera(new Point3D(0,0,0.5), new Vector(0,0,-1), new Vector(0,1,0)).setDistance(1).setViewPlaneSize(3, 3);	
-			assertNull("The count of intersections are not correct", findIntersectionPoints(camera, sphere).size());
+			assertNull("The count of intersections are not correct", findIntersectionPoints(camera, sphere));
 		
 		}
 		catch(Exception ex)
