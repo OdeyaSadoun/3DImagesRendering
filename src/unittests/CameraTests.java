@@ -4,17 +4,20 @@ import org.junit.Test;
 import elements.Camera;
 import primitives.*;
 /**
- * @author Home
- *
- */
-public class CameraTests {
+ * test class to camera class
+ * 
+ * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+ * */
+public class CameraTests 
+{
 
 	/**
 	 * Test method for
 	 * {@link elements.Camera#constructRayThroughPixel(int, int, int, int)}.
 	 */
 	@Test
-	public void testConstructRayThroughPixel() {
+	public void testConstructRayThroughPixel() 
+	{
 		Camera camera;
 		try 
 		{
