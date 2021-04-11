@@ -97,14 +97,23 @@ public class Camera
 		double Rx=width/nX;
 		double Yi=(i-(nY-1)/2d)*Ry;
 		double Xj=(j-(nX-1)/2d)*Rx;
+		
+		if(isZero(Xj) && isZero(Yi))
+			return new Ray (p0, Pc.subtract(p0));
+		
 		Point3D Pij = Pc;
+		
 		if(!isZero(Xj))
 			Pij = Pij.add(vRight.scale(Xj));
+		
 		if(!isZero(Yi))
 			Pij = Pij.add(vUp.scale(-Yi));
+		
+		Vector Vij = Pij.subtract(p0);
+		
 		if(Pij.equals(p0))
 			return new Ray(p0, new Vector(Pij));
-		return new Ray(p0, Pij.subtract(p0));
+		return new Ray(p0, Vij);
 
 	}
 
