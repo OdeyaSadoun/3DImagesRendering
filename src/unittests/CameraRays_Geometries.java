@@ -139,12 +139,12 @@ public class CameraRays_Geometries
 			assertEquals("The count of intersections are not correct", 9, findIntersectionPoints(camera, plane).size());	
 
 			//TC02:9 intersection points	
-			plane =new Plane(new Point3D(2,0,0), new Vector(1,0,2));
+			plane =new Plane(new Point3D(2,0,0),new Vector(1,2,-0.5));
 			//same camera
 			assertEquals("The count of intersections are not correct", 9, findIntersectionPoints(camera, plane).size());	
 
 			//TC03:6 intersection points
-			plane =new Plane(new Point3D(2,0,0), new Vector(8,1,3));
+			plane =new Plane(new Point3D(2,0,0), new Vector(1,1,0));
 			//same camera
 			assertEquals("The count of intersections are not correct", 6, findIntersectionPoints(camera, plane).size());	
 		} 
