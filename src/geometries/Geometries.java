@@ -11,15 +11,19 @@ import primitives.Point3D;
 import primitives.Ray;
 
 /**
- * @author אודיה סעדון
- *
+ * Class for the Collection of Bodies in the Scene
+ * 
+ * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
 public class Geometries implements Intersectable 
 {
+	//field:
 	private List<Intersectable> geometriesInScene;
 
 	/**
+	 * A default constructor that create new empty arrayList
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 */
 	public Geometries()
 	{
@@ -27,31 +31,47 @@ public class Geometries implements Intersectable
 		geometriesInScene = new ArrayList<Intersectable>();
 	}
 	
+	/**
+	 * Constructor that recives list of geomeries and put them in new arrayList
+	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * */
 	public Geometries(Intersectable... geometries)
 	{
 		geometriesInScene =  new ArrayList<Intersectable>(Arrays.asList(geometries));
-//		intsersectionPoints = new ArrayList<Intersectable>();
-//		for (int i = 0; i < geometries.length; i++) {
-//			intsersectionPoints.add(geometries[i]);
-//		}
 	}
+	
+	/**
+	 * Iterator function
+	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * */
 	public  Iterator<Intersectable> iterator()
 	{
 		return geometriesInScene.iterator();
 	}
 	
+	/**
+	 * A function that add the geometries the receive to the list.
+	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * */
 	public void add(Intersectable... geometries)
 	{
 		if (geometries != null)
 		{
 			geometriesInScene.addAll(Arrays.asList(geometries));
-
 		}
-	
 	}
 	
 	/**
-	 * @throws Exception *****************************************************/
+	 * 
+	 * A function that find all the intersection points in the scene
+	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * @return List<Point3D> for the points
+	 * @throws Exception 
+	 * */
 
 	@Override
 	public List<Point3D> findIntersections(Ray ray) throws Exception 
@@ -66,11 +86,21 @@ public class Geometries implements Intersectable
 		
 		if (temp.isEmpty())
 			return null;
-		return temp;
-		
-		
-		
+		return temp;	
 	}
+	
+	/**
+	 * A getter function for geometriesInScene
+	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * @return List<Intersectable> value for geometriesInScene
+	 * */
+	public List<Intersectable> getIntsersectionPoints() 
+	{
+		return geometriesInScene;
+	}
+	
+	/***********************************************************************************/
 	
 	@Override
 	public int hashCode() 
@@ -99,10 +129,6 @@ public class Geometries implements Intersectable
 		return true;
 	}
 
-	public List<Intersectable> getIntsersectionPoints() 
-	{
-		return geometriesInScene;
-	}
 
 	
 	
