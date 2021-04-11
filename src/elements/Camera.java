@@ -80,10 +80,18 @@ public class Camera
 	 * @param j int value - index of column
 	 * @param i int value - index of row
 	 * @return Ray that created	 
+	 * @throws Exception 
 	 */
-	public Ray constructRayThroughPixel(int nX, int nY, int j, int i )
+	public Ray constructRayThroughPixel(int nX, int nY, int j, int i ) throws Exception
 	{
-		return null;
+		Point3D Pc=p0.add(vTo.scale(distance));
+		double Ry= height/nY;
+		double Rx=width/nX;
+		double Yi=-(i-(nY-1)/2)*Ry;
+		double Xj=-(j-(nX-1)/2)*Rx;	
+		Point3D Pij= Pc.add(vRight.scale(Xj).add(vUp).scale(Yi));
+		return new Ray(p0,  Pij.subtract(p0));
+
 	}
 
 	/**
