@@ -6,13 +6,14 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- * @author אודיה סעדון
- *
+ * class camera in the package elements
+ * The purpose of the class is to create rays from the camera towards the various geometries of the scene.
+ * 
+ * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
  */
 public class Camera 
 {
-	// TODO Auto-generated constructor stub
-	private Point3D p0;//location
+	private Point3D p0; //location of the camera
 	private Vector vUp;
 	private Vector vTo;
 	private Vector vRight;
@@ -23,7 +24,7 @@ public class Camera
 	/**
 	 * This constructor that creat new camera
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 2212380406
 	 * @param vTo Vector value
 	 * @param vUp Vector value
 	 * @param p0 Point3D value
@@ -32,12 +33,14 @@ public class Camera
 	 */
 	public Camera(Point3D p0, Vector vTo, Vector vUp) throws Exception 
 	{
-		if(!isZero(vTo.dotProduct(vUp)))
+		if(!isZero(vTo.dotProduct(vUp))) // if vTo doesn't orthogonal to vUp
 			throw new IllegalArgumentException("vUp doesnt ortogonal to vTo");
 		
+		//all the vectors need to be normalize:
 		this.vTo = vTo.normalize();
 		this.vUp = vUp.normalize();
-		vRight = (vTo.crossProduct(vUp)).normalize();	
+		vRight = (vTo.crossProduct(vUp)).normalize();
+		
 		this.p0 = p0;
 
 	}
@@ -45,7 +48,7 @@ public class Camera
 	/**
 	 * Update function for View Plane size  
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @param width double value
 	 * @param height double value
 	 * @return Camera	 
@@ -59,7 +62,7 @@ public class Camera
 	/**
 	 * Update function for distance
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @param distance double value
 	 * @return Camera	 
 	 */
@@ -69,14 +72,14 @@ public class Camera
 	}
 
 	/**
-	 * ??
+	 * The function is responsible for creating the rays from the camera
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @param nX int value
-	 * @param nY int value
-	 * @param j int value
-	 * @param i int value
-	 * @return null	 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @param nX int value - resolution of pixel in X
+	 * @param nY int value - resolution of pixel in Y
+	 * @param j int value - index of column
+	 * @param i int value - index of row
+	 * @return Ray that created	 
 	 */
 	public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
 	{
@@ -86,8 +89,8 @@ public class Camera
 	/**
 	 * Getter for p0
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @return p0	 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @return Point3D value for p0	 
 	 */
 	public Point3D getP0() 
 	{
@@ -97,8 +100,8 @@ public class Camera
 	/**
 	 * Getter for vUp
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @return vUp	 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @return Vector value for vUp	 
 	 */
 	public Vector getvUp() 
 	{
@@ -108,8 +111,8 @@ public class Camera
 	/**
 	 * Getter for vTo
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @return vTo	 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @return Vector value for vTo	 
 	 */
 	public Vector getvTo() 
 	{
@@ -119,8 +122,8 @@ public class Camera
 	/**
 	 * Getter for vRight
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @return vRight	 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @return Vector value for vRight	 
 	 */
 	public Vector getvRight() 
 	{
@@ -130,8 +133,8 @@ public class Camera
 	/**
 	 * Getter for width
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @return width	 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @return double value for width	 
 	 */
 	public double getWidth() 
 	{
@@ -141,8 +144,8 @@ public class Camera
 	/**
 	 * Getter for height
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @return height	 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @return double value for height	 
 	 */
 	public double getHeight() 
 	{
@@ -152,8 +155,8 @@ public class Camera
 	/**
 	 * Getter for distance
 	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @return distance	 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @return double value for distance	 
 	 */
 	public double getDistance() 
 	{
