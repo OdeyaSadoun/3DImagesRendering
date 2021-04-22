@@ -1,9 +1,6 @@
-/**
- * 
- */
 package renderer;
 import java.util.List;
-
+import renderer.RayTracerBasic;
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Ray;
@@ -30,23 +27,7 @@ public abstract class RayTracerBase
 	/**
 	 * @param ray Ray value
 	 * @throws Exception
-	 *
+	 * Color calculation for the nearest point
 	 */
-	public Color traceRay(Ray ray)
-	{
-		try 
-		{
-			List<Point3D> intersections = myscene.geometries.findIntersections(ray);
-			if(intersections==null)
-				return  myscene.background;
-			Point3D closestPoint = ray.findClosestPoint(intersections);
-			return calcColor(closestPoint);
-		} 
-		catch (Exception ex) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+	public abstract Color traceRay(Ray ray);
 }
