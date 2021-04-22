@@ -6,18 +6,20 @@ package renderer;
 import scene.Scene;
 
 /**
- * @author Home
+ * @author Tamar Gavrieli & Odeya Sadoun
  *
  */
 public class RayTracerBasic extends RayTracerBase 
 {
 
 	/**
-	 * @param myscene
+	 * @param myscene Scene value
+	 * 
 	 */
 	public RayTracerBasic(Scene myscene) 
 	{
 		super(myscene);
+		//return null;
 		
 	}
 

@@ -10,18 +10,28 @@ import primitives.Ray;
 import scene.Scene;
 
 /**
- * @author Home
+ * @author Tamar Gavrieli & Odeya Sadoun
  *
  */
 public abstract class RayTracerBase 
 {
 
 	protected Scene myscene;
+	
+	/**
+	 * @param myscene Scene value
+	 *
+	 */
 	public  RayTracerBase(Scene myscene)
 	{
 		this.myscene=myscene;
 	}
 	
+	/**
+	 * @param ray Ray value
+	 * @throws Exception
+	 *
+	 */
 	public Color traceRay(Ray ray)
 	{
 		try 
@@ -32,7 +42,7 @@ public abstract class RayTracerBase
 			Point3D closestPoint = ray.findClosestPoint(intersections);
 			return calcColor(closestPoint);
 		} 
-		catch (Exception e) 
+		catch (Exception ex) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
