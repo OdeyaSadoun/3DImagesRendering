@@ -17,7 +17,7 @@ public class AmbientLight
 	 * 
 	 */
 	
-	public Color Ia;
+	private Color Ia;
 	private double Ka;
 	private Color intensity;
 	
