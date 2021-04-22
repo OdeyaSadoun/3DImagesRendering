@@ -17,7 +17,7 @@ import scene.Scene;
  * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
  *
  */
-public class Rendetr 
+public class Render 
 {
 	private Scene scene;
 	private Camera camera;
@@ -96,4 +96,38 @@ public class Rendetr
 		
 		imageWriter.writeToImage();
 	}
+
+	
+
+	public Render setScene(Scene scene) 
+	{
+		this.scene = scene;
+		return this;
+	}
+
+	
+	public Render setCamera(Camera camera)
+	{
+		this.camera = camera;
+		return this;
+	}
+
+
+
+	public Render setImageWriter(ImageWriter imageWriter) 
+	{
+		this.imageWriter = imageWriter;
+		return this;
+	}
+
+
+
+	public Render setRayTracer(RayTracerBase rayTracer)
+	{
+		this.rayTracer = rayTracer;
+		return this;
+	}
+	
+	
+	
 }
