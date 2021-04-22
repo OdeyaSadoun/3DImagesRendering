@@ -1,6 +1,8 @@
 
 package primitives;
 
+import java.util.List;
+
 /**
  * class for ray
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
@@ -45,9 +47,38 @@ public class Ray
 		return dir;
 	}
 
-	public  Point3D getPoint(double t) throws Exception
+	/**
+	 * The function do p0+t*v
+	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @param t double value
+	 * @return Point3D value
+	 * @throws Exception
+	 * */
+	public Point3D getPoint(double t) throws Exception
 	{
 		return p0.add(dir.scale(t));
+	}
+	
+	/**
+	 * The function returns the point closest to the beginning of the beam
+	 * from all the intersection points of the resulting list.
+	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @param points List<Point3D> value
+	 * @return Point3D value
+	 * */
+	public Point3D findClosestPoint (List<Point3D> points)
+	{
+		if(points == null)
+			return null;
+		Point3D closet = points.get(0);
+		for (Point3D point3d : points) 
+		{
+			if(point3d.distance(p0) < closet.distance(p0))
+				closet= point3d;
+		}
+		return closet;
 	}
 
 
