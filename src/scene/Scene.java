@@ -28,27 +28,31 @@ public class Scene
 	/**
 	 * @param background the background to set
 	 */
-	public void setBackground(Color background) 
+	public Scene setBackground(Color background) 
 	{
 		this.background = background;
+		return this;
 	}
 	
 
 	/**
 	 * @param ambientLight the ambientLight to set
 	 */
-	public void setAmbientLight(AmbientLight ambientLight) 
+	public Scene setAmbientLight(AmbientLight ambientLight) 
 	{
 		this.ambientLight = ambientLight;
+		return this;
+		
 	}
 	
 
 	/**
 	 * @param geometries the geometries to set
 	 */
-	public void setGeometries(Geometries geometries) 
+	public Scene setGeometries(Geometries geometries) 
 	{
 		this.geometries = geometries;
+		return this;
 	}
 	
 
