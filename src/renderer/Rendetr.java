@@ -5,6 +5,7 @@ import java.util.MissingResourceException;
 
 import elements.Camera;
 import primitives.Color;
+import primitives.Ray;
 import scene.Scene;
 
 
@@ -28,8 +29,9 @@ public class Rendetr
 	 *  and receives the pixel color from the point of intersection
 	 * 
 	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
+	 * @throws Exception 
 	 * */
-	public void renderImage()
+	public void renderImage() throws Exception
 	{
 		if (scene == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "Scene", "scene");
@@ -39,6 +41,16 @@ public class Rendetr
 			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
 		if (rayTracer == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "RayTracerBase", "rayTracer");
+		
+		for (int i = 0; i < camera.getWidth(); i++)
+		{
+			for (int j = 0; j < camera.getHeight(); j++)	
+			{
+				Ray ray = camera.constructRayThroughPixel((int)camera.getWidth(), (int)camera.getHeight(), j, i);
+				Color rayColor = rayTracer.traceRay(ray);
+				imageWriter.writePixel(i, j, rayColor); 
+			}
+		}
 		
 	
 
