@@ -3,8 +3,11 @@
  */
 package elements;
 
+import primitives.Color;
+
 /**
- * @author אודיה סעדון
+ * @author Tamar Gavrieli & Odeya Sadoun
+ * 
  *
  */
 public class AmbientLight
@@ -13,9 +16,20 @@ public class AmbientLight
 	/**
 	 * 
 	 */
-	public AmbientLight() 
+	
+	public Color Ia;
+	public double Ka;
+	public Color intensity;
+	
+	public AmbientLight(Color Ia,double Ka ) 
 	{
-		// TODO Auto-generated constructor stub
+		this.intensity = Ia.scale(Ka);
+	}
+
+
+	public void setIntensity(Color intensity) 
+	{
+		this.intensity = intensity;
 	}
 
 }
