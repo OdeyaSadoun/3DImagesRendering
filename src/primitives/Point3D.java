@@ -3,7 +3,8 @@ package primitives;
 
 
 /**
- * class for point3d
+ * class for point3d in primitives package
+ * 
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
 
