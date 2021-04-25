@@ -2,7 +2,8 @@ package primitives;
 import static primitives.Util.*;
 
 /**
- * class Coordinate
+ * class Coordinate in primitives package
+ * 
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 
  *
@@ -18,6 +19,7 @@ public final class Coordinate
     /**
      * Coordinate constructor receiving a coordinate value
      * 
+     * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
      * @param coord coordinate value
      */
     public Coordinate(double coord)
@@ -39,7 +41,8 @@ public final class Coordinate
     }
 
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return "" + coord;
     }
 
