@@ -89,24 +89,6 @@ public class Point3D
 		return Math.sqrt(distanceSquared(p));
 	}
 	
-	/*********************************************************************/
-	
-	@Override
-	public boolean equals(Object obj) 
-	{
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (!(obj instanceof Point3D)) return false;
-		Point3D other = (Point3D)obj;
-		return this.x.equals(other.x) && this.y.equals(other.y)&& this.z.equals(other.z);
-	}
-	
-	@Override
-	public String toString() 
-	{
-		return "Point: ("+ x + ","+ y+"," + z+")";
-	}
-
 	/**
 	 * getter to filed x - his coordinate
 	 * 
@@ -139,6 +121,25 @@ public class Point3D
 	{
 		return z.coord;
 	}
+	
+	/*********************************************************************/
+	
+	@Override
+	public boolean equals(Object obj) 
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (!(obj instanceof Point3D)) return false;
+		Point3D other = (Point3D)obj;
+		return this.x.equals(other.x) && this.y.equals(other.y)&& this.z.equals(other.z);
+	}
+	
+	@Override
+	public String toString() 
+	{
+		return "Point: ("+ x + ","+ y+"," + z+")";
+	}
+
 	
 	
 	
