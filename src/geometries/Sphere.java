@@ -7,8 +7,9 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 /**
+ * Class for Sphere in geometries package
+ * 
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
- * Class for Sphere
  */
 public class Sphere implements Geometry
 {
@@ -19,6 +20,7 @@ public class Sphere implements Geometry
 	/**
 	 * Constructor that receives point to the center and double to the radius
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param p Point3D
 	 * @param r double
 	 * */
@@ -31,6 +33,7 @@ public class Sphere implements Geometry
 	/**
 	 * A getter function for the field center
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @return Point3D value for center
 	 * */
 	public Point3D getCenter() 
@@ -41,14 +44,15 @@ public class Sphere implements Geometry
 	/**
 	 * A getter function for the field radius
 	 * 
-	 *  @return double value for radius
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * @return double value for radius
 	 * */
 	public double getRadius() 
 	{
 		return radius;
 	}
 
-	/********************************************************************/
+	/************************************************************************/
 	
 	@Override
 	public String toString() 
@@ -58,11 +62,8 @@ public class Sphere implements Geometry
 
 	@Override
 	public Vector getNormal(Point3D point) throws Exception
-	{
-		
-		Point3D myCenter=getCenter();
-		Vector myVec=new Vector(point.subtract( myCenter).getHead());
-		return myVec.normalize();
+	{	
+		return point.subtract(getCenter());
 	}
 
 	@Override
