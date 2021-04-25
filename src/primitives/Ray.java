@@ -1,10 +1,8 @@
-
 package primitives;
-
 import java.util.List;
 
 /**
- * class for ray
+ * class for ray in package primitives
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
 public class Ray 
@@ -17,6 +15,7 @@ public class Ray
 	 * Constructor that receives point and vector
 	 * in addition the c-tor normalize the vector
 	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @param p0 Point3D value
 	 * @param dir Vector value
 	 * */
@@ -30,6 +29,7 @@ public class Ray
 	/**
 	 * A getter function for the field p0
 	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @return Point3D value for p0
 	 * */
 	public Point3D getP0() 
@@ -40,6 +40,7 @@ public class Ray
 	/**
 	 * A getter function for the field dir
 	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @return Vector value for the direction
 	 * */
 	public Vector getDir() 
