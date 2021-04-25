@@ -17,7 +17,7 @@ public class Vector
 	 * @param head Point3D value
 	 * @throws Exception
 	 * */
-	public Vector(Point3D head) throws Exception
+	public Vector(Point3D head) throws IllegalArgumentException
 	{
 		this.head=head;		
 		if (head.equals(Point3D.ZERO))
@@ -34,7 +34,7 @@ public class Vector
 	 * @param c double value
 	 * @throws Exception
 	 * */
-	public Vector(double a, double b, double c) throws Exception
+	public Vector(double a, double b, double c) throws IllegalArgumentException
 	{
 		head = new Point3D(a,b,c);
 		if (head.equals(Point3D.ZERO))
@@ -94,7 +94,7 @@ public class Vector
 	 * @return new Vector for the result of crossProduct between two vectors
 	 * @throws Exception
 	 * */
-	public Vector crossProduct(Vector v) throws Exception
+	public Vector crossProduct(Vector v) throws IllegalArgumentException
 	{
 		return new Vector(head.y.coord*v.head.z.coord-head.z.coord*v.head.y.coord, head.z.coord*v.head.x.coord-head.x.coord*v.head.z.coord, head.x.coord*v.head.y.coord-head.y.coord*v.head.x.coord);
 	}

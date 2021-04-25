@@ -17,7 +17,7 @@ import scene.Scene;
  * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
  *
  */
-public class Rendetr 
+public class Render 
 {
 	private Scene scene;
 	private Camera camera;
@@ -42,11 +42,12 @@ public class Rendetr
 		if (rayTracer == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "RayTracerBase", "rayTracer");
 		
-		for (int i = 0; i < camera.getWidth(); i++)
+		for (int i = 0; i < imageWriter.getNy(); i++)
 		{
-			for (int j = 0; j < camera.getHeight(); j++)	
+			for (int j = 0; j < imageWriter.getNx(); j++)	
 			{
-				Ray ray = camera.constructRayThroughPixel((int)camera.getWidth(), (int)camera.getHeight(), j, i);
+
+				Ray ray = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
 				Color rayColor = rayTracer.traceRay(ray);
 				imageWriter.writePixel(i, j, rayColor); 
 			}
@@ -70,13 +71,12 @@ public class Rendetr
 			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
 		
 
-		for (int i = 0; i < camera.getWidth(); i++)
+		for (int i = 0; i < imageWriter.getNx(); i++)
 		{
-			for (int j = 0; j < camera.getHeight(); j++)	
+			for (int j = 0; j < imageWriter.getNy(); j++)	
 			{
-				if(i % imageWriter.getNx() == 0 || j % imageWriter.getNy() == 0)
-					imageWriter.writePixel(i, j, new Color(189,56,126)); 
-
+				if(i % interval == 0 || j % interval == 0)
+					imageWriter.writePixel(i, j, color); 
 			}
 		}
 
@@ -96,4 +96,63 @@ public class Rendetr
 		
 		imageWriter.writeToImage();
 	}
+
+	
+
+	/**
+	 * A seter function for parameter scene
+	 * this function return the object - this for builder pattern
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param scene Scene value
+	 * */
+	public Render setScene(Scene scene) 
+	{
+		this.scene = scene;
+		return this;
+	}
+
+	/**
+	 * A seter function for parameter camera
+	 * this function return the object - this for builder pattern
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param camera Camera value
+	 * */
+	public Render setCamera(Camera camera)
+	{
+		this.camera = camera;
+		return this;
+	}
+
+
+	/**
+	 * A seter function for parameter imageWriter
+	 * this function return the object - this for builder pattern
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param imageWriter ImageWriter value
+	 * */
+	public Render setImageWriter(ImageWriter imageWriter) 
+	{
+		this.imageWriter = imageWriter;
+		return this;
+	}
+
+
+	/**
+	 * A seter function for parameter rayTracer
+	 * this function return the object - this for builder pattern
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param rayTracer RayTracerBase value
+	 * */
+	public Render setRayTracer(RayTracerBase rayTracer)
+	{
+		this.rayTracer = rayTracer;
+		return this;
+	}
+	
+	
+	
 }
