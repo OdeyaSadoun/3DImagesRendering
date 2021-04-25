@@ -29,7 +29,6 @@ public abstract class RayTracerBase
 	 * @throws Exception
 	 * @return Color
 	 * Statement of an abstract function that calculates the color for the nearest intersection point, 
-	 * if no intersection points are returned the color of the background
-	 */
+	 * if no intersection points are returned the color of the background	 */
 	public abstract Color traceRay(Ray ray);
 }
