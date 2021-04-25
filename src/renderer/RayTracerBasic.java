@@ -28,6 +28,13 @@ public class RayTracerBasic extends RayTracerBase
 		
 	}
 	
+	/**
+	 * @param ray Ray value
+	 * @return Color
+	 * @throws Exception
+	 * Function that calculates the color for the nearest intersection point, 
+	 * if no intersection points are returned the color of the background
+	 */
 	public Color traceRay(Ray ray)
 	{
 		try 
