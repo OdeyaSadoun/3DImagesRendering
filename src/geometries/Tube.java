@@ -5,8 +5,9 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 /**
+ * Class for Tube in geometries package
+ * 
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
- * Class for Tube
  */
 public class Tube implements Geometry
 {
@@ -17,6 +18,7 @@ public class Tube implements Geometry
 	/**
 	 * Constructor that receives radius and ray
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param radius double
 	 * @param axis Ray
 	 * */
@@ -29,6 +31,7 @@ public class Tube implements Geometry
 	/**
 	 *  A getter function for the field radius 
 	 *  
+	 *  @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 *  @return double value for radius
 	 * */
 	public double getRadius() 
@@ -39,6 +42,7 @@ public class Tube implements Geometry
 	/**
 	 *  A getter function for the field axis
 	 *  
+	 *  @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 *  @return Ray value for axis
 	 * */
 	public Ray getAxis() 
@@ -65,7 +69,8 @@ public class Tube implements Geometry
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray ray) {
+	public List<Point3D> findIntersections(Ray ray) 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
