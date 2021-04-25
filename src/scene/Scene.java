@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package scene;
 
 import elements.AmbientLight;
@@ -8,8 +6,9 @@ import geometries.Geometries;
 import primitives.Color;
 
 /**
- * @author Home
- *
+ * class Scene for PDS
+ * 
+ * @author Tamar Gavrieli & Odeya Sadoun
  */
 public class Scene 
 {
@@ -18,6 +17,11 @@ public class Scene
 	public AmbientLight ambientLight;
 	public Geometries geometries;
 	
+	/**
+	 * constructor 
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * */
 	public Scene(String name)
 	{
 		geometries = new Geometries();
@@ -26,6 +30,9 @@ public class Scene
 
 	
 	/**
+	 * setter, and return this for builder pattern
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param background the background to set
 	 */
 	public Scene setBackground(Color background) 
@@ -36,6 +43,9 @@ public class Scene
 	
 
 	/**
+	 * setter, and return this for builder pattern
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param ambientLight the ambientLight to set
 	 */
 	public Scene setAmbientLight(AmbientLight ambientLight) 
@@ -47,6 +57,9 @@ public class Scene
 	
 
 	/**
+	 * setter, and return this for builder pattern
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param geometries the geometries to set
 	 */
 	public Scene setGeometries(Geometries geometries) 
