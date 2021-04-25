@@ -24,6 +24,7 @@ public class Point3D
 	/**
 	 * Constructor that receives 3 double numbers and make from them 3 coordinates
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param a double
 	 * @param b double
 	 * @param c double
@@ -38,6 +39,7 @@ public class Point3D
 	/**
 	 * A function that receives a vector and adds it to the point of the class
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param v Vector value
 	 * @return new Point3D that is the result
 	 * */
@@ -52,6 +54,7 @@ public class Point3D
 	/**
 	 * A function that subtracts point from the existing point, the result is basically a new vector
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param p Point3D value
 	 * @throws Exception 
 	 * */
@@ -64,6 +67,7 @@ public class Point3D
 	/**
 	 * A function that return the distanceSquared between two vectors
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param p Point3D value
 	 * @return double value rot distance squared
 	 * */
@@ -75,6 +79,7 @@ public class Point3D
 	/**
 	 * A function that return the distance between two vectors
 	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param p Point3D value
 	 * @return double value rot distance 
 	 * */
@@ -101,15 +106,36 @@ public class Point3D
 		return "Point: ("+ x + ","+ y+"," + z+")";
 	}
 
-	public double getX() {
+	/**
+	 * getter to filed x - his coordinate
+	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * @return double for the coordinate
+	 * */
+	public double getX() 
+	{
 		return x.coord;
 	}
 
-	public double getY() {
+	/**
+	 * getter to filed y - his coordinate
+	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * @return double for the coordinate
+	 * */
+	public double getY() 
+	{
 		return y.coord;
 	}
 
-	public double getZ() {
+	/**
+	 * getter to filed z - his coordinate
+	 * 
+	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * @return double for the coordinate
+	 * */
+	public double getZ() 
+	{
 		return z.coord;
 	}
 	
