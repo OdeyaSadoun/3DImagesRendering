@@ -1,24 +1,21 @@
-/**
- * 
- */
 package elements;
-
 import primitives.Color;
 
 /**
  * class to AmbientLight - the basic light in the scene
+ * An ambient light source represents a fixed-intensity
+ * and fixedcolor light source that affects all objects in the scene equally.
  * 
  * @author Tamar Gavrieli & Odeya Sadoun
  */
 public class AmbientLight
 {
-
-	private Color Ia;
-	private double Ka;
+	private Color Ia; //the color
+	private double Ka; //מקדם ההנחתה
 	private Color intensity;
 	
 	/**
-	 * constructor
+	 * constructor that save the intensity=Ia*Ka
 	 * 
 	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param Ia Color value
