@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package renderer;
 
 import java.util.List;
@@ -11,15 +9,18 @@ import primitives.Ray;
 import scene.Scene;
 
 /**
+ * class RayTracerBasic in package renderer
+ * 
  * @author Tamar Gavrieli & Odeya Sadoun
- *
  */
 public class RayTracerBasic extends RayTracerBase 
 {
 
 	/**
-	 * @param myscene Scene value
+	 * constructor
 	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param myscene Scene value
 	 */
 	public RayTracerBasic(Scene myscene) 
 	{
@@ -29,33 +30,31 @@ public class RayTracerBasic extends RayTracerBase
 	}
 	
 	/**
+	 * Function that calculates the color for the nearest intersection point, 
+	 * if no intersection points are returned the color of the background	
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param ray Ray value
 	 * @return Color
 	 * @throws Exception
-	 * Function that calculates the color for the nearest intersection point, 
-	 * if no intersection points are returned the color of the background	 */
-	public Color traceRay(Ray ray)
+
+	 *  */
+	public Color traceRay(Ray ray) throws Exception
 	{
-		try 
-		{
 			List<Point3D> intersections = myscene.geometries.findIntersections(ray);
-			if(intersections==null)
+			if(intersections == null)
 				return  myscene.background;
 			Point3D closestPoint = ray.findClosestPoint(intersections);
 			return calcColor(closestPoint);
-		} 
-		catch (Exception ex) 
-		{
-			// TODO Auto-generated catch block
-		
-		}
-		return null;
 	}
 	
 	/**
+	 * Function for calculating a point color	
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param point Point3D value
 	 * @return Color
-	 * Function for calculating a point color	 */
+	 * */
 	private Color calcColor(Point3D point)
 	{
 		return myscene.ambientLight.getIntensity();
