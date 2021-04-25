@@ -9,13 +9,10 @@ import primitives.Ray;
 import scene.Scene;
 
 
-
-
 /**
- * class for render the image
+ * class for render the image in package renderer
  * 
  * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
- *
  */
 public class Render 
 {
@@ -42,11 +39,10 @@ public class Render
 		if (rayTracer == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "RayTracerBase", "rayTracer");
 		
-		for (int i = 0; i < imageWriter.getNy(); i++)
+		for (int i = 0; i < imageWriter.getNx(); i++)
 		{
-			for (int j = 0; j < imageWriter.getNx(); j++)	
+			for (int j = 0; j < imageWriter.getNy(); j++)	
 			{
-
 				Ray ray = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
 				Color rayColor = rayTracer.traceRay(ray);
 				imageWriter.writePixel(i, j, rayColor); 
