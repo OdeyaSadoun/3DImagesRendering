@@ -55,8 +55,7 @@ public class RayTracerBasic extends RayTracerBase
 	/**
 	 * @param point Point3D value
 	 * @return Color
-	 * Function for calculating a point color
-	 */
+	 * Function for calculating a point color	 */
 	private Color calcColor(Point3D point)
 	{
 		return myscene.ambientLight.getIntensity();

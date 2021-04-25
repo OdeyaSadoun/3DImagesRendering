@@ -16,9 +16,7 @@ public abstract class RayTracerBase
 	protected Scene myscene;
 	
 	/**
-	 * @param myscene Scene value
-	 *
-	 */
+	 * @param myscene Scene value	 */
 	public  RayTracerBase(Scene myscene)
 	{
 		this.myscene=myscene;
