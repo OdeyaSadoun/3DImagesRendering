@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.Point3D;
 import primitives.Ray;
 
@@ -63,6 +64,7 @@ public class Geometries implements Intersectable
 			geometriesInScene.addAll(Arrays.asList(geometries));
 		}
 	}
+	/***********************************************************************************/
 	
 	/**
 	 * 
@@ -100,7 +102,6 @@ public class Geometries implements Intersectable
 		return geometriesInScene;
 	}
 	
-	/***********************************************************************************/
 	
 	@Override
 	public int hashCode() 
@@ -127,6 +128,29 @@ public class Geometries implements Intersectable
 		} else if (!geometriesInScene.equals(other.geometriesInScene))
 			return false;
 		return true;
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
+	{
+
+		List<Point3D> listPoints = findIntersections(ray);
+		if (listPoints == null)
+			return null;
+		List<GeoPoint> temp = new ArrayList<GeoPoint>();
+
+		for (Intersectable intersectable : geometriesInScene) 
+		{
+			List<GeoPoint> geoIntersection = intersectable.findGeoIntersections(ray);
+			if (geoIntersection != null)
+				temp.addAll(geoIntersection); 
+		}
+		
+		if (temp.isEmpty())
+			return null;
+		return temp;	
+
+
 	}
 
 
