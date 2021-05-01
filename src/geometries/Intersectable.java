@@ -22,7 +22,7 @@ public interface Intersectable
 	 * */
 	List<Point3D> findIntersections(Ray ray) throws Exception;
 	
-	List<GeoPoint> findGeoIntersections (Ray ray);
+	List<GeoPoint> findGeoIntersections (Ray ray) throws Exception;
 	
 	
 	/**
