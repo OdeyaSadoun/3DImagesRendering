@@ -8,7 +8,7 @@ import primitives.Color;
  * 
  * @author Tamar Gavrieli & Odeya Sadoun
  */
-public class AmbientLight
+public class AmbientLight 
 {
 	private Color Ia; //the color
 	private double Ka; //מקדם ההנחתה
