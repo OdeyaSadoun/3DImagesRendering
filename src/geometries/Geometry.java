@@ -4,7 +4,7 @@ import primitives.Color;
 import primitives.Point3D;
 
 /**
- * interface Geometry for all the geometries that have normal
+ * abstract class Geometry for all the geometries that have normal
  * 
  * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
  * */
