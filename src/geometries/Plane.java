@@ -6,6 +6,7 @@ import static primitives.Util.isZero;
 import java.util.ArrayList;
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -123,6 +124,20 @@ public class Plane extends Geometry
 		}
 
 	
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
+	{
+		List<Point3D> listPoints = findIntersections(ray);
+		if (listPoints == null)
+			return null;
+		List<GeoPoint> listGeoPoints = new ArrayList<Intersectable.GeoPoint>();
+		for (Point3D point3d : listPoints) //over the points that have intersection add new geopoint to the list
+		{
+			listGeoPoints.add(new GeoPoint(this, point3d));
+		}
+		return listGeoPoints;
 	}
 
 }
