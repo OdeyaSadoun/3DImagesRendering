@@ -1,6 +1,6 @@
 package primitives;
 import java.util.List;
-
+import geometries.Intersectable.GeoPoint;
 /**
  * class for ray in package primitives
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
@@ -102,5 +102,21 @@ public class Ray
 		return "Ray: p0=" + p0 + ", dir=" + dir + "";
 	}
 	
+	public GeoPoint getClosestGeoPoint(List<GeoPoint> intersections)
+	{
+		
+		if(intersections == null)
+			return null;
+		GeoPoint closet = intersections.get(0);
+		for (GeoPoint geoPoint : intersections) 
+		{
+			if(geoPoint.point.distance(p0) < closet.point.distance(p0))
+				closet= geoPoint;
+			
+		}
+		return closet;
+		
+		
+	}
 }
 
