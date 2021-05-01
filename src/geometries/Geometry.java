@@ -35,7 +35,7 @@ public abstract class Geometry implements Intersectable
 	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @return emission Color value
 	 * */
-	public Color getEmmission() 
+	public Color getEmission() 
 	{
 		return emission;
 	}
