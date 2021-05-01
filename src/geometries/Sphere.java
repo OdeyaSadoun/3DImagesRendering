@@ -63,7 +63,7 @@ public class Sphere extends Geometry
 	@Override
 	public Vector getNormal(Point3D point) throws Exception
 	{	
-		return point.subtract(getCenter());
+		return point.subtract(getCenter()).normalize();
 	}
 
 	@Override
@@ -98,6 +98,39 @@ public class Sphere extends Geometry
 		else
 			return List.of(ray.getPoint(t2));
 
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
+	{
+		
+		if (ray.getP0().equals(center)) // if the begin of the ray in the center, the point, is on the radius
+			return List.of(new GeoPoint(this,ray.getPoint(radius)));
+		//List<Point3D> rayPoints = new ArrayList<Point3D>();
+		Vector u = center.subtract(ray.getP0());
+		double tM = alignZero(ray.getDir().dotProduct(u));
+		double d = alignZero(Math.sqrt(u.length()*u.length()- tM * tM));
+		double tH = alignZero(Math.sqrt(radius*radius - d*d));
+		double t1 = alignZero(tM+tH);
+		double t2 = alignZero(tM-tH);
+		
+		
+		if (d > radius)
+			return null; // there are no instructions
+
+		
+		if (t1 <=0 && t2<=0)
+			return null;
+		
+		if (t1 > 0 && t2 >0)
+			return List.of(new GeoPoint(this,ray.getPoint(t1)),new GeoPoint(this,ray.getPoint(t2)));
+		if (t1 > 0)
+		{
+			return List.of(new GeoPoint(this,ray.getPoint(t1)));
+		}
+
+		else
+			return List.of(new GeoPoint(this,ray.getPoint(t2)));
 	}
 
 

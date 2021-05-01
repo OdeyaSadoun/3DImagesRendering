@@ -6,6 +6,7 @@ import static primitives.Util.isZero;
 import java.util.ArrayList;
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -123,6 +124,45 @@ public class Plane extends Geometry
 		}
 
 	
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
+	{
+//		List<Point3D> listPoints = findIntersections(ray);
+//		if (listPoints == null)
+//			return null;
+//		List<GeoPoint> listGeoPoints = new ArrayList<Intersectable.GeoPoint>();
+//		for (Point3D point3d : listPoints) //over the points that have intersection add new geopoint to the list
+//		{
+//			listGeoPoints.add(new GeoPoint(this, point3d));
+//		}
+//		return listGeoPoints;
+//		
+//		
+		double nv = normal.dotProduct(ray.getDir());
+		if (isZero(nv))//הישר מוכל ולכן אין נקודת חיתוך
+		{
+			return null;
+		}
+		
+		try 
+		{
+			Vector pSubtractP0 = point.subtract(ray.getP0());
+			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
+
+			if(t <= 0)
+			{
+				return null;
+			}
+			return List.of(new GeoPoint(this,ray.getPoint(t)));
+		}
+		catch(Exception ex) //הקרן מתחילה בנקודת היחוס של המישור ולא כוללים את ראשית הקרן
+		{
+			return null;
+		}
+
+		
 	}
 
 }

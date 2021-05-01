@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import geometries.Geometry;
 import geometries.Intersectable.GeoPoint;
 import primitives.Point3D;
 import primitives.Ray;
@@ -82,10 +83,9 @@ public class RayTest
 		{
 			// =============== Boundary Values Tests ==================
 			Ray ray = new Ray(new Point3D(0,0,1), new Vector(1,0,0));
-			
-			GeoPoint p1 = new GeoPoint(new Point3D(1,0,0),null );
-			GeoPoint p2 = new GeoPoint(new Point3D(2,0,0), );
-			GeoPoint p3 = new GeoPoint(new Point3D(3,0,0), );
+			GeoPoint p1 = new GeoPoint(null, new Point3D(1,0,0));
+			GeoPoint p2 = new GeoPoint(null,new Point3D(2,0,0));
+			GeoPoint p3 = new GeoPoint(null,new Point3D(3,0,0));
 			
 			//The first point is closest to the beginning of the foundation
 			List<GeoPoint >points = List.of(p1,p2,p3);
