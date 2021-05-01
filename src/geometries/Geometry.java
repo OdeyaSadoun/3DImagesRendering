@@ -17,18 +17,18 @@ public abstract class Geometry implements Intersectable
 	 * @param point
 	 * @return Vector value
 	 * */
-	protected  Color emmission = Color.BLACK;
+	protected  Color emission = Color.BLACK;
 	public abstract Vector getNormal(Point3D point) throws Exception; // function get normal
 	
 	/**
 	 * getter function for the color filed in geometry class
 	 * 
 	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
-	 * @return emmission Color value
+	 * @return emission Color value
 	 * */
 	public Color getEmmission() 
 	{
-		return emmission;
+		return emission;
 	}
 	
 	/**
@@ -37,9 +37,9 @@ public abstract class Geometry implements Intersectable
 	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @return the geometry-this
 	 * */
-	public Geometry setEmmission(Color emmission) 
+	public Geometry setEmission(Color emission) 
 	{
-		this.emmission = emmission;
+		this.emission = emission;
 		return this;
 	}
 
