@@ -13,7 +13,7 @@ import primitives.Vector;
  *   Class for Plane
  *   @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
-public class Plane implements Geometry 
+public class Plane extends Geometry 
 {
 	//The filed of this class are point and normal
 	private Point3D point;

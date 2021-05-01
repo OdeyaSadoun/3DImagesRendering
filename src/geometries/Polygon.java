@@ -9,7 +9,7 @@ import primitives.Vector;
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  * Class for Polygon
  */
-public class Polygon implements Geometry
+public class Polygon extends Geometry
 {
 	/**
 	 * List of polygon's vertices

@@ -9,7 +9,7 @@ import primitives.Vector;
  * 
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
-public class Tube implements Geometry
+public class Tube extends Geometry
 {
 	//The fields of this class are radius and ray
 	protected double radius;

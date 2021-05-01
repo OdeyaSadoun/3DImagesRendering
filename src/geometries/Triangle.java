@@ -11,7 +11,7 @@ import primitives.Vector;
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  * Class for Triangle
  */
-public class Triangle extends Polygon implements Geometry
+public class Triangle extends Polygon 
 {
 	/**
 	 * Constructor that receives 3 points and calls to the constructor of the base class
