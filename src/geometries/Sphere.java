@@ -63,7 +63,7 @@ public class Sphere extends Geometry
 	@Override
 	public Vector getNormal(Point3D point) throws Exception
 	{	
-		return point.subtract(getCenter());
+		return point.subtract(getCenter()).normalize();
 	}
 
 	@Override
