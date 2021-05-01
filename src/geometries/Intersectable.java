@@ -22,6 +22,9 @@ public interface Intersectable
 	 * */
 	List<Point3D> findIntersections(Ray ray) throws Exception;
 	
+	List<GeoPoint> findGeoIntersections (Ray ray);
+	
+	
 	/**
 	 * Static Internal Auxiliary Department (as a completely passive data structure - PDS)
 	 * 
