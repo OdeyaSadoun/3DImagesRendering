@@ -58,8 +58,7 @@ public class RayTracerBasic extends RayTracerBase
 	 * */
 	private Color calcColor(GeoPoint intersection) 
 	{
-		return myscene.ambientLight.getIntensity().add(intersection.geometry.getEmmission());
-		
+		return myscene.ambientLight.getIntensity().add(intersection.geometry.getEmission());
 
 	}
 
