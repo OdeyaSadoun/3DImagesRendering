@@ -17,7 +17,7 @@ import primitives.Color;
 public class Scene 
 {
 	public String name;
-	public Color background;
+	public Color background = Color.BLACK;
 	public AmbientLight ambientLight;
 	public Geometries geometries;
 	public List<LightSource>lights=new LinkedList<LightSource>() ;
