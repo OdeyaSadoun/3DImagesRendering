@@ -93,53 +93,11 @@ public class Plane extends Geometry
 		return normal;
 	}
 
-	/**
-	 * A function that find all the intersection points in the plane
-	 * 
-	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
-	 * */
-	@Override
-	public List<Point3D> findIntersections(Ray ray) throws Exception 
-	{
-		double nv = normal.dotProduct(ray.getDir());
-		if (isZero(nv))//הישר מוכל ולכן אין נקודת חיתוך
-		{
-			return null;
-		}
-		
-		try 
-		{
-			Vector pSubtractP0 = point.subtract(ray.getP0());
-			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
-
-			if(t <= 0)
-			{
-				return null;
-			}
-			return List.of(ray.getPoint(t));
-		}
-		catch(Exception ex) //הקרן מתחילה בנקודת היחוס של המישור ולא כוללים את ראשית הקרן
-		{
-			return null;
-		}
-
 	
-	}
-
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
 	{
-//		List<Point3D> listPoints = findIntersections(ray);
-//		if (listPoints == null)
-//			return null;
-//		List<GeoPoint> listGeoPoints = new ArrayList<Intersectable.GeoPoint>();
-//		for (Point3D point3d : listPoints) //over the points that have intersection add new geopoint to the list
-//		{
-//			listGeoPoints.add(new GeoPoint(this, point3d));
-//		}
-//		return listGeoPoints;
-//		
-//		
+		
 		double nv = normal.dotProduct(ray.getDir());
 		if (isZero(nv))//הישר מוכל ולכן אין נקודת חיתוך
 		{
@@ -161,8 +119,6 @@ public class Plane extends Geometry
 		{
 			return null;
 		}
-
-		
 	}
 
 }
