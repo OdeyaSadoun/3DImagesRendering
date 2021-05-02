@@ -8,11 +8,11 @@ import primitives.Color;
  * 
  * @author Tamar Gavrieli & Odeya Sadoun
  */
-public class AmbientLight 
+public class AmbientLight extends Light
 {
 	private Color Ia; //the color
 	private double Ka; //מקדם ההנחתה
-	private Color intensity;
+
 	
 	/**
 	 * constructor that save the intensity=Ia*Ka
@@ -23,7 +23,8 @@ public class AmbientLight
 	 */
 	public AmbientLight(Color Ia,double Ka ) 
 	{
-		this.intensity = Ia.scale(Ka);
+		super(Ia.scale(Ka));
+		
 	}
 
 	/**
@@ -32,10 +33,7 @@ public class AmbientLight
 	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @return the intensity
 	 */
-	public Color getIntensity() 
-	{
-		return intensity;
-	}
+
 
 
 
