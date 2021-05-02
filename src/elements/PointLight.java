@@ -39,17 +39,16 @@ public class PointLight extends Light implements LightSource
 	{
 		// TODO Auto-generated constructor stub
 	}
-	
+	@Override
 	public Color getIntensity(Point3D p)
 	{
 		return super.getIntensity();
 		
 	}
-	
-	public Vector getL(Point3D p)
-	{
-		return null;
-		
+	@Override
+	public Vector getL(Point3D p) throws Exception 
+	{	
+		return position.subtract(p);		
 	}
 
 }
