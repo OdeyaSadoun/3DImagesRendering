@@ -34,11 +34,14 @@ public class DirectionalLight extends Light implements LightSource
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	public Color getIntensity(Point3D p)
 	{
 		return super.getIntensity();
 		
 	}
+	
+	@Override
 	public Vector getL(Point3D p)
 	{
 		return direction;
