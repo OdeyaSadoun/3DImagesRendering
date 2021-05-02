@@ -65,31 +65,7 @@ public class Geometries implements Intersectable
 		}
 	}
 	/***********************************************************************************/
-	
-	/**
-	 * 
-	 * A function that find all the intersection points in the scene
-	 * 
-	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
-	 * @return List<Point3D> for the points
-	 * @throws Exception 
-	 * */
 
-	@Override
-	public List<Point3D> findIntersections(Ray ray) throws Exception 
-	{
-		List<Point3D> temp = new ArrayList<Point3D>();
-		for (Intersectable intersectable : geometriesInScene) 
-		{
-			List<Point3D> intersection = intersectable.findIntersections(ray);
-			if (intersection != null)
-				temp.addAll(intersection); 
-		}
-		
-		if (temp.isEmpty())
-			return null;
-		return temp;	
-	}
 	
 	/**
 	 * A getter function for geometriesInScene
@@ -134,27 +110,17 @@ public class Geometries implements Intersectable
 	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
 	{
 
-		List<Point3D> listPoints = findIntersections(ray);
-		if (listPoints == null)
-			return null;
 		List<GeoPoint> temp = new ArrayList<GeoPoint>();
-
 		for (Intersectable intersectable : geometriesInScene) 
 		{
-			List<GeoPoint> geoIntersection = intersectable.findGeoIntersections(ray);
-			if (geoIntersection != null)
-				temp.addAll(geoIntersection); 
+			List<GeoPoint> intersection = intersectable.findGeoIntersections(ray);
+			if (intersection != null)
+				temp.addAll(intersection); 
 		}
 		
 		if (temp.isEmpty())
 			return null;
 		return temp;	
 
-
 	}
-
-
-	
-	
-
 }
