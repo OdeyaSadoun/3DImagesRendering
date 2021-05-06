@@ -45,7 +45,7 @@ public class Render
 			{
 				Ray ray = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
 				Color rayColor = rayTracer.traceRay(ray);
-				imageWriter.writePixel(i, j, rayColor); 
+				imageWriter.writePixel(j, i, rayColor); 
 			}
 		}
 		
