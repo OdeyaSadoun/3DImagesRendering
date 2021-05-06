@@ -16,7 +16,7 @@ import primitives.Color;
 	 * 
 	 */
 	 
-	private Color intensity;
+	protected Color intensity;
 	/**
 	 * @return the intensity
 	 * 
@@ -31,9 +31,6 @@ import primitives.Color;
 	{
 		return intensity;
 	}
-	public Light() 
-	{
-		// TODO Auto-generated constructor stub
-	}
+
 
 }
