@@ -27,15 +27,8 @@ public class SpotLight extends PointLight
 	{
 		super(intensity, position, KC, KL, KQ);
 		this.direction=direction;
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 */
-	public SpotLight() 
-	{
-		// TODO Auto-generated constructor stub
-	}
+
 
 }
