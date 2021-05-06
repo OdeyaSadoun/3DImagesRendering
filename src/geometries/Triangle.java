@@ -20,7 +20,7 @@ public class Triangle extends Polygon
 	 * @param p3 Point3D
 	 * @throws Exception 
 	 * */
-	public Triangle(Point3D p1,Point3D p2,Point3D p3) throws Exception 
+	public Triangle(Point3D p1,Point3D p2,Point3D p3) throws IllegalArgumentException 
 	{
 		super(p1,p2,p3);
 		
