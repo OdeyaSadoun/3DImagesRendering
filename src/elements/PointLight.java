@@ -15,16 +15,15 @@ public class PointLight extends Light implements LightSource
 {
 
 	private Point3D position;
-	private double KC;
-	private double KL;
-	private double KQ;
+	private double KC = 1;
+	private double KL = 0;
+	private double KQ = 0;
 	/**
 	 * @param intensity
 	 */
 	public PointLight(Color intensity, Point3D position, double KC, double KL, double KQ) 
 	{
 		super(intensity);
-		// TODO Auto-generated constructor stub
 		this.position=position;
 		this.KC=KC;
 		this.KL=KL;
@@ -32,15 +31,8 @@ public class PointLight extends Light implements LightSource
 		
 	}
 
-	/**
-	 * 
-	 */
-	public PointLight() 
-	{
-		// TODO Auto-generated constructor stub
-	}
 	@Override
-	public Color getIntensity(Point3D p)
+	public Color getIntensity(Point3D p) throws Exception
 	{
 		return super.getIntensity();
 		
