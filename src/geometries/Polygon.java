@@ -45,7 +45,7 @@ public class Polygon extends Geometry
 	 *                                  <li>The polygon is concave (not convex)</li>
 	 *                                  </ul>
 	 */
-	public Polygon(Point3D... vertices) throws Exception 
+	public Polygon(Point3D... vertices) throws IllegalArgumentException 
 	{
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
