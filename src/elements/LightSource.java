@@ -13,9 +13,7 @@ import primitives.Vector;
  */
 public interface LightSource 
 {
-	public Color getIntensity(Point3D p);
+	public Color getIntensity(Point3D p) throws Exception;
 	
 	public Vector getL(Point3D p) throws Exception;
-
-
 }
