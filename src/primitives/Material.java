@@ -14,9 +14,9 @@ public class Material
 	 * 
 	 */
 	
-	public int nShininess=0;
-	public double KD=0;
-	public double KS=0;
+	public int nShininess=0; //עד כמה החומר בוהק לעצמו
+	public double KD=0; //כמה החומר מחזיר אור
+	public double KS=0; //כמה החומר מחזיר בוהק
 	
 	/**
 	 * @param nShininess the nShininess to set
@@ -46,9 +46,5 @@ public class Material
 		return this;
 	}
 
-	public Material() 
-	{
-		// TODO Auto-generated constructor stub
-	}
 
 }
