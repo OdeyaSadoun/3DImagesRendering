@@ -29,7 +29,7 @@ public class Plane extends Geometry
 	 * @param p3 Point3D
 	 * @throws Exception
 	 * */
-	public Plane(Point3D p1, Point3D p2, Point3D p3)throws Exception
+	public Plane(Point3D p1, Point3D p2, Point3D p3)throws IllegalArgumentException
 	{
 		if (p1.equals(p2)|| p2.equals(p3)|| p3.equals(p1))//Check if two points coalesce
 			throw new IllegalArgumentException("Two points converge");
