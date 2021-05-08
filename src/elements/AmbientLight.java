@@ -27,6 +27,14 @@ public class AmbientLight extends Light
 		
 	}
 
+	/**
+	 * A default constructor
+	 * this c-tor put the defalt color - black to the ambition light
+	 */
+	public AmbientLight() 
+	{
+		super(Color.BLACK);
+	}
 
 
 }
