@@ -70,7 +70,7 @@ public class Vector
 	 * @return new Vector for the result of subtract between two vectors
 	 * @throws Exception
 	 * */
-	public Vector subtract(Vector v) throws Exception
+	public Vector subtract(Vector v) throws IllegalArgumentException
 	{
 		return new Vector(head.subtract(v.head).head);	
 	}
@@ -82,7 +82,7 @@ public class Vector
 	 * @return new Vector for the result of scale between vector and scalar
 	 * @throws Exception
 	 * */
-	public Vector scale(double scalar) throws Exception
+	public Vector scale(double scalar) throws IllegalArgumentException
 	{			
 		return new Vector(head.x.coord*scalar, head.y.coord*scalar, head.z.coord*scalar);
 	}
@@ -148,7 +148,7 @@ public class Vector
 	 * 
 	 * @return new Vector that same to this vector but done normalize
 	 * */
-	public Vector normalized() throws Exception
+	public Vector normalized() throws IllegalArgumentException
 	{
 		Vector temp=this;
 		Vector newVec= new Vector(normalize().head);
