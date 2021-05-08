@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package elements;
 
 import primitives.Color;
