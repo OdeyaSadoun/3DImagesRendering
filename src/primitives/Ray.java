@@ -56,7 +56,7 @@ public class Ray
 	 * @return Point3D value
 	 * @throws Exception
 	 * */
-	public Point3D getPoint(double t) throws Exception
+	public Point3D getPoint(double t) throws IllegalArgumentException
 	{
 		return p0.add(dir.scale(t));
 	}
