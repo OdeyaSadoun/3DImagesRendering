@@ -45,7 +45,7 @@ public class Ray
 	 * */
 	public Vector getDir() 
 	{
-		return dir;
+		return dir.normalize();
 	}
 
 	/**
@@ -82,7 +82,20 @@ public class Ray
 		return closet;
 	}
 
-
+	public GeoPoint getClosestGeoPoint(List<GeoPoint> intersections)
+	{
+		
+		if(intersections == null)
+			return null;
+		GeoPoint closet = intersections.get(0);
+		for (GeoPoint geoPoint : intersections) 
+		{
+			if(geoPoint.point.distance(p0) < closet.point.distance(p0))
+				closet= geoPoint;
+			
+		}
+		return closet;
+	}
 
 	/***********************************************************/
 	
@@ -102,21 +115,6 @@ public class Ray
 		return "Ray: p0=" + p0 + ", dir=" + dir + "";
 	}
 	
-	public GeoPoint getClosestGeoPoint(List<GeoPoint> intersections)
-	{
-		
-		if(intersections == null)
-			return null;
-		GeoPoint closet = intersections.get(0);
-		for (GeoPoint geoPoint : intersections) 
-		{
-			if(geoPoint.point.distance(p0) < closet.point.distance(p0))
-				closet= geoPoint;
-			
-		}
-		return closet;
-		
-		
-	}
+
 }
 
