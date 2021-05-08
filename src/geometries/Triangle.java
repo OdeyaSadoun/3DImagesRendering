@@ -38,7 +38,7 @@ public class Triangle extends Polygon
 
 
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
 	{
 		List<GeoPoint> rayPoints = plane.findGeoIntersections(ray);
 		if (rayPoints == null)
