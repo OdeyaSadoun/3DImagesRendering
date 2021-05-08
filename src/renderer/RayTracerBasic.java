@@ -25,7 +25,7 @@ public class RayTracerBasic extends RayTracerBase
 {
 
 	/**
-	 * constructor
+	 * constructor of RayTracerBasic
 	 * 
 	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param myscene Scene value
@@ -33,8 +33,6 @@ public class RayTracerBasic extends RayTracerBase
 	public RayTracerBasic(Scene myscene) 
 	{
 		super(myscene);
-		//return null;
-		
 	}
 	
 	/**
@@ -44,10 +42,9 @@ public class RayTracerBasic extends RayTracerBase
 	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param ray Ray value
 	 * @return Color
-	 * @throws Exception
 
 	 *  */
-	public Color traceRay(Ray ray) throws Exception
+	public Color traceRay(Ray ray) 
 	{
 			List<GeoPoint> intersections = myscene.geometries.findGeoIntersections(ray);
 			if(intersections == null)
@@ -64,7 +61,7 @@ public class RayTracerBasic extends RayTracerBase
 	 * @return Color
 	 * @throws Exception 
 	 * */
-	private Color calcColor(GeoPoint intersection, Ray ray) throws Exception 
+	private Color calcColor(GeoPoint intersection, Ray ray) throws IllegalArgumentException 
 	{
 		/*𝑰𝑷 = 𝒌𝑨 ∙ 𝑰𝑨 + 𝑰𝑬 + (𝒌𝑫 ∙ |𝒍 ∙ 𝒏| + 𝒌𝑺 ∙ (−𝒗 ∙ 𝒓)^ 𝒏𝒔𝒉)) ∙ 𝑰L*/
 		Color KaIa = myscene.ambientLight.getIntensity();
@@ -77,23 +74,26 @@ public class RayTracerBasic extends RayTracerBase
 	}
 	
 	
-	private Color calcLocalEffects(GeoPoint intersection, Ray ray) throws Exception 
+	private Color calcLocalEffects(GeoPoint intersection, Ray ray) 
 	{
-		Vector v = ray.getDir (); Vector n = intersection.geometry.getNormal(intersection.point);
+		Vector v = ray.getDir().normalize();
+		Vector n = intersection.geometry.getNormal(intersection.point);
 		double nv = alignZero(n.dotProduct(v));
 		if (nv == 0) //לא רואים את הנקודה עליה האור משפיע מחזיר שחור
 			return Color.BLACK;
 		//רוצים לבדוק את ההשפעה של האור עלי לפי סוג החומר ממנו הגוף עשוי
 		Material material = intersection.geometry.getMaterial();
 		int nShininess = material.nShininess;
-		double kd = material.KD, ks = material.KS;
+		double kd = material.KD;
+		double ks = material.KS;
 		Color color = Color.BLACK; //עוד לא יודעים השפעות
 		for (LightSource lightSource : myscene.lights) //עוברים כעל כל מקור אור בסצנה ובודקים איך הוא משפיע על הצבע בנקודה המסויימת
 		{
 			Vector l = lightSource.getL(intersection.point);//וקטור ממקור אור עד לנקודה
 			double nl = alignZero(n.dotProduct(l));//רוצים לדעת שאני באותו כיוון כי אם לא לא רואים את ההשפעות
 			if (nl * nv > 0) 
-			{ // sign(nl) == sing(nv)
+			{ 
+				// sign(nl) == sing(nv)
 				Color lightIntensity = lightSource.getIntensity(intersection.point);
 				color = color.add(calcDiffusive(kd, l, n, lightIntensity), calcSpecular(ks, l, n, v, nShininess, lightIntensity));
 			}
@@ -101,19 +101,21 @@ public class RayTracerBasic extends RayTracerBase
 		return color;
 		}
 
-	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) throws Exception 
+	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) throws IllegalArgumentException 
 	{
 		//𝒓 = 𝒍 − 𝟐 ∙( 𝒍 ∙ 𝒏) ∙n 
-		Vector r = l.subtract(n.scale(2*(l.dotProduct(n))));
-		double RV = (r.dotProduct(v));
+		Vector r = l.subtract(n.scale(alignZero(2*(l.dotProduct(n))))).normalize();
+		double RV = alignZero(r.dotProduct(v));
 		double minusRV = RV*(-1);
-		return lightIntensity.scale(Math.pow(minusRV, nShininess));
+		if (minusRV <= 0)
+			return Color.BLACK;
+		return lightIntensity.scale(alignZero(Math.pow(minusRV, nShininess))*ks);
 	}
 
 	private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) 
 	{
-		double ln = l.dotProduct(n);
-		return lightIntensity.scale(Math.abs(ln)*kd);
+		double ln = alignZero(l.dotProduct(n));
+		return lightIntensity.scale(alignZero(Math.abs(ln)*kd));
 	}
 
 }
