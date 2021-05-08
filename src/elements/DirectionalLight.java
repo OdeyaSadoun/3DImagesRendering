@@ -20,7 +20,8 @@ public class DirectionalLight extends Light implements LightSource
 	 * this c-tor is normalize the direction vector
 	 * 
 	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @param intensity
+	 * @param intensity Color value
+	 * @param direction Vector value
 	 */
 	public DirectionalLight(Color intensity, Vector direction) 
 	{
@@ -38,7 +39,7 @@ public class DirectionalLight extends Light implements LightSource
 	@Override
 	public Vector getL(Point3D p)
 	{
-		return direction.normalize();
+		return direction;
 	}
 
 }
