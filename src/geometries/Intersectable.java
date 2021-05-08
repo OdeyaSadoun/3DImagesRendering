@@ -29,7 +29,7 @@ public interface Intersectable
 	}
 
 	
-	List<GeoPoint> findGeoIntersections (Ray ray) throws Exception;
+	List<GeoPoint> findGeoIntersections (Ray ray) throws IllegalArgumentException;
 	
 	
 	/**
