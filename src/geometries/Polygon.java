@@ -94,7 +94,7 @@ public class Polygon extends Geometry
 
 	
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
 	{
 		List<GeoPoint> rayPoints = plane.findGeoIntersections(ray);
 		if (rayPoints == null)
