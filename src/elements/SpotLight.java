@@ -41,7 +41,7 @@ public class SpotLight extends PointLight
 	 * @param intensity Color value
 	 * @param position Point3D value
 	 */
-	public SpotLight(Color intensity, Point3D position, Vector direction) 
+	public SpotLight(Color intensity, Point3D position, Vector direction)  
 	{
 		super(intensity, position);
 		this.direction=direction.normalize();
@@ -52,12 +52,11 @@ public class SpotLight extends PointLight
 	@Override
 	public Color getIntensity(Point3D p) throws IllegalArgumentException
 	{
-		if(this.getL(p) == null)
+		double pl = alignZero(direction.dotProduct(getL(p)));
+		if(getL(p) == null)
 			return Color.BLACK;
-		if (alignZero(direction.dotProduct(this.getL(p))) <= 0)
+		if (pl <= 0)
 			return Color.BLACK;
-		return super.getIntensity(p).scale(alignZero(direction.dotProduct(this.getL(p))));
+		return super.getIntensity(p).scale(pl);
 	}
-
-
 }
