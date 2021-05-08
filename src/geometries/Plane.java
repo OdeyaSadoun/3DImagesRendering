@@ -95,7 +95,7 @@ public class Plane extends Geometry
 
 	
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
 	{
 		
 		double nv = normal.dotProduct(ray.getDir());
