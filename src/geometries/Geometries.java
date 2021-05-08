@@ -107,7 +107,7 @@ public class Geometries implements Intersectable
 	}
 
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
 	{
 
 		List<GeoPoint> temp = new ArrayList<GeoPoint>();
