@@ -66,7 +66,7 @@ public class PointLight extends Light implements LightSource
 	{	
 		if (p.equals(position))
 			return null; //In order not to reach a state of exception due to the zero vector
-		return position.subtract(p).normalize();		
+		return p.subtract(position).normalize();		
 	}
 
 }
