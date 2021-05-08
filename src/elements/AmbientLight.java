@@ -27,14 +27,6 @@ public class AmbientLight extends Light
 		
 	}
 
-	/**
-	 * getter function for the intensity filed
-	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @return the intensity
-	 */
-
-
 
 
 }
