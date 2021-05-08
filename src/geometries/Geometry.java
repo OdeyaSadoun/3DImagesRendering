@@ -19,7 +19,7 @@ public abstract class Geometry implements Intersectable
 	 * @return Vector value
 	 * */
 	protected  Color emission = Color.BLACK;
-	public abstract Vector getNormal(Point3D point) throws Exception; // function get normal
+	public abstract Vector getNormal(Point3D point) throws IllegalArgumentException; // function get normal
 	private Material material=new Material();
 	
 	
