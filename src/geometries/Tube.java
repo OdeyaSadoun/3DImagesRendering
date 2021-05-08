@@ -59,7 +59,7 @@ public class Tube extends Geometry
 	}
 
 	@Override
-	public Vector getNormal(Point3D point) throws Exception 
+	public Vector getNormal(Point3D point) throws IllegalArgumentException 
 	{
 		double t=axis.getDir().dotProduct(point.subtract(axis.getP0()));
 		Point3D pointO =axis.getP0().add(axis.getDir().scale(t));
@@ -71,7 +71,6 @@ public class Tube extends Geometry
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
