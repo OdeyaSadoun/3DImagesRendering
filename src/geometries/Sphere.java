@@ -62,14 +62,14 @@ public class Sphere extends Geometry
 	}
 
 	@Override
-	public Vector getNormal(Point3D point) throws Exception
+	public Vector getNormal(Point3D point) throws IllegalArgumentException
 	{	
 		return point.subtract(getCenter()).normalize();
 	}
 
 	
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) throws Exception 
+	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
 	{
 		
 		if (ray.getP0().equals(center)) // if the begin of the ray in the center, the point, is on the radius
