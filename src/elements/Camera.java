@@ -85,7 +85,7 @@ public class Camera
 	 * @return Ray that created	 
 	 * @throws Exception 
 	 */
-	public Ray constructRayThroughPixel(int nX, int nY, int j, int i ) throws Exception
+	public Ray constructRayThroughPixel(int nX, int nY, int j, int i ) 
 	{
 		Point3D Pc;
 		if (isZero(distance))
