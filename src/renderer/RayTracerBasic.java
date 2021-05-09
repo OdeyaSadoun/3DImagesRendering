@@ -59,21 +59,24 @@ public class RayTracerBasic extends RayTracerBase
 	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param point Point3D value
 	 * @return Color
-	 * @throws Exception 
+	 * @throws IllegalArgumentException 
 	 * */
 	private Color calcColor(GeoPoint intersection, Ray ray) throws IllegalArgumentException 
 	{
 		/*𝑰𝑷 = 𝒌𝑨 ∙ 𝑰𝑨 + 𝑰𝑬 + (𝒌𝑫 ∙ |𝒍 ∙ 𝒏| + 𝒌𝑺 ∙ (−𝒗 ∙ 𝒓)^ 𝒏𝒔𝒉)) ∙ 𝑰L*/
 		Color KaIa = myscene.ambientLight.getIntensity();
 		Color Ie = intersection.geometry.getEmission(); 
-//		double Kd = intersection.geometry.getMaterial().KD;
-//		double Ks = intersection.geometry.getMaterial().KS;
-//		double nSh = intersection.geometry.getMaterial().nShininess;
-		
+
 		return KaIa.add(Ie).add(calcLocalEffects(intersection, ray));
 	}
 	
-	
+	/**
+	 * help function that calculate the local color
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param intersection GeoPoint value
+	 * @param ray Ray value
+	 * */
 	private Color calcLocalEffects(GeoPoint intersection, Ray ray) 
 	{
 		Vector v = ray.getDir().normalize();
@@ -101,6 +104,18 @@ public class RayTracerBasic extends RayTracerBase
 		return color;
 		}
 
+	/**
+	 * help function that calculate the specolar effect
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param ks double value
+	 * @param l Vector value
+	 * @param n Vector value
+	 * @param v Vector value
+	 * @param nShininess int value
+	 * @param lightIntensity Color value
+	 * @throws IllegalArgumentException
+	 * */
 	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) throws IllegalArgumentException 
 	{
 		//𝒓 = 𝒍 − 𝟐 ∙( 𝒍 ∙ 𝒏) ∙n 
@@ -112,6 +127,15 @@ public class RayTracerBasic extends RayTracerBase
 		return lightIntensity.scale(alignZero(Math.pow(minusRV, nShininess))*ks);
 	}
 
+	/**
+	 * help function that calculate the difusive effect
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param kd double value
+	 * @param l Vector value
+	 * @param n Vector value
+	 * @param lightIntensity Color value
+	 * */
 	private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) 
 	{
 		double ln = alignZero(l.dotProduct(n));
