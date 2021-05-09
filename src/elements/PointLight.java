@@ -53,6 +53,46 @@ public class PointLight extends Light implements LightSource
 		super(intensity);
 		this.position = position;
 	}
+	
+	
+	
+	/**
+	 * @param position the position to set
+	 */
+	public PointLight setPosition(Point3D position) 
+	{
+		this.position = position;
+		return this;
+	}
+
+
+	/**
+	 * @param kC the kC to set
+	 */
+	public PointLight setKC(double kC) 
+	{
+		KC = kC;
+		return this;
+	}
+
+	/**
+	 * @param kL the kL to set
+	 */
+	public PointLight setKL(double kL) 
+	{
+		KL = kL;
+		return this;
+	}
+
+
+	/**
+	 * @param kQ the kQ to set
+	 */
+	public PointLight setKQ(double kQ) 
+	{
+		KQ = kQ;
+		return this;
+	}
 
 	/**************************************************************************************/
 	@Override
@@ -68,5 +108,7 @@ public class PointLight extends Light implements LightSource
 			return null; //In order not to reach a state of exception due to the zero vector
 		return p.subtract(position).normalize();		
 	}
+	
+	
 
 }
