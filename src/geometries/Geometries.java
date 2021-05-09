@@ -36,6 +36,7 @@ public class Geometries implements Intersectable
 	 * Constructor that recives list of geomeries and put them in new arrayList
 	 * 
 	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * @param geometries
 	 * */
 	public Geometries(Intersectable... geometries)
 	{
@@ -56,6 +57,7 @@ public class Geometries implements Intersectable
 	 * A function that add the geometries the receive to the list.
 	 * 
 	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * @param geometries 
 	 * */
 	public void add(Intersectable... geometries)
 	{
@@ -64,7 +66,6 @@ public class Geometries implements Intersectable
 			geometriesInScene.addAll(Arrays.asList(geometries));
 		}
 	}
-	/***********************************************************************************/
 
 	
 	/**
@@ -78,6 +79,8 @@ public class Geometries implements Intersectable
 		return geometriesInScene;
 	}
 	
+	/***********************************************************************************/
+
 	
 	@Override
 	public int hashCode() 
