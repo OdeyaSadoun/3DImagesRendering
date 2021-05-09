@@ -57,7 +57,11 @@ public class PointLight extends Light implements LightSource
 	
 	
 	/**
+	 * setter to filed position
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param position the position to set
+	 * @return the object - builder
 	 */
 	public PointLight setPosition(Point3D position) 
 	{
@@ -67,7 +71,11 @@ public class PointLight extends Light implements LightSource
 
 
 	/**
+	 * setter to filed kc
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param kC the kC to set
+	 * @return the object - builder
 	 */
 	public PointLight setKC(double kC) 
 	{
@@ -76,7 +84,11 @@ public class PointLight extends Light implements LightSource
 	}
 
 	/**
+	 * setter to filed kl
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param kL the kL to set
+	 * @return the object - builder
 	 */
 	public PointLight setKL(double kL) 
 	{
@@ -86,7 +98,11 @@ public class PointLight extends Light implements LightSource
 
 
 	/**
+	 * setter to filed kq
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param kQ the kQ to set
+	 * @return the object - builder
 	 */
 	public PointLight setKQ(double kQ) 
 	{
@@ -108,7 +124,5 @@ public class PointLight extends Light implements LightSource
 			return null; //In order not to reach a state of exception due to the zero vector
 		return p.subtract(position).normalize();		
 	}
-	
-	
 
 }
