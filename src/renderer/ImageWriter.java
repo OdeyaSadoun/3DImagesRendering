@@ -52,6 +52,7 @@ public class ImageWriter
 	/**
 	 * View Plane Y axis resolution
 	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @return the amount of vertical pixels
 	 */
 	public int getNy() 
@@ -62,6 +63,7 @@ public class ImageWriter
 	/**
 	 * View Plane X axis resolution
 	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @return the amount of horizontal pixels
 	 */
 	public int getNx() 
@@ -74,6 +76,8 @@ public class ImageWriter
 	/**
 	 * Function writeToImage produces unoptimized png file of the image according to
 	 * pixel color matrix in the directory of the project
+	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 */
 	public void writeToImage() 
 	{
@@ -92,6 +96,7 @@ public class ImageWriter
 	 * The function writePixel writes a color of a specific pixel into pixel color
 	 * matrix
 	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @param xIndex X axis index of the pixel
 	 * @param yIndex Y axis index of the pixel
 	 * @param color  final color of the pixel
