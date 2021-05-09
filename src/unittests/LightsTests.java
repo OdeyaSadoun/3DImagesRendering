@@ -88,7 +88,7 @@ public class LightsTests
 	@Test
 	public void sphereSpot() {
 		scene1.geometries.add(sphere);
-		scene1.lights.add(new SpotLight(new Color(500, 300, 0), new Point3D(-50, -50, 50), 0.00000001, 1,0.00001, new Vector(1, 1, -2)));
+		scene1.lights.add(new SpotLight(new Color(500, 300, 0), new Point3D(-50, -50, 50), 1,0.00001, 0.00000001, new Vector(1, 1, -2)));
 
 		ImageWriter imageWriter = new ImageWriter("sphereSpot", 500, 500);
 		Render render = new Render()//
@@ -171,7 +171,7 @@ public class LightsTests
 	{
 		scene2.geometries.add(triangle1.setMaterial(new Material().setKD(0.5).setKS(0.5).setnShininess(300)),
 				triangle2.setMaterial(new Material().setKD(0.5).setKS(0.5).setnShininess(300)));
-		scene2.lights.add(new SpotLight(new Color(500, 250, 250), new Point3D(10, -10, -130), 0.000005, 1,0.0001, new Vector(-2, -2, -1)));
+		scene2.lights.add(new SpotLight(new Color(500, 250, 250), new Point3D(10, -10, -130), 1,0.0001, 0.000005, new Vector(-2, -2, -1)));
 
 		ImageWriter imageWriter = new ImageWriter("trianglesSpot", 500, 500);
 		Render render = new Render()//
