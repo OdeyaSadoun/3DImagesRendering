@@ -16,7 +16,7 @@ import scene.Scene;
  */
 public class Render 
 {
-	private Scene scene;
+	//private Scene scene;
 	private Camera camera;
 	private ImageWriter imageWriter;
 	private RayTracerBase rayTracer;
@@ -28,10 +28,10 @@ public class Render
 	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @throws Exception 
 	 * */
-	public void renderImage() throws Exception
+	public void renderImage() throws MissingResourceException, IllegalArgumentException 
 	{
-		if (scene == null)
-			throw new MissingResourceException("this function must have values in all the fileds", "Scene", "scene");
+//		if (scene == null)
+//			throw new MissingResourceException("this function must have values in all the fileds", "Scene", "scene");
 		if (camera == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "Camera", "camera");
 		if (imageWriter == null)
@@ -94,19 +94,19 @@ public class Render
 	}
 
 	
-
-	/**
-	 * A seter function for parameter scene
-	 * this function return the object - this for builder pattern
-	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @param scene Scene value
-	 * */
-	public Render setScene(Scene scene) 
-	{
-		this.scene = scene;
-		return this;
-	}
+//
+//	/**
+//	 * A seter function for parameter scene
+//	 * this function return the object - this for builder pattern
+//	 * 
+//	 * @author Tamar Gavrieli & Odeya Sadoun
+//	 * @param scene Scene value
+//	 * */
+//	public Render setScene(Scene scene) 
+//	{
+//		this.scene = scene;
+//		return this;
+//	}
 
 	/**
 	 * A seter function for parameter camera
