@@ -11,6 +11,10 @@ import primitives.Point3D;
  * */
 public abstract class Geometry implements Intersectable
 {
+	
+	private Material material=new Material();
+	protected  Color emission = Color.BLACK;
+	
 	/**
 	 * A function that return the normal of the geometry
 	 * 
@@ -18,17 +22,9 @@ public abstract class Geometry implements Intersectable
 	 * @param point
 	 * @return Vector value
 	 * */
-	protected  Color emission = Color.BLACK;
 	public abstract Vector getNormal(Point3D point) throws IllegalArgumentException; // function get normal
-	private Material material=new Material();
-	
-	
-	/**
-	 * @return the material
-	 */
 
 
-	
 	/**
 	 * getter function for the color filed in geometry class
 	 * 
@@ -41,6 +37,9 @@ public abstract class Geometry implements Intersectable
 	}
 	
 	/**
+	 * getter function for the Material filed in geometry class
+	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @return the material
 	 */
 	public Material getMaterial() 
@@ -49,7 +48,11 @@ public abstract class Geometry implements Intersectable
 	}
 
 	/**
+	 * setter function for the Material filed 
+	 * 
+	 * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
 	 * @param material the material to set
+	 * @return the object - builder
 	 */
 	public Geometry setMaterial(Material material) 
 	{
