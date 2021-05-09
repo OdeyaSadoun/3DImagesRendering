@@ -36,5 +36,5 @@ public abstract class RayTracerBase
 	 * @throws Exception
 	 * @return Color
 	 *  */
-	public abstract Color traceRay(Ray ray) throws Exception;
+	public abstract Color traceRay(Ray ray) throws IllegalArgumentException ;
 }
