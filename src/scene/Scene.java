@@ -21,14 +21,7 @@ public class Scene
 	public AmbientLight ambientLight = new AmbientLight();
 	public Geometries geometries;
 	public List<LightSource>lights=new LinkedList<LightSource>() ;
-	/**
-	 * @param lights the lights to set
-	 */
-	public Scene setLights(List<LightSource> lights) 
-	{
-		this.lights = lights;
-		return this;
-	}
+	
 
 
 
@@ -36,6 +29,7 @@ public class Scene
 	 * constructor 
 	 * 
 	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param name
 	 * */
 	public Scene(String name)
 	{
@@ -45,7 +39,20 @@ public class Scene
 
 	
 	/**
-	 * setter, and return this for builder pattern
+	 * setter function to lights  and return this for builder pattern
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param lights the lights to set
+	 */
+	public Scene setLights(List<LightSource> lights) 
+	{
+		this.lights = lights;
+		return this;
+	}
+
+	
+	/**
+	 * setter function to background, and return this for builder pattern
 	 * 
 	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param background the background to set
@@ -58,7 +65,7 @@ public class Scene
 	
 
 	/**
-	 * setter, and return this for builder pattern
+	 * setter function to ambientLight, and return this for builder pattern
 	 * 
 	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param ambientLight the ambientLight to set
@@ -72,7 +79,7 @@ public class Scene
 	
 
 	/**
-	 * setter, and return this for builder pattern
+	 * setter function to geometries, and return this for builder pattern
 	 * 
 	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param geometries the geometries to set
