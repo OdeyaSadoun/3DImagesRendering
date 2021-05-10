@@ -16,22 +16,22 @@ public class SpotLight extends PointLight
 {
 	private Vector direction;
 
-	/**
-	 * constructor for spotlight that receives all the params
-	 * 
-	 * @author Tamar Gavrieli & Odeya Sadoun
-	 * @param direction Vector value 
-	 * @param intensity Color value
-	 * @param position Point3D value
-	 * @param KC double value
-	 * @param KL double value
-	 * @param KQ double value
-	 */
-	public SpotLight(Color intensity, Point3D position, double KC, double KL, double KQ, Vector direction) 
-	{
-		super(intensity, position, KC, KL, KQ);
-		this.direction=direction.normalize();
-	}
+//	/**
+//	 * constructor for spotlight that receives all the params
+//	 * 
+//	 * @author Tamar Gavrieli & Odeya Sadoun
+//	 * @param direction Vector value 
+//	 * @param intensity Color value
+//	 * @param position Point3D value
+//	 * @param KC double value
+//	 * @param KL double value
+//	 * @param KQ double value
+//	 */
+//	public SpotLight(Color intensity, Point3D position, double KC, double KL, double KQ, Vector direction) 
+//	{
+//		super(intensity, position, KC, KL, KQ);
+//		this.direction=direction.normalize();
+//	}
 
 	/**
 	 * constructor for spotlight that receives 3 params
