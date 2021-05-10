@@ -98,7 +98,7 @@ public class RayTracerBasic extends RayTracerBase
 			{ 
 				// sign(nl) == sing(nv)
 				Color lightIntensity = lightSource.getIntensity(intersection.point);
-				color = color.add(calcDiffusive(kd, l, n, lightIntensity), calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+				color = color.add(lightIntensity.scale((calcDiffusive(kd, l, n)+calcSpecular(ks, l, n, v, nShininess))));
 			}
 		}
 		return color;
@@ -116,15 +116,15 @@ public class RayTracerBasic extends RayTracerBase
 	 * @param lightIntensity Color value
 	 * @throws IllegalArgumentException
 	 * */
-	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) throws IllegalArgumentException 
+	private double calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess) throws IllegalArgumentException 
 	{
 		//𝒓 = 𝒍 − 𝟐 ∙( 𝒍 ∙ 𝒏) ∙n 
 		Vector r = l.subtract(n.scale(alignZero(2*(l.dotProduct(n))))).normalize();
 		double RV = alignZero(r.dotProduct(v));
 		double minusRV = RV*(-1);
 		if (minusRV <= 0)
-			return Color.BLACK;
-		return lightIntensity.scale(alignZero(Math.pow(minusRV, nShininess))*ks);
+			return 0; //מקדם בשביל צבע שחור
+		return alignZero(Math.pow(minusRV, nShininess))*ks;
 	}
 
 	/**
@@ -136,10 +136,10 @@ public class RayTracerBasic extends RayTracerBase
 	 * @param n Vector value
 	 * @param lightIntensity Color value
 	 * */
-	private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) 
+	private double calcDiffusive(double kd, Vector l, Vector n) 
 	{
 		double ln = alignZero(l.dotProduct(n));
-		return lightIntensity.scale(alignZero(Math.abs(ln)*kd));
+		return alignZero(Math.abs(ln)*kd);
 	}
 
 }
