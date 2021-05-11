@@ -23,6 +23,8 @@ import scene.Scene;
  */
 public class RayTracerBasic extends RayTracerBase 
 {
+	
+	private static final double DELTA = 0.1;
 
 	/**
 	 * constructor of RayTracerBasic
@@ -63,7 +65,7 @@ public class RayTracerBasic extends RayTracerBase
 	 * */
 	private Color calcColor(GeoPoint intersection, Ray ray) throws IllegalArgumentException 
 	{
-		/*𝑰𝑷 = 𝒌𝑨 ∙ 𝑰𝑨 + 𝑰𝑬 + (𝒌𝑫 ∙ |𝒍 ∙ 𝒏| + 𝒌𝑺 ∙ (−𝒗 ∙ 𝒓)^ 𝒏𝒔𝒉)) ∙ 𝑰L*/
+		/*נ�‘°נ�‘· = נ�’�נ�‘¨ גˆ™ נ�‘°נ�‘¨ + נ�‘°נ�‘¬ + (נ�’�נ�‘« גˆ™ |נ�’� גˆ™ נ�’�| + נ�’�נ�‘÷ גˆ™ (גˆ’נ�’— גˆ™ נ�’“)^ נ�’�נ�’”נ�’‰)) גˆ™ נ�‘°L*/
 		Color KaIa = myscene.ambientLight.getIntensity();
 		Color Ie = intersection.geometry.getEmission(); 
 
@@ -82,18 +84,18 @@ public class RayTracerBasic extends RayTracerBase
 		Vector v = ray.getDir().normalize();
 		Vector n = intersection.geometry.getNormal(intersection.point);
 		double nv = alignZero(n.dotProduct(v));
-		if (nv == 0) //לא רואים את הנקודה עליה האור משפיע מחזיר שחור
+		if (nv == 0) //׳�׳� ׳¨׳•׳�׳™׳� ׳�׳× ׳”׳ ׳§׳•׳“׳” ׳¢׳�׳™׳” ׳”׳�׳•׳¨ ׳�׳©׳₪׳™׳¢ ׳�׳—׳–׳™׳¨ ׳©׳—׳•׳¨
 			return Color.BLACK;
-		//רוצים לבדוק את ההשפעה של האור עלי לפי סוג החומר ממנו הגוף עשוי
+		//׳¨׳•׳¦׳™׳� ׳�׳‘׳“׳•׳§ ׳�׳× ׳”׳”׳©׳₪׳¢׳” ׳©׳� ׳”׳�׳•׳¨ ׳¢׳�׳™ ׳�׳₪׳™ ׳¡׳•׳’ ׳”׳—׳•׳�׳¨ ׳�׳�׳ ׳• ׳”׳’׳•׳£ ׳¢׳©׳•׳™
 		Material material = intersection.geometry.getMaterial();
 		int nShininess = material.nShininess;
 		double kd = material.KD;
 		double ks = material.KS;
-		Color color = Color.BLACK; //עוד לא יודעים השפעות
-		for (LightSource lightSource : myscene.lights) //עוברים כעל כל מקור אור בסצנה ובודקים איך הוא משפיע על הצבע בנקודה המסויימת
+		Color color = Color.BLACK; //׳¢׳•׳“ ׳�׳� ׳™׳•׳“׳¢׳™׳� ׳”׳©׳₪׳¢׳•׳×
+		for (LightSource lightSource : myscene.lights) //׳¢׳•׳‘׳¨׳™׳� ׳›׳¢׳� ׳›׳� ׳�׳§׳•׳¨ ׳�׳•׳¨ ׳‘׳¡׳¦׳ ׳” ׳•׳‘׳•׳“׳§׳™׳� ׳�׳™׳� ׳”׳•׳� ׳�׳©׳₪׳™׳¢ ׳¢׳� ׳”׳¦׳‘׳¢ ׳‘׳ ׳§׳•׳“׳” ׳”׳�׳¡׳•׳™׳™׳�׳×
 		{
-			Vector l = lightSource.getL(intersection.point);//וקטור ממקור אור עד לנקודה
-			double nl = alignZero(n.dotProduct(l));//רוצים לדעת שאני באותו כיוון כי אם לא לא רואים את ההשפעות
+			Vector l = lightSource.getL(intersection.point);//׳•׳§׳˜׳•׳¨ ׳�׳�׳§׳•׳¨ ׳�׳•׳¨ ׳¢׳“ ׳�׳ ׳§׳•׳“׳”
+			double nl = alignZero(n.dotProduct(l));//׳¨׳•׳¦׳™׳� ׳�׳“׳¢׳× ׳©׳�׳ ׳™ ׳‘׳�׳•׳×׳• ׳›׳™׳•׳•׳� ׳›׳™ ׳�׳� ׳�׳� ׳�׳� ׳¨׳•׳�׳™׳� ׳�׳× ׳”׳”׳©׳₪׳¢׳•׳×
 			if (nl * nv > 0) 
 			{ 
 				// sign(nl) == sing(nv)
@@ -118,12 +120,12 @@ public class RayTracerBasic extends RayTracerBase
 	 * */
 	private double calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess) throws IllegalArgumentException 
 	{
-		//𝒓 = 𝒍 − 𝟐 ∙( 𝒍 ∙ 𝒏) ∙n 
+		//נ�’“ = נ�’� גˆ’ נ��� גˆ™( נ�’� גˆ™ נ�’�) גˆ™n 
 		Vector r = l.subtract(n.scale(alignZero(2*(l.dotProduct(n))))).normalize();
 		double RV = alignZero(r.dotProduct(v));
 		double minusRV = RV*(-1);
 		if (minusRV <= 0)
-			return 0; //מקדם בשביל צבע שחור
+			return 0; //׳�׳§׳“׳� ׳‘׳©׳‘׳™׳� ׳¦׳‘׳¢ ׳©׳—׳•׳¨
 		return alignZero(Math.pow(minusRV, nShininess))*ks;
 	}
 
@@ -140,6 +142,18 @@ public class RayTracerBasic extends RayTracerBase
 	{
 		double ln = alignZero(l.dotProduct(n));
 		return alignZero(Math.abs(ln)*kd);
+	}
+	
+	
+	private boolean unshaded(Vector l, Vector n, GeoPoint gp)
+	{
+		Vector lightDirection = l.scale(-1); // from point to light source
+		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
+		Point3D point = gp.point.add(delta);
+		Ray lightRay = new Ray(point, lightDirection);
+		List<GeoPoint> intersections = myscene.geometries.findGeoIntersections(lightRay);
+		return intersections == null;
+		
 	}
 
 }
