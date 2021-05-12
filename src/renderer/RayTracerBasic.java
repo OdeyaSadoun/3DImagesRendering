@@ -23,8 +23,6 @@ import scene.Scene;
  */
 public class RayTracerBasic extends RayTracerBase 
 {
-	
-	private static final double DELTA = 0.1;
 
 	/**
 	 * constructor of RayTracerBasic
@@ -65,7 +63,7 @@ public class RayTracerBasic extends RayTracerBase
 	 * */
 	private Color calcColor(GeoPoint intersection, Ray ray) throws IllegalArgumentException 
 	{
-		/*נ�‘°נ�‘· = נ�’�נ�‘¨ גˆ™ נ�‘°נ�‘¨ + נ�‘°נ�‘¬ + (נ�’�נ�‘« גˆ™ |נ�’� גˆ™ נ�’�| + נ�’�נ�‘÷ גˆ™ (גˆ’נ�’— גˆ™ נ�’“)^ נ�’�נ�’”נ�’‰)) גˆ™ נ�‘°L*/
+		/*𝑰𝑷 = 𝒌𝑨 ∙ 𝑰𝑨 + 𝑰𝑬 + (𝒌𝑫 ∙ |𝒍 ∙ 𝒏| + 𝒌𝑺 ∙ (−𝒗 ∙ 𝒓)^ 𝒏𝒔𝒉)) ∙ 𝑰L*/
 		Color KaIa = myscene.ambientLight.getIntensity();
 		Color Ie = intersection.geometry.getEmission(); 
 
@@ -84,23 +82,23 @@ public class RayTracerBasic extends RayTracerBase
 		Vector v = ray.getDir().normalize();
 		Vector n = intersection.geometry.getNormal(intersection.point);
 		double nv = alignZero(n.dotProduct(v));
-		if (nv == 0) //׳�׳� ׳¨׳•׳�׳™׳� ׳�׳× ׳”׳ ׳§׳•׳“׳” ׳¢׳�׳™׳” ׳”׳�׳•׳¨ ׳�׳©׳₪׳™׳¢ ׳�׳—׳–׳™׳¨ ׳©׳—׳•׳¨
+		if (nv == 0) //לא רואים את הנקודה עליה האור משפיע מחזיר שחור
 			return Color.BLACK;
-		//׳¨׳•׳¦׳™׳� ׳�׳‘׳“׳•׳§ ׳�׳× ׳”׳”׳©׳₪׳¢׳” ׳©׳� ׳”׳�׳•׳¨ ׳¢׳�׳™ ׳�׳₪׳™ ׳¡׳•׳’ ׳”׳—׳•׳�׳¨ ׳�׳�׳ ׳• ׳”׳’׳•׳£ ׳¢׳©׳•׳™
+		//רוצים לבדוק את ההשפעה של האור עלי לפי סוג החומר ממנו הגוף עשוי
 		Material material = intersection.geometry.getMaterial();
 		int nShininess = material.nShininess;
 		double kd = material.KD;
 		double ks = material.KS;
-		Color color = Color.BLACK; //׳¢׳•׳“ ׳�׳� ׳™׳•׳“׳¢׳™׳� ׳”׳©׳₪׳¢׳•׳×
-		for (LightSource lightSource : myscene.lights) //׳¢׳•׳‘׳¨׳™׳� ׳›׳¢׳� ׳›׳� ׳�׳§׳•׳¨ ׳�׳•׳¨ ׳‘׳¡׳¦׳ ׳” ׳•׳‘׳•׳“׳§׳™׳� ׳�׳™׳� ׳”׳•׳� ׳�׳©׳₪׳™׳¢ ׳¢׳� ׳”׳¦׳‘׳¢ ׳‘׳ ׳§׳•׳“׳” ׳”׳�׳¡׳•׳™׳™׳�׳×
+		Color color = Color.BLACK; //עוד לא יודעים השפעות
+		for (LightSource lightSource : myscene.lights) //עוברים כעל כל מקור אור בסצנה ובודקים איך הוא משפיע על הצבע בנקודה המסויימת
 		{
-			Vector l = lightSource.getL(intersection.point);//׳•׳§׳˜׳•׳¨ ׳�׳�׳§׳•׳¨ ׳�׳•׳¨ ׳¢׳“ ׳�׳ ׳§׳•׳“׳”
-			double nl = alignZero(n.dotProduct(l));//׳¨׳•׳¦׳™׳� ׳�׳“׳¢׳× ׳©׳�׳ ׳™ ׳‘׳�׳•׳×׳• ׳›׳™׳•׳•׳� ׳›׳™ ׳�׳� ׳�׳� ׳�׳� ׳¨׳•׳�׳™׳� ׳�׳× ׳”׳”׳©׳₪׳¢׳•׳×
+			Vector l = lightSource.getL(intersection.point);//וקטור ממקור אור עד לנקודה
+			double nl = alignZero(n.dotProduct(l));//רוצים לדעת שאני באותו כיוון כי אם לא לא רואים את ההשפעות
 			if (nl * nv > 0) 
 			{ 
 				// sign(nl) == sing(nv)
 				Color lightIntensity = lightSource.getIntensity(intersection.point);
-				color = color.add(lightIntensity.scale((calcDiffusive(kd, l, n)+calcSpecular(ks, l, n, v, nShininess))));
+				color = color.add(lightIntensity.scale((calcDiffusive(kd, nl)+calcSpecular(ks, l, n, nl, v, nShininess))));
 			}
 		}
 		return color;
@@ -114,18 +112,19 @@ public class RayTracerBasic extends RayTracerBase
 	 * @param l Vector value
 	 * @param n Vector value
 	 * @param v Vector value
+	 * @param nl double value
 	 * @param nShininess int value
 	 * @param lightIntensity Color value
 	 * @throws IllegalArgumentException
 	 * */
-	private double calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess) throws IllegalArgumentException 
+	private double calcSpecular(double ks, Vector l,Vector n, double nl, Vector v, int nShininess) throws IllegalArgumentException 
 	{
-		//נ�’“ = נ�’� גˆ’ נ��� גˆ™( נ�’� גˆ™ נ�’�) גˆ™n 
-		Vector r = l.subtract(n.scale(alignZero(2*(l.dotProduct(n))))).normalize();
+		//𝒓 = 𝒍 − 𝟐 ∙( 𝒍 ∙ 𝒏) ∙n 
+		Vector r = l.subtract(n.scale(alignZero(2*nl))).normalize();
 		double RV = alignZero(r.dotProduct(v));
 		double minusRV = RV*(-1);
 		if (minusRV <= 0)
-			return 0; //׳�׳§׳“׳� ׳‘׳©׳‘׳™׳� ׳¦׳‘׳¢ ׳©׳—׳•׳¨
+			return 0; //מקדם בשביל צבע שחור
 		return alignZero(Math.pow(minusRV, nShininess))*ks;
 	}
 
@@ -134,26 +133,12 @@ public class RayTracerBasic extends RayTracerBase
 	 * 
 	 * @author Tamar Gavrieli & Odeya Sadoun
 	 * @param kd double value
-	 * @param l Vector value
-	 * @param n Vector value
+	 * @param nl double value
 	 * @param lightIntensity Color value
 	 * */
-	private double calcDiffusive(double kd, Vector l, Vector n) 
+	private double calcDiffusive(double kd, double nl) 
 	{
-		double ln = alignZero(l.dotProduct(n));
-		return alignZero(Math.abs(ln)*kd);
-	}
-	
-	
-	private boolean unshaded(Vector l, Vector n, GeoPoint gp)
-	{
-		Vector lightDirection = l.scale(-1); // from point to light source
-		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
-		Point3D point = gp.point.add(delta);
-		Ray lightRay = new Ray(point, lightDirection);
-		List<GeoPoint> intersections = myscene.geometries.findGeoIntersections(lightRay);
-		return intersections == null;
-		
+		return alignZero(Math.abs(nl)*kd);
 	}
 
 }
