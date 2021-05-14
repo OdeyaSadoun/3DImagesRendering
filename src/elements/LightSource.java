@@ -30,4 +30,6 @@ public interface LightSource
 	 * @return the lighting direction on a point
 	 */
 	public Vector getL(Point3D p) throws IllegalArgumentException;
+	
+	double getDistance(Point3D point);
 }
