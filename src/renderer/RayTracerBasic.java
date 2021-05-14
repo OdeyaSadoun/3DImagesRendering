@@ -8,6 +8,7 @@ import geometries.Intersectable.GeoPoint;
 import primitives.*;
 import static primitives.Util.*;
 
+
 import primitives.Color;
 import primitives.Material;
 import primitives.Point3D;
@@ -102,7 +103,7 @@ public class RayTracerBasic extends RayTracerBase
 			if (nl * nv > 0) 
 			{ 
 				// sign(nl) == sing(nv)
-				if (unshaded(l,n, intersection)) 
+				if (unshaded(l,n, intersection,lightSource)) 
 				{
 					Color lightIntensity = lightSource.getIntensity(intersection.point);
 					color = color.add(lightIntensity.scale((calcDiffusive(kd, nl)+calcSpecular(ks, l, n, nl, v, nShininess))));
@@ -159,13 +160,20 @@ public class RayTracerBasic extends RayTracerBase
 	 * @param geopoint GeoPoint value
 	 * @return true or false
 	 * */
-	private boolean unshaded(Vector l, Vector n, GeoPoint geopoint)
+	private boolean unshaded(Vector l, Vector n, GeoPoint geopoint , LightSource light)
 	{
 		Vector lightDirection = l.scale(-1); // from point to light source
 		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
 		Point3D point = geopoint.point.add(delta);
 		Ray lightRay = new Ray(point, lightDirection);
 		List<GeoPoint> intersections = myscene.geometries.findGeoIntersections(lightRay);
-		return intersections == null;
+		if (intersections == null) return true;
+		double lightDistance = light.getDistance(geopoint.point);
+		for (GeoPoint gp : intersections) 
+		{
+			if (alignZero(gp.point.distance(geopoint.point)- lightDistance) <= 0)
+				return false;
+		}
+		return true;
 	}
 }
