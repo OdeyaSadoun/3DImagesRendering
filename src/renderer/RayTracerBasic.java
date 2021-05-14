@@ -24,6 +24,8 @@ import scene.Scene;
 public class RayTracerBasic extends RayTracerBase 
 {
 
+	private static final double DELTA = 0.1;
+	
 	/**
 	 * constructor of RayTracerBasic
 	 * 
