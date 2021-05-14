@@ -24,6 +24,9 @@ import scene.Scene;
 public class RayTracerBasic extends RayTracerBase 
 {
 
+	/**
+	 * A constant for the size of moving first rays for shading rays
+	 * */
 	private static final double DELTA = 0.1;
 	
 	/**
@@ -99,8 +102,11 @@ public class RayTracerBasic extends RayTracerBase
 			if (nl * nv > 0) 
 			{ 
 				// sign(nl) == sing(nv)
-				Color lightIntensity = lightSource.getIntensity(intersection.point);
-				color = color.add(lightIntensity.scale((calcDiffusive(kd, nl)+calcSpecular(ks, l, n, nl, v, nShininess))));
+				if (unshaded(l,n, intersection)) 
+				{
+					Color lightIntensity = lightSource.getIntensity(intersection.point);
+					color = color.add(lightIntensity.scale((calcDiffusive(kd, nl)+calcSpecular(ks, l, n, nl, v, nShininess))));
+				}
 			}
 		}
 		return color;
@@ -137,10 +143,29 @@ public class RayTracerBasic extends RayTracerBase
 	 * @param kd double value
 	 * @param nl double value
 	 * @param lightIntensity Color value
+	 * @return double value for calcDiffusive
 	 * */
 	private double calcDiffusive(double kd, double nl) 
 	{
 		return alignZero(Math.abs(nl)*kd);
 	}
 
+	/**
+	 * A function that check if there is shaded or not
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param l Vector value
+	 * @param n Vector value
+	 * @param geopoint GeoPoint value
+	 * @return true or false
+	 * */
+	private boolean unshaded(Vector l, Vector n, GeoPoint geopoint)
+	{
+		Vector lightDirection = l.scale(-1); // from point to light source
+		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
+		Point3D point = geopoint.point.add(delta);
+		Ray lightRay = new Ray(point, lightDirection);
+		List<GeoPoint> intersections = myscene.geometries.findGeoIntersections(lightRay);
+		return intersections == null;
+	}
 }
