@@ -31,5 +31,12 @@ public interface LightSource
 	 */
 	public Vector getL(Point3D p) throws IllegalArgumentException;
 	
+	/**
+	 * A function that return the distance between 2 points
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param point Point3D value
+	 * @return double value for the distance
+	 * */
 	double getDistance(Point3D point);
 }
