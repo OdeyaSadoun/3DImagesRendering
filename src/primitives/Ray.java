@@ -1,6 +1,7 @@
 package primitives;
 import java.util.List;
 import geometries.Intersectable.GeoPoint;
+import static primitives.Util.*;
 /**
  * class for ray in package primitives
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
@@ -10,6 +11,11 @@ public class Ray
 	//The fields of this class are point and direction - vector
 	Point3D p0;
 	Vector dir;
+	
+	/**
+	 * A constant for the size of moving first rays for shading rays
+	 * */
+	private static final double DELTA = 0.1;
 	
 	/**
 	 * Constructor that receives point and vector
@@ -26,6 +32,18 @@ public class Ray
 		dir.normalize();
 	}
 	
+	public Ray(Point3D head, Vector lightDirection, Vector n) 
+	{
+		if(alignZero(lightDirection.dotProduct(n))<0)
+			 p0= head.add(n.scale(-DELTA));
+		else if(alignZero(lightDirection.dotProduct(n))>0)
+			 p0= head.add(n.scale(DELTA));
+		else if(isZero(lightDirection.dotProduct(n)))
+			 p0=head;
+		dir=lightDirection;
+		dir.normalize();		
+	}
+
 	/**
 	 * A getter function for the field p0
 	 * 
