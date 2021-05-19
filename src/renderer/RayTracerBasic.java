@@ -127,7 +127,14 @@ public class RayTracerBasic extends RayTracerBase
 	private Ray constructReflectedRay(Vector normal, Point3D point, Ray ray) 
 	{
 		// 𝒓 = 𝒗 − 𝟐 ∙ (𝒗 ∙ 𝒏) ∙ n
-		return new Ray(point,ray.getDir().subtract(normal.scale(normal.dotProduct(ray.getDir())*2)));
+		Vector v = ray.getDir();
+		double nv = alignZero(normal.dotProduct(v));
+		if (isZero(nv))
+			return null;
+		Vector delta = normal.scale(normal.dotProduct(v) > 0 ? DELTA : - DELTA);
+		Point3D p = point.add(delta);
+
+		return new Ray(p,v.subtract(normal.scale(nv*2)));
 	}
 
 	/**
