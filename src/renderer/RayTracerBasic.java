@@ -25,11 +25,7 @@ import scene.Scene;
 public class RayTracerBasic extends RayTracerBase 
 {
 
-	/**
-	 * A constant for the size of moving first rays for shading rays
-	 * */
-	private static final double DELTA = 0.1;
-	
+
 	/**
 	 * Limiting the recursion depth
 	 * */
@@ -131,10 +127,10 @@ public class RayTracerBasic extends RayTracerBase
 		double nv = alignZero(normal.dotProduct(v));
 		if (isZero(nv))
 			return null;
-		Vector delta = normal.scale(normal.dotProduct(v) > 0 ? DELTA : - DELTA);
-		Point3D p = point.add(delta);
+		//Vector delta = normal.scale(normal.dotProduct(v) > 0 ? ray.DELTA : - ray.DELTA);
+		//Point3D p = point.add(delta);
 
-		return new Ray(p,v.subtract(normal.scale(nv*2)));
+		return new Ray(point,v, v.subtract(normal.scale(nv*2)));
 	}
 
 	/**
@@ -224,16 +220,16 @@ public class RayTracerBasic extends RayTracerBase
 	private boolean unshaded(Vector l, Vector n, GeoPoint geopoint , LightSource light)
 	{
 		Vector lightDirection = l.scale(-1); // from point to light source
-		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
-		Point3D point = geopoint.point.add(delta);
-		Ray lightRay = new Ray(point, lightDirection);
+		Ray lightRay = new Ray(geopoint.point, lightDirection, n); // refactored ray head move
 		List<GeoPoint> intersections = myscene.geometries.findGeoIntersections(lightRay);
-		if (intersections == null) return true;
+		if (intersections == null) 
+			return true;
 		double lightDistance = light.getDistance(geopoint.point);
 		for (GeoPoint gp : intersections) 
 		{
-			if (alignZero(gp.point.distance(geopoint.point)- lightDistance) <= 0)
-				return false;
+		if (alignZero(gp.point.distance(geopoint.point) - lightDistance) <= 0 &&
+		gp.geometry.getMaterial().KT == 0)
+		return false;
 		}
 		return true;
 	}
