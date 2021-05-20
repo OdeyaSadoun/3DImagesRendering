@@ -63,7 +63,7 @@ public class RayTracerBasic extends RayTracerBase
 	{
 
 			GeoPoint closestPoint = findClosestIntersection(ray);
-			return closestPoint == null ? Color.BLACK : calcColor(closestPoint, ray);
+			return closestPoint == null ? myscene.background : calcColor(closestPoint, ray);
 	}
 
 	private Color calcColor(GeoPoint geopoint, Ray ray) 
@@ -85,7 +85,7 @@ public class RayTracerBasic extends RayTracerBase
 		//Color KaIa = myscene.ambientLight.getIntensity();
 		Color Ie = intersection.geometry.getEmission(); 
 
-		Color color = Ie.add(calcLocalEffects(intersection, ray));
+		Color color = Ie.add(calcLocalEffects(intersection, ray,k));
 		return 1 == level ? color : color.add(calcGlobalEffects(intersection, ray, level, k , intersection.geometry.getNormal(intersection.point)));
 
 	}
@@ -199,7 +199,7 @@ public class RayTracerBasic extends RayTracerBase
 	 * @param intersection GeoPoint value
 	 * @param ray Ray value
 	 * */
-	private Color calcLocalEffects(GeoPoint intersection, Ray ray) 
+	private Color calcLocalEffects(GeoPoint intersection, Ray ray, double k) 
 	{
 		Vector v = ray.getDir().normalize();
 		Vector n = intersection.geometry.getNormal(intersection.point);
@@ -218,10 +218,13 @@ public class RayTracerBasic extends RayTracerBase
 			double nl = alignZero(n.dotProduct(l));//רוצים לדעת שאני באותו כיוון כי אם לא לא רואים את ההשפעות
 			if (nl * nv > 0) 
 			{ 
-				// sign(nl) == sing(nv)
-				if (unshaded(l,n, intersection,lightSource)) 
+				double ktr = transparency(lightSource, l, n, intersection);
+				if (ktr * k > MIN_CALC_COLOR_K) 
 				{
-					Color lightIntensity = lightSource.getIntensity(intersection.point);
+				// sign(nl) == sing(nv)
+//				if (unshaded(l,n, intersection,lightSource)) 
+//				{
+					Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);;
 					color = color.add(lightIntensity.scale((calcDiffusive(kd, nl)+calcSpecular(ks, l, n, nl, v, nShininess))));
 				}
 			}
@@ -271,6 +274,7 @@ public class RayTracerBasic extends RayTracerBase
 	 * A function that check if there is shaded or not
 	 * 
 	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param light LightSource value
 	 * @param l Vector value
 	 * @param n Vector value
 	 * @param geopoint GeoPoint value
@@ -292,5 +296,39 @@ public class RayTracerBasic extends RayTracerBase
 				return false;
 		}
 		return true;
+	}
+	
+	
+	/**
+	 * A function that allows partial shading
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param light LightSource value
+	 * @param l Vector value
+	 * @param n Vector value
+	 * @param geoPoint GeoPoint value
+	 * */
+	private double transparency(LightSource light, Vector l, Vector n, GeoPoint geoPoint)
+	{
+		Vector lightDirection = l.scale(-1); // from point to light source
+		Ray lightRay = new Ray(geoPoint.point, lightDirection, n); // refactored ray head move
+
+		double lightDistance = light.getDistance(geoPoint.point);
+		var intersections = myscene.geometries.findGeoIntersections(lightRay);
+		if (intersections == null) 
+			return 1.0;
+		double ktr = 1.0;
+		for (GeoPoint gp : intersections) 
+		{
+			if (alignZero(gp.point.distance(geoPoint.point) - lightDistance) <= 0)
+			{
+				ktr *= gp.geometry.getMaterial().KT;
+				if (ktr < MIN_CALC_COLOR_K) 
+					return 0.0;
+			}
+		}
+
+		return ktr;
+
 	}
 }
