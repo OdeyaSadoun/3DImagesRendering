@@ -24,7 +24,7 @@ import scene.Scene;
  */
 public class RayTracerBasic extends RayTracerBase 
 {
-	private static final double DELTA = 0.1;
+	//private static final double DELTA = 0.1;
 
 
 	/**
@@ -162,9 +162,9 @@ public class RayTracerBasic extends RayTracerBase
 	private Ray constructRefractedRay(Vector normal, Point3D point, Ray ray) //שקיפות
 	{
 		Vector v = ray.getDir();
-		Vector delta = normal.scale(normal.dotProduct(v) > 0 ? DELTA : -DELTA);// where we need to move the point
-		Point3D pointDelta = point.add(delta);
-		return new Ray(pointDelta, v);
+//		Vector delta = normal.scale(normal.dotProduct(v) > 0 ? DELTA : -DELTA);// where we need to move the point
+//		Point3D pointDelta = point.add(delta);
+		return new Ray(point, v ,normal);
 	}
 
 	
@@ -186,10 +186,10 @@ public class RayTracerBasic extends RayTracerBase
 		if (isZero(nv))
 			return null;
 		Vector r = v.subtract(normal.scale(nv*2));
-		Vector delta = normal.scale(normal.dotProduct(r) > 0 ? DELTA : - DELTA);
-		Point3D p = point.add(delta);
+//		Vector delta = normal.scale(normal.dotProduct(r) > 0 ? DELTA : - DELTA);
+//		Point3D p = point.add(delta);
 
-		return new Ray(p, r);
+		return new Ray(point, r, normal);
 	}
 
 	/**
@@ -279,9 +279,9 @@ public class RayTracerBasic extends RayTracerBase
 	private boolean unshaded(Vector l, Vector n, GeoPoint geopoint , LightSource light)
 	{
 		Vector lightDirection = l.scale(-1); // from point to light source
-		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);// where we need to move the point
-		Point3D point = geopoint.point.add(delta);// moving the point
-		Ray lightRay = new Ray(point, lightDirection /*n*/); // refactored ray head move
+//		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);// where we need to move the point
+//		Point3D point = geopoint.point.add(delta);// moving the point
+		Ray lightRay = new Ray(geopoint.point, lightDirection, n); // refactored ray head move
 		List<GeoPoint> intersections = myscene.geometries.findGeoIntersections(lightRay);
 		if (intersections == null) 
 			return true;
