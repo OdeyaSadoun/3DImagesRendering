@@ -1,6 +1,10 @@
 
 package elements;
 import static primitives.Util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -116,6 +120,67 @@ public class Camera
 		return new Ray(p0, Vij);
 
 	}
+	
+	
+	
+	public List<Ray> constructRaysThroughPixel (int nX, int nY, int j, int i, int raysAmount)
+	{
+		//זריקת כמות של קרניים לתוך צורת גריד
+		List<Ray> Rays = new ArrayList<Ray>();
+		int numOfRays = (int)Math.floor(Math.sqrt(raysAmount)); //num of rays in each row or column
+		
+		if (numOfRays==1) 
+			return List.of(constructRayThroughPixel(nX, nY, j, i));
+
+		Point3D Pc;
+		if (isZero(distance))
+			Pc=p0;
+		else
+			Pc=p0.add(vTo.scale(distance));
+		
+		double Ry= height/nY;
+		double Rx=width/nX;
+		double Yi=(i-(nY-1)/2d)*Ry;
+		double Xj=(j-(nX-1)/2d)*Rx;
+		
+		if(isZero(Xj) && isZero(Yi))
+			return List.of(new Ray (p0, Pc.subtract(p0)));
+		
+		Point3D Pij = Pc;
+		
+		if(!isZero(Xj))
+			Pij = Pij.add(vRight.scale(Xj));
+		
+		if(!isZero(Yi))
+			Pij = Pij.add(vUp.scale(-Yi));
+		
+		Vector Vij = Pij.subtract(p0);
+        
+        double PRy = Ry / numOfRays; //height distance between each ray
+        double PRx = Rx / numOfRays; //width distance between each ray
+        
+        Point3D tmp = Pij; //center
+        
+        //creating a grid in the pixel:
+        for (int row=0; row<numOfRays; row++) 
+        {
+        	double Pxj = (row - (numOfRays/2d)) * PRx + PRx/2d;
+        	for (int column=0; column<numOfRays; column++)
+        	{
+        		double Pyi = (column - (numOfRays/2d)) * PRy + PRy/2d;
+        		if (Pxj != 0)
+        			Pij = Pij.add(this.vRight.scale(-Pxj));
+        		if (Pyi != 0)
+        			Pij = Pij.add(this.vUp.scale(-Pyi)); 
+        		Rays.add(new Ray(p0, Vij));
+        		Pij = tmp; //restart
+        	}
+        }
+        return Rays;
+	}
+	
+	
+	
 
 	/**
 	 * Getter for p0

@@ -65,6 +65,28 @@ public class RayTracerBasic extends RayTracerBase
 			GeoPoint closestPoint = findClosestIntersection(ray);
 			return closestPoint == null ? myscene.background : calcColor(closestPoint, ray);
 	}
+	
+	
+//	
+//	   /**
+//     * @param rays List of surrounding rays
+//     * @return average color
+//     */
+//    protected Color traceRay(List<Ray> rays) 
+//    {
+//        Color bkg = myscene.background;
+//        Color color = Color.BLACK;
+//        for (Ray ray : rays) 
+//        {
+//            GeoPoint gp = findClosestIntersection(ray);
+//            color = color.add(gp == null ? myscene.background : calcColor(gp, ray));
+//        }
+////        color = color.add(myscene.ambientLight.getIntensity());
+////        int size = rays.size();
+////        return (size == 1) ? color : color.reduce(size);
+//        return color;
+//    }
+//	
 
 	private Color calcColor(GeoPoint geopoint, Ray ray) 
 	{
@@ -89,6 +111,8 @@ public class RayTracerBasic extends RayTracerBase
 		return 1 == level ? color : color.add(calcGlobalEffects(intersection, ray, level, k , intersection.geometry.getNormal(intersection.point)));
 
 	}
+	
+ 
 	
 	/**
 	 * A function that calculate the globals effects of the color
