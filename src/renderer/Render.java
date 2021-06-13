@@ -1,6 +1,7 @@
 
 package renderer;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.MissingResourceException;
 
@@ -20,7 +21,7 @@ public class Render
 	private Camera camera;
 	private ImageWriter imageWriter;
 	private RayTracerBase rayTracer;
-//	private int numOfRays;
+	private int numOfRays;
 
 	/**
 	 * The function transfers beams from camera to pixel, tracks the beam
@@ -44,24 +45,54 @@ public class Render
 		{
 			for (int j = 0; j < imageWriter.getNy(); j++)	
 			{
-//				if(!flag)
-//				{
+				if(numOfRays == 1 || numOfRays == 0)
+				{
 					Ray ray = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
 					Color rayColor = rayTracer.traceRay(ray);
 					imageWriter.writePixel(j, i, rayColor); 
-//				}
-//				else
-//				{				
-//					 List<Ray> rays = camera.constructRaysThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i, numOfRays);
-//
-//					 Color rayColor = rayTracer.traceRay(rays);
-//					 imageWriter.writePixel(j, i, rayColor);  
-//					
-//				}
+				}
+				else
+				{	
+					List<Ray> rays = camera.constructBeamThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);
+					Color rayColor = rayTracer.traceRay(rays);
+					imageWriter.writePixel(j, i, rayColor); 
+				}
+				
 			}
 		}
 		
-	
+//		 List<Ray> rays = camera.constructRaysThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i, numOfRays);
+//		 Color pixelColor=Color.BLACK;
+//		 for (Ray ray : rays) 
+//		 {
+//			 pixelColor = pixelColor.add(rayTracer.traceRay(ray));
+//		}
+////		 Color rayColor = rayTracer.traceRay(rays);
+//		 imageWriter.writePixel(j, i, pixelColor.reduce(rays.size()));  
+//		  for (int row = 0; row < imageWriter.getNx(); row++) {
+//              for (int column = 0; column < imageWriter.getNy(); column++) {
+                  //Ray ray = camera.constructRayThroughPixel(Nx, Ny, column, row, distance, width, height);
+                  //GeoPoint centerPoint = findClosestIntersection(ray);
+                  //Color Bckg = new Color(background);
+                  //Color averageColor = Color.BLACK;
+//		List<Ray> rays = new LinkedList<Ray>();
+//	for(int rayC = 0; rayC < numOfRays; rayC++)
+//	{
+//		for(int rayR = 0; rayR < numOfRays; rayR++ )
+//		{
+//			rays.add(camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), rayR, rayC));
+//			
+//		}
+//	}
+////                  List<Ray> rays = camera.constructRaysThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i,numOfRays);
+//                  //rays.add(ray);
+//                  imageWriter.writePixel(j, i,rayTracer.traceRay(rays));
+//              }
+//          }
+//		
+//	}
+
+
 
 	}
 
@@ -149,18 +180,21 @@ public class Render
 		return this;
 	}
 	
-//	/**
-//	 * A seter function for parameter rayTracer
-//	 * this function return the object - this for builder pattern
-//	 * 
-//	 * @author Tamar Gavrieli & Odeya Sadoun
-//	 * @param rayTracer RayTracerBase value
-//	 * */
-//	public Render setNumOfRays(int numOfRays)
-//	{
-//		this.numOfRays = numOfRays;
-//		return this;
-//	}
+	/**
+	 * A seter function for parameter rayTracer
+	 * this function return the object - this for builder pattern
+	 * 
+	 * @author Tamar Gavrieli & Odeya Sadoun
+	 * @param rayTracer RayTracerBase value
+	 * */
+	public Render setNumOfRays(int numOfRays)
+	{
+		if(numOfRays == 0)
+			this.numOfRays=1;
+		else
+		 this.numOfRays = numOfRays;
+		return this;
+	}
 	
 }
 //package renderer;
