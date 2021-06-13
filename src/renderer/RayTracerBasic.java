@@ -67,26 +67,39 @@ public class RayTracerBasic extends RayTracerBase
 	}
 	
 	
-//	
-//	   /**
-//     * @param rays List of surrounding rays
-//     * @return average color
-//     */
-//    protected Color traceRay(List<Ray> rays) 
-//    {
-//        Color bkg = myscene.background;
-//        Color color = Color.BLACK;
-//        for (Ray ray : rays) 
-//        {
-//            GeoPoint gp = findClosestIntersection(ray);
-//            color = color.add(gp == null ? myscene.background : calcColor(gp, ray));
-//        }
-////        color = color.add(myscene.ambientLight.getIntensity());
+	
+	   /**
+     * @param rays List of surrounding rays
+     * @return average color
+     */
+    protected Color traceRay(List<Ray> rays) 
+    {
+    	if(rays == null)
+    		return myscene.background;
+        Color color = Color.BLACK;
+        Color bkg = myscene.background;
+        for (Ray ray : rays) 
+        {
+        	GeoPoint gp = findClosestIntersection(ray);
+        	color = color.add(gp == null ? bkg : calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, 1d));
+        }
+        color = color.add(myscene.ambientLight.getIntensity());
+        int size = rays.size();
+        return (size == 1) ? color : color.reduce(size);
+//        color = color.add(calcColor(rays));
+////        for (Ray ray : rays) 
+////        {
+////            GeoPoint gp = findClosestIntersection(ray);
+////            if(gp!=null)
+////            {}
+////            color = color.add(gp == null ? myscene.background : calcColor(gp, ray));
+////        }
+//        color = color.add(myscene.ambientLight.getIntensity());
 ////        int size = rays.size();
-////        return (size == 1) ? color : color.reduce(size);
-//        return color;
-//    }
-//	
+//        return (rays.size() == 1) ? color : color.reduce(rays.size());
+//       // return color;
+    }
+	
 
 	private Color calcColor(GeoPoint geopoint, Ray ray) 
 	{
@@ -104,9 +117,7 @@ public class RayTracerBasic extends RayTracerBase
 	private Color calcColor(GeoPoint intersection, Ray ray, int level, double k) throws IllegalArgumentException 
 	{
 		/*𝑰𝑷 = 𝒌𝑨 ∙ 𝑰𝑨 + 𝑰𝑬 + (𝒌𝑫 ∙ |𝒍 ∙ 𝒏| + 𝒌𝑺 ∙ (−𝒗 ∙ 𝒓)^ 𝒏𝒔𝒉)) ∙ 𝑰L*/
-		//Color KaIa = myscene.ambientLight.getIntensity();
 		Color Ie = intersection.geometry.getEmission(); 
-
 		Color color = Ie.add(calcLocalEffects(intersection, ray,k));
 		return 1 == level ? color : color.add(calcGlobalEffects(intersection, ray, level, k , intersection.geometry.getNormal(intersection.point)));
 
@@ -158,6 +169,22 @@ public class RayTracerBasic extends RayTracerBase
 		return color;
 	}
 
+//	  /**
+//     * @param rays List of surrounding rays
+//     * @return average color
+//     */
+//    private Color calcColor(List<Ray> rays)
+//    {
+//        Color bkg = myscene.background;
+//        Color color = Color.BLACK;
+//        for (Ray ray : rays) {
+//            GeoPoint gp = findClosestIntersection(ray);
+//            color = color.add(gp == null ? bkg : calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, 1d));
+//        }
+//        color = color.add(myscene.ambientLight.getIntensity());
+//        int size = rays.size();
+//        return (size == 1) ? color : color.reduce(size);
+//    }
 	
 	/**
 	 * A function that find the most closet point to the ray
@@ -186,8 +213,6 @@ public class RayTracerBasic extends RayTracerBase
 	private Ray constructRefractedRay(Vector normal, Point3D point, Ray ray) //שקיפות
 	{
 		Vector v = ray.getDir();
-//		Vector delta = normal.scale(normal.dotProduct(v) > 0 ? DELTA : -DELTA);// where we need to move the point
-//		Point3D pointDelta = point.add(delta);
 		return new Ray(point, v ,normal);
 	}
 
@@ -210,9 +235,6 @@ public class RayTracerBasic extends RayTracerBase
 		if (isZero(nv))
 			return null;
 		Vector r = v.subtract(normal.scale(nv*2));
-//		Vector delta = normal.scale(normal.dotProduct(r) > 0 ? DELTA : - DELTA);
-//		Point3D p = point.add(delta);
-
 		return new Ray(point, r, normal);
 	}
 
@@ -246,8 +268,7 @@ public class RayTracerBasic extends RayTracerBase
 				if (ktr * k > MIN_CALC_COLOR_K) 
 				{
 				// sign(nl) == sing(nv)
-//				if (unshaded(l,n, intersection,lightSource)) 
-//				{
+
 					Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);;
 					color = color.add(lightIntensity.scale((calcDiffusive(kd, nl)+calcSpecular(ks, l, n, nl, v, nShininess))));
 				}
@@ -347,7 +368,7 @@ public class RayTracerBasic extends RayTracerBase
 			if (alignZero(gp.point.distance(geoPoint.point) - lightDistance) <= 0)
 			{
 				ktr *= gp.geometry.getMaterial().KT;
-				if (ktr < MIN_CALC_COLOR_K) 
+				if (ktr < MIN_CALC_COLOR_K) //החל מאיזו עוצמת צב זה נקרא שיש צל 
 					return 0.0;
 			}
 		}
