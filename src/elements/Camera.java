@@ -142,65 +142,28 @@ public class Camera
 		double Rx=width/nX;
 		double Yi=(i-(nY-1)/2d)*Ry;
 		double Xj=(j-(nX-1)/2d)*Rx;
-//		
-//		if(isZero(Xj) && isZero(Yi))
-//			return List.of(new Ray (p0, Pc.subtract(p0)));
-//		
-//		Point3D Pij = Pc;
-//		
-//		if(!isZero(Xj))
-//			Pij = Pij.add(vRight.scale(Xj));
-//		
-//		if(!isZero(Yi))
-//			Pij = Pij.add(vUp.scale(-Yi));
-//		
-//		Vector Vij = Pij.subtract(p0);
 //        
         double PRy = Ry / numOfRays; //height distance between each ray
         double PRx = Rx / numOfRays; //width distance between each ray
 //        
-//        Point3D tmp = Pij; //center
-//        
-//        //creating a grid in the pixel:
-//        for (int row=0; row<numOfRays; row++) 
-//        {
-//        	double Pxj = (row - (numOfRays/2d)) * PRx + PRx/2d;
-//        	for (int column=0; column<numOfRays; column++)
-//        	{
-//        		double Pyi = (column - (numOfRays/2d)) * PRy + PRy/2d;
-//        		if (Pxj != 0)
-//        			Pij = Pij.add(this.vRight.scale(-Pxj));
-//        		if (Pyi != 0)
-//        			Pij = Pij.add(this.vUp.scale(-Pyi)); 
-//        		Rays.add(new Ray(p0, Vij));
-//        		Pij = tmp; //restart
-//        	}
-//        }
-//        return Rays;
-		
-		
 	      //The distance between the screen and the camera cannot be 0
         if (isZero(distance))
         {
             throw new IllegalArgumentException("distance cannot be 0");
         }
 
-        List<Ray> sample_rays = new ArrayList<>();
-//
-//        double Ry = height/nY; //The number of pixels on the y axis
-//        double Rx = width/nX;  //The number of pixels on the x axis
-//        double yi =  ((i - nY/2d)*Ry); //distance of original pixel from (0,0) on Y axis
-////        double xj=   ((j - nX/2d)*Rx); //distance of original pixel from (0,0) on x axis
-//        double pixel_Ry = Ry/num_of_sample_rays; //The height of each grid block we divided the parcel into
-//        double pixel_Rx = Rx/num_of_sample_rays; //The width of each grid block we divided the parcel into
+        List<Ray> sampleRays = new ArrayList<>();
 
-        for (int row = 0; row < numOfRays; ++row) {//foreach place in the pixel grid
-            for (int column = 0; column < numOfRays; ++column) {
-                sample_rays.add(constructRaysThroughPixel(PRy,PRx,Yi, Xj, row, column,distance));//add the ray
+
+        for (int row = 0; row < numOfRays; ++row) 
+        {//foreach place in the pixel grid
+            for (int column = 0; column < numOfRays; ++column)
+            {
+                sampleRays.add(constructRaysThroughPixel(PRy,PRx,Yi, Xj, row, column));//add the ray
             }
         }
-        sample_rays.add(constructRayThroughPixel(nX, nY, j, i));//add the center screen ray
-        return sample_rays;
+        sampleRays.add(constructRayThroughPixel(nX, nY, j, i));//add the center screen ray
+        return sampleRays;
 	}
 	
 	 /**
@@ -215,25 +178,26 @@ public class Camera
      * @param distance distance of screen from camera
      * @return beam of rays through pixel
      */
-    private Ray constructRaysThroughPixel(double Ry,double Rx, double yi, double xj, int j, int i, double distance)
+    private Ray constructRaysThroughPixel(double Ry,double Rx, double yi, double xj, int j, int i)
     {
         Point3D Pc = p0.add(vTo.scale(distance)); //the center of the screen point
 
-        double y_sample_i =  (i *Ry + Ry/2d); //The pixel starting point on the y axis
-        double x_sample_j=   (j *Rx + Rx/2d); //The pixel starting point on the x axis
+        double ySampleI =  (i *Ry + Ry/2d); //The pixel starting point on the y axis
+        double xSampleJ=   (j *Rx + Rx/2d); //The pixel starting point on the x axis
 
         Point3D Pij = Pc; //The point at the pixel through which a beam is fired
         //Moving the point through which a beam is fired on the x axis
-        if (!isZero(x_sample_j + xj))
+        if (!isZero(xSampleJ + xj))
         {
-            Pij = Pij.add(vRight.scale(x_sample_j + xj));
+            Pij = Pij.add(vRight.scale(xSampleJ + xj));
         }
         //Moving the point through which a beam is fired on the y axis
-        if (!isZero(y_sample_i + yi))
+        if (!isZero(ySampleI + yi))
         {
-            Pij = Pij.add(vUp.scale(-y_sample_i -yi ));
+            Pij = Pij.add(vUp.scale(-ySampleI -yi ));
         }
         Vector Vij = Pij.subtract(p0);
+        
         return new Ray(p0,Vij);//create the ray throw the point we calculate here
     }
 	

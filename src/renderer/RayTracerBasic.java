@@ -80,24 +80,14 @@ public class RayTracerBasic extends RayTracerBase
         Color bkg = myscene.background;
         for (Ray ray : rays) 
         {
-        	GeoPoint gp = findClosestIntersection(ray);
-        	color = color.add(gp == null ? bkg : calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, 1d));
+//        	GeoPoint gp = findClosestIntersection(ray);
+//        	color = color.add(gp == null ? bkg : calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, 1d));
+        	color = color.add(traceRay(ray));
         }
         color = color.add(myscene.ambientLight.getIntensity());
         int size = rays.size();
-        return (size == 1) ? color : color.reduce(size);
-//        color = color.add(calcColor(rays));
-////        for (Ray ray : rays) 
-////        {
-////            GeoPoint gp = findClosestIntersection(ray);
-////            if(gp!=null)
-////            {}
-////            color = color.add(gp == null ? myscene.background : calcColor(gp, ray));
-////        }
-//        color = color.add(myscene.ambientLight.getIntensity());
-////        int size = rays.size();
-//        return (rays.size() == 1) ? color : color.reduce(rays.size());
-//       // return color;
+        return color.reduce(size);
+
     }
 	
 
