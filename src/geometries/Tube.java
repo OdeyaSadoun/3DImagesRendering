@@ -74,4 +74,16 @@ public class Tube extends Geometry
 		return null;
 	}
 
+	@Override
+	protected void findMinMaxParticular() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsParticular(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -93,8 +93,86 @@ public class Polygon extends Geometry
 	}
 
 	
+//	@Override
+//	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
+//	{
+//		List<GeoPoint> rayPoints = plane.findGeoIntersections(ray);
+//		if (rayPoints == null)
+//			return null;
+//		for (GeoPoint geoPoint : rayPoints) 
+//		{
+//			geoPoint.geometry = this;
+//		}
+//		//check if the point in out or on the triangle:
+//		List<Vector> normalsList = new ArrayList<Vector>();
+//		Vector vI;
+//		Vector vIplus1; 
+//		for (int i = 0; i<= vertices.size()-1; i++)
+//		{
+//			vI = vertices.get(i).subtract(ray.getP0());
+//			vIplus1 = vertices.get(i+1).subtract(ray.getP0());
+//			normalsList.add((vI.crossProduct(vIplus1).normalize()));
+//		}
+//		//the last:
+//		vI = vertices.get(vertices.size()).subtract(ray.getP0());
+//		vIplus1 = vertices.get(0).subtract(ray.getP0());
+//		normalsList.add((vI.crossProduct(vIplus1).normalize()));
+//		
+//		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
+//		
+//		//boolean poasitive = true;
+//		int countPositive = 0;
+//		int countNegative = normalsList.size();
+//		for (Vector vector : normalsList) 
+//		{
+//			if (alignZero((ray.getDir()).dotProduct(vector)) > 0)
+//			{
+//				countPositive++;
+//			}
+//			else if (alignZero((ray.getDir()).dotProduct(vector)) <= 0)
+//			{
+//				countNegative--;
+//			}
+//			
+//		}
+//		if (countPositive != normalsList.size() /*all normals in the positive side*/ && countNegative != 0 /*all normals in the negative side*/)
+//		{
+//			return null; //there is no instruction point
+//		}
+//		
+//
+//		return rayPoints;
+//	}
+
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
+	protected void findMinMaxParticular() 
+	{
+		minX = Double.NEGATIVE_INFINITY;
+		maxX = Double.POSITIVE_INFINITY;
+		minY = Double.NEGATIVE_INFINITY;
+		maxY = Double.POSITIVE_INFINITY;
+		minZ = Double.NEGATIVE_INFINITY;
+		maxZ = Double.POSITIVE_INFINITY;
+		// Adjust the size of the box according to the vertices
+		for (Point3D v : vertices) {
+			if (v.getX() < maxX)
+				maxX = v.getX();
+			if (v.getX() > minX)
+				minX = v.getX();
+			if (v.getY() < maxY)
+				maxY = v.getY();
+			if (v.getY() > minY)
+				minY = v.getY();
+			if (v.getZ() < maxZ)
+				maxZ = v.getZ();
+			if (v.getZ() > minZ)
+				minZ = v.getZ();
+		}
+		
+	}
+
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsParticular(Ray ray) 
 	{
 		List<GeoPoint> rayPoints = plane.findGeoIntersections(ray);
 		if (rayPoints == null)
@@ -143,6 +221,8 @@ public class Polygon extends Geometry
 
 		return rayPoints;
 	}
+
+
 	
 
 

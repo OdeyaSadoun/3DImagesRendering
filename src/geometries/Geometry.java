@@ -9,7 +9,7 @@ import primitives.Point3D;
  * 
  * @author Tamar Gavrieli 322533977 & Odeya Sadoun 212380406
  * */
-public abstract class Geometry implements Intersectable
+public abstract class Geometry extends Borderable
 {
 	
 	private Material material=new Material();
