@@ -38,7 +38,8 @@ public abstract class Borderable implements Intersectable
     /**
      * find the minimum and the maximum of the geometry border
      */
-    public final synchronized void findMinMax() {
+    public final synchronized void findMinMax() 
+    {
         if (!boxed)
         {
             findMinMaxParticular();
