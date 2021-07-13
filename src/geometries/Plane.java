@@ -130,12 +130,12 @@ public class Plane extends Geometry
 		 maxX = Double.POSITIVE_INFINITY;
 		 maxY = Double.POSITIVE_INFINITY;
 		 maxZ =  Double.POSITIVE_INFINITY;
-		 setEnabled();
+		
 		
 	}
 
 	@Override
-	protected List<GeoPoint> findGeoIntersectionsParticular(Ray ray) 
+	public List<GeoPoint> findGeoIntersectionsParticular(Ray ray) 
 	{
 		double nv = normal.dotProduct(ray.getDir());
 		if (isZero(nv))//הישר מוכל ולכן אין נקודת חיתוך
@@ -159,6 +159,8 @@ public class Plane extends Geometry
 			return null;
 		}
 	}
+
+
 
 	
 

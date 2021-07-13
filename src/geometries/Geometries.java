@@ -16,10 +16,10 @@ import primitives.Ray;
  * 
  * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
  */
-public class Geometries implements Intersectable 
+public class Geometries extends Borderable
 {
 	//field:
-	private List<Intersectable> geometriesInScene;
+	private List<Borderable> geometriesInScene;
 
 	/**
 	 * A default constructor that create new empty arrayList
@@ -29,7 +29,7 @@ public class Geometries implements Intersectable
 	public Geometries()
 	{
 		//we chosen in ArrayList because this class works better when the application demands storing the data and accessing it.
-		geometriesInScene = new ArrayList<Intersectable>();
+		geometriesInScene = new ArrayList<Borderable>();
 	}
 	
 	/**
@@ -38,9 +38,9 @@ public class Geometries implements Intersectable
 	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param geometries
 	 * */
-	public Geometries(Intersectable... geometries)
+	public Geometries(Borderable... geometries)
 	{
-		geometriesInScene =  new ArrayList<Intersectable>(Arrays.asList(geometries));
+		geometriesInScene =  new ArrayList<Borderable>(Arrays.asList(geometries));
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class Geometries implements Intersectable
 	 * 
 	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * */
-	public  Iterator<Intersectable> iterator()
+	public  Iterator<Borderable> iterator()
 	{
 		return geometriesInScene.iterator();
 	}
@@ -59,7 +59,7 @@ public class Geometries implements Intersectable
 	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @param geometries 
 	 * */
-	public void add(Intersectable... geometries)
+	public void add(Borderable... geometries)
 	{
 		if (geometries != null)
 		{
@@ -74,7 +74,7 @@ public class Geometries implements Intersectable
 	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
 	 * @return List<Intersectable> value for geometriesInScene
 	 * */
-	public List<Intersectable> getIntsersectionPoints() 
+	public List<Borderable> getIntsersectionPoints() 
 	{
 		return geometriesInScene;
 	}
@@ -109,10 +109,83 @@ public class Geometries implements Intersectable
 		return true;
 	}
 
+//	@Override
+//	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
+//	{
+//
+//		List<GeoPoint> temp = new ArrayList<GeoPoint>();
+//		for (Intersectable intersectable : geometriesInScene) 
+//		{
+//			List<GeoPoint> intersection = intersectable.findGeoIntersections(ray);
+//			if (intersection != null)
+//				temp.addAll(intersection); 
+//		}
+//		
+//		if (temp.isEmpty())
+//			return null;
+//		return temp;	
+//
+//	}
+
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
+	protected void findMinMaxParticular() 
 	{
 
+		minX = Double.POSITIVE_INFINITY;
+		maxX = Double.NEGATIVE_INFINITY;
+		minY = Double.POSITIVE_INFINITY;
+		maxY = Double.NEGATIVE_INFINITY;
+		minZ = Double.POSITIVE_INFINITY;
+		maxZ = Double.NEGATIVE_INFINITY;
+	
+//		for (Intersectable intersectable : geometriesInScene) 
+//		{
+//			if (intersectable < maxX)
+//				maxX = intersectable;
+//			if (intersectable > minX)
+//				minX = intersectable;
+//			if (intersectable < maxY)
+//				maxY = intersectable;
+//			if (intersectable > minY)
+//				minY = intersectable;
+//			if (intersectable < maxZ)
+//				maxZ = intersectable;
+//			if (intersectable > minZ)
+//				minZ = intersectable;
+//			
+//
+//		}
+		/**
+	     * find the minimum and the maximum of the geometry border
+	     */
+
+	        for (Borderable g : geometriesInScene) {
+	            g.findMinMax();
+
+	            //calc min
+	            if (g.minX < minX)
+	                minX = g.minX;
+	            if (g.minY < minY)
+	                minY = g.minY;
+	            if (g.minZ < minZ)
+	                minZ = g.minZ;
+
+	            //calc max
+	            if (g.maxX > maxX)
+	                maxX = g.maxX;
+	            if (g.maxY > maxY)
+	                maxY = g.maxY;
+	            if (g.maxZ > maxZ)
+	                maxZ = g.maxZ;
+	        }
+
+	    }
+		
+	
+
+	@Override
+	public List<GeoPoint> findGeoIntersectionsParticular(Ray ray)
+	{
 		List<GeoPoint> temp = new ArrayList<GeoPoint>();
 		for (Intersectable intersectable : geometriesInScene) 
 		{
@@ -124,6 +197,6 @@ public class Geometries implements Intersectable
 		if (temp.isEmpty())
 			return null;
 		return temp;	
-
 	}
+
 }

@@ -110,11 +110,17 @@ public class Sphere extends Geometry
 		maxY = center.getY() + radius;
 		minZ = center.getZ() - radius;
 		maxZ = center.getZ() + radius;
-		setEnabled();
+		
+//
+//	        maxX = minX + 2 * radius;
+//	        maxY = minY + 2 * radius;
+//	        maxZ = minZ + 2 * radius;
+
+	   
 	}
 
 	@Override
-	protected List<GeoPoint> findGeoIntersectionsParticular(Ray ray) 
+	public List<GeoPoint> findGeoIntersectionsParticular(Ray ray) 
 	{
 		if (ray.getP0().equals(center)) // if the begin of the ray in the center, the point, is on the radius
 			return List.of(new GeoPoint(this,ray.getPoint(radius)));
@@ -143,7 +149,10 @@ public class Sphere extends Geometry
 
 		else
 			return List.of(new GeoPoint(this,ray.getPoint(t2)));
+	
 	}
+
+
 
 
 }

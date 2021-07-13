@@ -88,7 +88,7 @@ public class geometriesWithAllEffects
 		Render render = new Render().setNumOfRays(81).setMultithreading(3) //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
-				.setRayTracer(new RayTracerBasic(scene));
+				.setRayTracer(new RayTracerBasic(scene).setBVH());
 
 		render.renderImage();
 		render.writeToImage();

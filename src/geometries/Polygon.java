@@ -147,32 +147,34 @@ public class Polygon extends Geometry
 	@Override
 	protected void findMinMaxParticular() 
 	{
-		minX = Double.NEGATIVE_INFINITY;
-		maxX = Double.POSITIVE_INFINITY;
-		minY = Double.NEGATIVE_INFINITY;
-		maxY = Double.POSITIVE_INFINITY;
-		minZ = Double.NEGATIVE_INFINITY;
-		maxZ = Double.POSITIVE_INFINITY;
+		minX = Double.POSITIVE_INFINITY;
+		maxX = Double.NEGATIVE_INFINITY;
+		minY = Double.POSITIVE_INFINITY;
+		maxY = Double.NEGATIVE_INFINITY;
+		minZ = Double.POSITIVE_INFINITY;
+		maxZ = Double.NEGATIVE_INFINITY;
 		// Adjust the size of the box according to the vertices
 		for (Point3D v : vertices) {
-			if (v.getX() < maxX)
-				maxX = v.getX();
-			if (v.getX() > minX)
+			if (v.getX() < minX)
 				minX = v.getX();
-			if (v.getY() < maxY)
-				maxY = v.getY();
-			if (v.getY() > minY)
+			if (v.getX() > maxX)
+				maxX = v.getX();
+			if (v.getY() < minY)
 				minY = v.getY();
-			if (v.getZ() < maxZ)
-				maxZ = v.getZ();
-			if (v.getZ() > minZ)
+			if (v.getY() > maxY)
+				maxY = v.getY();
+			if (v.getZ() < minZ)
 				minZ = v.getZ();
+			if (v.getZ() > maxZ)
+				maxZ = v.getZ();
 		}
-		setEnabled();
+		
+		
+
 	}
 
 	@Override
-	protected List<GeoPoint> findGeoIntersectionsParticular(Ray ray) 
+	public List<GeoPoint> findGeoIntersectionsParticular(Ray ray) 
 	{
 		List<GeoPoint> rayPoints = plane.findGeoIntersections(ray);
 		if (rayPoints == null)
@@ -221,6 +223,8 @@ public class Polygon extends Geometry
 
 		return rayPoints;
 	}
+
+
 
 
 	

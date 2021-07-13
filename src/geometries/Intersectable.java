@@ -5,6 +5,7 @@ import primitives.Ray;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.Point3D;
 /**
  * Interface for Intsersections
@@ -69,6 +70,6 @@ public interface Intersectable
 		}
 		
 	}
-
+	public  List<GeoPoint> findGeoIntersectionsParticular(Ray ray);
 
 }

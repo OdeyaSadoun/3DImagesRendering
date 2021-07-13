@@ -75,7 +75,7 @@ public class Triangle extends Polygon
 //		
 //	}
 	@Override
-	protected List<GeoPoint> findGeoIntersectionsParticular(Ray ray) 
+	public List<GeoPoint> findGeoIntersectionsParticular(Ray ray) 
 	{
 		List<GeoPoint> rayPoints = plane.findGeoIntersections(ray);
 		if (rayPoints == null)

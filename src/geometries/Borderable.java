@@ -128,7 +128,7 @@ public abstract class Borderable implements Intersectable
         return borderEnabled && !intersectBorderHelper(ray) ? null : findGeoIntersectionsParticular(ray);
     }
 
-	protected abstract List<GeoPoint> findGeoIntersectionsParticular(Ray ray);
+
 
 
   

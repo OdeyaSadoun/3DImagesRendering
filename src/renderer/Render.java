@@ -201,6 +201,7 @@ package renderer;
 
 import primitives.*;
 import elements.*;
+import geometries.Borderable;
 
 import java.util.List;
 import java.util.MissingResourceException;
@@ -542,4 +543,6 @@ public class Render {
 		 this.numOfRays = numOfRays;
 		return this;
 	}
+	
+
 }

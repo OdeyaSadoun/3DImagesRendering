@@ -1,5 +1,7 @@
 package renderer;
 import java.util.List;
+
+import geometries.Borderable;
 import renderer.RayTracerBasic;
 import primitives.Color;
 import primitives.Point3D;
@@ -25,6 +27,13 @@ public abstract class RayTracerBase
 	public  RayTracerBase(Scene myscene)
 	{
 		this.myscene=myscene;
+	}
+	
+	
+	public  RayTracerBase setBVH()
+	{
+		Borderable.setEnabled();
+		return this;
 	}
 	
 	/**
