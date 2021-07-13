@@ -71,5 +71,5 @@ public abstract class Geometry extends Borderable
 		this.emission = emission;
 		return this;
 	}
-
+	public abstract Point3D getPositionPoint();
 }

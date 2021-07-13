@@ -159,6 +159,11 @@ public class Plane extends Geometry
 			return null;
 		}
 	}
+	
+	@Override
+	public Point3D getPositionPoint() {
+		return point;
+	}
 
 
 

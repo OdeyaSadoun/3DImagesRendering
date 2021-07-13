@@ -10,6 +10,7 @@ import java.util.ListIterator;
 import geometries.Intersectable.GeoPoint;
 import primitives.Point3D;
 import primitives.Ray;
+//import renderer.myscene;
 
 /**
  * Class for the Collection of Bodies in the Scene
@@ -199,4 +200,16 @@ public class Geometries extends Borderable
 		return temp;	
 	}
 
+//	private void divideGeometries() 
+//	{
+//		for (Borderable g : geometriesInScene) 
+//		{
+//			Geometries geo = new Geometries();
+//			for (int i = 0; i <= 4 && g!=null; i++)
+//			{
+//				geo.add(g);
+//			}
+//		}
+//		
+//	}
 }

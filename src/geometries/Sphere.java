@@ -152,7 +152,10 @@ public class Sphere extends Geometry
 	
 	}
 
-
+	@Override
+	public Point3D getPositionPoint() {
+		return center;
+	}
 
 
 }

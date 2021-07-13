@@ -86,4 +86,10 @@ public class Tube extends Geometry
 		return null;
 	}
 
+	@Override
+	public Point3D getPositionPoint() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

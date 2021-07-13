@@ -226,7 +226,10 @@ public class Polygon extends Geometry
 
 
 
-
+	@Override
+	public Point3D getPositionPoint() {
+		return vertices.get(0);
+	}
 	
 
 
