@@ -168,7 +168,7 @@ public class Polygon extends Geometry
 			if (v.getZ() > minZ)
 				minZ = v.getZ();
 		}
-		
+		setEnabled();
 	}
 
 	@Override

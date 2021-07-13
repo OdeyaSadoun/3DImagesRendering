@@ -67,7 +67,7 @@ public class Sphere extends Geometry
 		return point.subtract(getCenter()).normalize();
 	}
 
-//	
+	
 //	@Override
 //	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
 //	{
@@ -110,7 +110,7 @@ public class Sphere extends Geometry
 		maxY = center.getY() + radius;
 		minZ = center.getZ() - radius;
 		maxZ = center.getZ() + radius;
-		
+		setEnabled();
 	}
 
 	@Override

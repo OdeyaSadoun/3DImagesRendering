@@ -85,7 +85,7 @@ public class geometriesWithAllEffects
 		scene.lights.add(new PointLight(new Color(100, 300, 0), new Point3D(-1400, -1400, 1000))//
 				.setKL(0.00001).setKQ(0.000001));
 		ImageWriter imageWriter = new ImageWriter("imageWithGeometries2", 500, 500);
-		Render render = new Render().setNumOfRays(81) //
+		Render render = new Render().setNumOfRays(81).setMultithreading(3) //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
 				.setRayTracer(new RayTracerBasic(scene));

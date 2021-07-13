@@ -97,28 +97,27 @@ public class Plane extends Geometry
 //	@Override
 //	public List<GeoPoint> findGeoIntersections(Ray ray) throws IllegalArgumentException 
 //	{
-////		 return borderEnabled && !intersectBorderHelper(ray) ? null : findGeoIntersectionsParticular(ray);
-////		double nv = normal.dotProduct(ray.getDir());
-////		if (isZero(nv))//הישר מוכל ולכן אין נקודת חיתוך
-////		{
-////			return null;
-////		}
-////		
-////		try 
-////		{
-////			Vector pSubtractP0 = point.subtract(ray.getP0());
-////			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
-////
-////			if(t <= 0)
-////			{
-////				return null;
-////			}
-////			return List.of(new GeoPoint(this,ray.getPoint(t)));
-////		}
-////		catch(Exception ex) //הקרן מתחילה בנקודת היחוס של המישור ולא כוללים את ראשית הקרן
-////		{
-////			return null;
-////		}
+//		double nv = normal.dotProduct(ray.getDir());
+//		if (isZero(nv))//הישר מוכל ולכן אין נקודת חיתוך
+//		{
+//			return null;
+//		}
+//		
+//		try 
+//		{
+//			Vector pSubtractP0 = point.subtract(ray.getP0());
+//			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
+//
+//			if(t <= 0)
+//			{
+//				return null;
+//			}
+//			return List.of(new GeoPoint(this,ray.getPoint(t)));
+//		}
+//		catch(Exception ex) //הקרן מתחילה בנקודת היחוס של המישור ולא כוללים את ראשית הקרן
+//		{
+//			return null;
+//		}
 //	}
 
 	@Override
@@ -131,6 +130,7 @@ public class Plane extends Geometry
 		 maxX = Double.POSITIVE_INFINITY;
 		 maxY = Double.POSITIVE_INFINITY;
 		 maxZ =  Double.POSITIVE_INFINITY;
+		 setEnabled();
 		
 	}
 
